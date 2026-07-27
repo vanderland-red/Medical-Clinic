@@ -1,0 +1,28 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/flash_message.css') }}">
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+        <div class="flash-container">
+            {% for category, message in messages %}
+                <div class="flash flash-{{ category }}">
+                    <span class="flash-text">{{ message }}</span>
+                    <span class="flash-close" onclick="closeFlash(this)">×</span>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    <script>
+        function closeFlash(el){
+            const flash = el.parentElement;
+            flash.style.animation = 'fadeOut 0.4s forwards';
+            setTimeout(() => flash.remove(), 400);
+        }
+        setTimeout(() => {
+            document.querySelectorAll('.flash').forEach(flash => {
+                flash.style.animation = 'fadeOut 0.4s forwards';
+                setTimeout(() => flash.remove(), 400);
+            });
+        }, 4000);
+</script>
+{% endwith %}

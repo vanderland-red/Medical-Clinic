@@ -1,0 +1,73 @@
+.flash-container{
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 9999;
+    width: 420px;
+    max-width: 90%;
+}
+
+.flash{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 12px;
+    padding: 15px 18px;
+    border-radius: 10px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: 500;
+    box-shadow: 0 8px 20px rgba(0,0,0,.15);
+    animation: fadeIn .4s ease;
+}
+
+.flash-success{
+    background: #28a745;
+}
+
+.flash-warning{
+    background: #f39c12;
+}
+
+.flash-error{
+    background: #dc3545;
+}
+
+.flash-text{
+    flex: 1;
+    margin-left: 10px;
+}
+
+.flash-close{
+    cursor: pointer;
+    font-size: 22px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.flash-close:hover{
+    transform: scale(1.2);
+}
+
+@keyframes fadeIn{
+    from{
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to{
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeOut{
+    from{
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to{
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
