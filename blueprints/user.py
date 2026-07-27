@@ -28,27 +28,51 @@ def register():
 
     if len(fullname) < 5:
         flash("لطفا نام و نام خانوادگی را کامل وارد کنید", "warning")
-        return redirect(url_for("user.register"))
+        return render_template(
+        "user/user_login.html",
+        fullname=fullname, 
+        phone=phone,
+        email=email
+    ) # این باعث میشه اگه کاربر رمز عبور رو اشتباه زد دیگه کل اطلاعات پاک نمیشن
 
 
     if not re.fullmatch(r"(?:\+98|0)9\d{9}", phone):
-            flash("شماره موبایل وارد شده صحیح نیست", "warning")
-            return redirect(url_for("user.register"))
+        flash("شماره موبایل وارد شده صحیح نیست", "warning")
+        return render_template( 
+        "user/user_login.html",
+        fullname=fullname,
+        phone=phone,
+        email=email
+    )
     
 
     if len(password) == 0 :
         flash("لطفا رمز عبور خود را وارد کنید !", "warning")
-        return redirect(url_for("user.register"))
+        return render_template(
+        "user/user_login.html",
+        fullname=fullname,
+        phone=phone,
+        email=email
+    )
 
     if len(password) < 5:
         flash("لطفا رمز عبور سخت تری را انتخاب کنید", "error")
-        return redirect(url_for("user.register"))
+        return render_template(
+        "user/user_login.html",
+        fullname=fullname,
+        phone=phone,
+        email=email
+)
 
 
     if password != confirm_password:
         flash("رمز عبور و تکرار آن یکسان نیست.", "error")
-        return redirect(url_for("user.register"))
-
+        return render_template(
+        "user/user_login.html",
+        fullname=fullname,
+        phone=phone,
+        email=email
+    )
 
 
     user_phone = User.query.filter_by(phone=phone).first()
