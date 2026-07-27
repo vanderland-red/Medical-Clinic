@@ -29,8 +29,7 @@ login_manager.login_message_category = "warning"
 @login_manager.user_loader
 def load_user(user_id):
     return User.query.get(int(user_id))
-# test
-# test2222
+
 
 app.register_blueprint(general)
 app.register_blueprint(admin)
