@@ -21,3 +21,27 @@ class User(db.Model, UserMixin):
 
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # One to One 
+    patient = db.relationship(
+    "Patient",
+    back_populates="user",
+    uselist=False,
+    cascade="all, delete-orphan"
+)
+
+
+
+
+class Patient(db.Model):
+
+    __tablename__ = "patients"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    national_code = db.Column(db.String(10), unique=True, nullable=True)
+    birth_date = db.Column(db.Date, nullable=True)
+    gender = db.Column(db.String(10),nullable=True)
+    address = db.Column(db.Text,nullable=True)
+
+    user = db.relationship ("User",back_populates="patient")
