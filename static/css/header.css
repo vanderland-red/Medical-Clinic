@@ -1,0 +1,139 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Vazirmatn,sans-serif;
+}
+
+header{
+    width:100%;
+    height:90px;
+    background:#ffffff;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:0 80px;
+    box-shadow:0 5px 20px rgba(0,0,0,.08);
+    position:sticky;
+    top:0;
+    z-index:1000;
+}
+
+/* ==========================
+        Logo
+========================== */
+
+.apadana-logo-link{
+    text-decoration:none;
+}
+
+.logo img{
+    width:75px;
+    transition:.35s;
+}
+
+.logo img:hover{
+    transform:scale(1.08);
+}
+
+/* ==========================
+        Menu
+========================== */
+
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:35px;
+}
+
+nav ul li a{
+    text-decoration:none;
+    color:#2c3e50;
+    font-size:16px;
+    font-weight:600;
+    position:relative;
+    transition:.3s;
+}
+
+nav ul li a::after{
+    content:"";
+    position:absolute;
+    width:0;
+    height:3px;
+    background:#1d9bf0;
+    right:0;
+    bottom:-8px;
+    border-radius:10px;
+    transition:.35s;
+}
+
+nav ul li a:hover{
+    color:#1d9bf0;
+}
+
+nav ul li a:hover::after{
+    width:100%;
+}
+
+/* ==========================
+      Appointment Button
+========================== */
+
+header>a:last-child{
+    text-decoration:none;
+    color:#ffffff;
+    border:2px solid #0b74c9;
+    background-color: #0b74c9;
+    padding:12px 30px;
+    border-radius:10px;
+    font-size:15px;
+    font-weight:700;
+    transition:.35s;
+}
+
+header>a:last-child:hover{
+    background:#ffffff;
+    color:#0b74c9;
+    transform:translateY(-2px);
+}
+
+/* ==========================
+      Responsive
+========================== */
+
+@media(max-width:1100px){
+
+    header{
+        padding:0 30px;
+    }
+
+    nav ul{
+        gap:20px;
+    }
+
+    nav ul li a{
+        font-size:15px;
+    }
+
+    header>a:last-child{
+        padding:12px 20px;
+    }
+
+}
+
+@media(max-width:900px){
+
+    header{
+        flex-direction:column;
+        height:auto;
+        padding:20px;
+        gap:20px;
+    }
+
+    nav ul{
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:18px;
+    }
+
+}
