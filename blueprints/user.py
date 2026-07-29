@@ -3,6 +3,9 @@ from models.tables import User
 from extentions import db
 from flask_login import login_user, login_required,current_user,logout_user
 import re
+from flask import session
+import random
+from datetime import datetime, timedelta
 
 
 
@@ -15,6 +18,8 @@ bp = Blueprint("user", __name__, url_prefix="/user")
 @bp.route("/dashboard", methods=["GET"])
 def dashboard ():
     return render_template("user/user_dashboard.html")
+
+
 
 #===================
 # USER Register
@@ -68,10 +73,6 @@ def register():
     )
     
     
-
-
-    
-
     user_national = User.query.filter_by(national_code=national_code).first()
 
     if user_national:
@@ -83,12 +84,52 @@ def register():
             national_code=national_code
         )
 
+    
+
+    otp = f"{random.randint(0, 999999):06d}" # d = integer , 6 = Number of digits , 0 : اگر کمتر از 6 رقم بود بقیه را با صفر پر کن
+
+    session["register_data"] = {
+    "fullname": fullname,
+    "phone": phone,
+    "national_code": national_code,
+    "role": "patient"
+    }
+
+    session["otp"] = otp 
+    # ذخیره زمان فعلی به اضافه 2 دقیقه
+    session["otp_expire"] = (
+    datetime.utcnow() + timedelta(minutes=5)).isoformat()
+
+    print(f"OTP: {otp}") # چاپ کد تایید در ترمینال
+
+    return redirect(url_for("user.verify"))
+
+
+
+#===================
+# USER Verify OTP
+#===================
+@bp.route("/verify", methods=["GET", "POST"])
+def verify ():
+    if request.method == "GET":
+        return render_template("user/user_verify.html")
+
+    # دریافت کد وارد شده توسط کاربر
+    user_otp = request.form["user_otp"].strip()
+
+    # بررسی صحت کد
+    if user_otp != session.get("otp"):
+        flash("کد تایید اشتباه است.", "error")
+        return render_template("user/user_verify.html")
+
+    # اگر کد صحیح بود
+    data = session["register_data"]
 
     new_user = User(
-        fullname=fullname,
-        phone=phone,
-        national_code=national_code,
-        role="patient"
+        fullname=data["fullname"],
+        phone=data["phone"],
+        national_code=data["national_code"],
+        role=data["role"]
     )
 
     db.session.add(new_user)
@@ -96,8 +137,14 @@ def register():
 
     login_user(new_user)
 
-    flash("با موفقیت وارد شدید", "success")
+    # پاک کردن اطلاعات موقت زیرا دیگه به آنها احتیاجی نداریم
+    session.pop("otp", None)
+    session.pop("otp_expire", None)
+    session.pop("register_data", None)
+
+    flash("با موفقیت وارد شدید.", "success")
     return redirect(url_for("user.dashboard"))
+
 
 
 
