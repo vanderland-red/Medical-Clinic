@@ -10,8 +10,7 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(20), unique=True, nullable=False)
-    email = db.Column(db.String(255), unique=True, nullable=True)
-    password = db.Column(db.String(255), nullable=False)
+    national_code = db.Column(db.String(10), unique=True, nullable=False)
 
     role = db.Column(
         db.Enum("patient", "doctor", "admin", name="user_roles"),
@@ -39,7 +38,6 @@ class Patient(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
-    national_code = db.Column(db.String(10), unique=True, nullable=True)
     birth_date = db.Column(db.Date, nullable=True)
     gender = db.Column(db.String(10),nullable=True)
     address = db.Column(db.Text,nullable=True)

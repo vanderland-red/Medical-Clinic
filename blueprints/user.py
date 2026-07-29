@@ -1,8 +1,7 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
 from models.tables import User
 from extentions import db
-from werkzeug.security import generate_password_hash,check_password_hash
-from flask_login import login_user,logout_user
+from flask_login import login_user, login_required,current_user,logout_user
 import re
 
 
@@ -12,6 +11,7 @@ bp = Blueprint("user", __name__, url_prefix="/user")
 #===================
 # USER Dashboard
 #===================
+@login_required
 @bp.route("/dashboard", methods=["GET"])
 def dashboard ():
     return render_template("user/user_dashboard.html")
@@ -27,9 +27,7 @@ def register():
 
     fullname = request.form["fullname"].strip()
     phone = request.form["phone"].strip()
-    email = request.form["email"].strip()
-    password = request.form["password"]
-    confirm_password = request.form["confirm_password"]
+    national_code = request.form["national_code"].strip()
 
     if len(fullname) < 5:
         flash("لطفا نام و نام خانوادگی را کامل وارد کنید", "warning")
@@ -37,7 +35,7 @@ def register():
         "user/user_login.html",
         fullname=fullname, 
         phone=phone,
-        email=email
+        national_code=national_code
     ) # این باعث میشه اگه کاربر رمز عبور رو اشتباه زد دیگه کل اطلاعات پاک نمیشن
 
 
@@ -47,104 +45,66 @@ def register():
         "user/user_login.html",
         fullname=fullname,
         phone=phone,
-        email=email
+        national_code=national_code
     )
-    
-
-    if len(password) == 0 :
-        flash("لطفا رمز عبور خود را وارد کنید !", "warning")
-        return render_template(
-        "user/user_login.html",
-        fullname=fullname,
-        phone=phone,
-        email=email
-    )
-
-    if len(password) < 5:
-        flash("لطفا رمز عبور سخت تری را انتخاب کنید", "error")
-        return render_template(
-        "user/user_login.html",
-        fullname=fullname,
-        phone=phone,
-        email=email
-)
-
-
-    if password != confirm_password:
-        flash("رمز عبور و تکرار آن یکسان نیست.", "error")
-        return render_template(
-        "user/user_login.html",
-        fullname=fullname,
-        phone=phone,
-        email=email
-    )
-
 
     user_phone = User.query.filter_by(phone=phone).first()
     if user_phone :
         flash("این شماره موبایل قبلاً ثبت شده است.", "error")
-        return redirect(url_for("user.register"))
+        return render_template(
+        "user/user_login.html",
+        fullname=fullname,
+        phone=phone,
+        national_code=national_code
+    )
+
+    if not national_code.isdigit() or len(national_code) != 10:
+        flash("کد ملی صحیح نیست", "error")
+        return render_template(
+        "user/user_login.html",
+        fullname=fullname,
+        phone=phone,
+        national_code=national_code
+    )
+    
+    
 
 
-    if email:
-        user_email = User.query.filter_by(email=email).first()
-        if user_email:
-            flash("این ایمیل قبلاً ثبت شده است.", "error")
-            return redirect(url_for("user.register"))
-    else:
-        email = None
+    
 
+    user_national = User.query.filter_by(national_code=national_code).first()
 
-    hashed_password = generate_password_hash(password)
+    if user_national:
+        flash("این کد ملی قبلاً ثبت شده است.", "error")
+        return render_template(
+            "user/user_login.html",
+            fullname=fullname,
+            phone=phone,
+            national_code=national_code
+        )
+
 
     new_user = User(
         fullname=fullname,
         phone=phone,
-        email=email,
-        password=hashed_password,
+        national_code=national_code,
         role="patient"
     )
 
     db.session.add(new_user)
     db.session.commit()
 
-    flash("ثبت نام با موفقیت انجام شد.", "success")
+    login_user(new_user)
+
+    flash("با موفقیت وارد شدید", "success")
     return redirect(url_for("user.dashboard"))
 
-
-#===================
-# USER Login
-#===================
-@bp.route("/login", methods=["GET", "POST"])
-def login():
-
-    if request.method == "POST":
-
-        phone = request.form.get("phone").strip()
-        password = request.form.get("password")
-
-        user = User.query.filter_by(phone=phone).first()
-
-        if user is None:
-            flash("شماره موبایل وارد شده یافت نشد.", "error")
-            return redirect(url_for("user.login"))
-
-        if not check_password_hash(user.password, password):
-            flash("رمز عبور اشتباه است.", "danger")
-            return redirect(url_for("user.login"))
-
-        login_user(user)
-
-        flash("با موفقیت وارد حساب کاربری شدید.", "success")
-
-        return redirect(url_for("user.dashboard"))
-
-    return render_template("user/user_login.html")
 
 
 #===================
 # USER Logout
 #===================
+@login_required
 @bp.route("/logout")
 def logout():
 
