@@ -8,7 +8,24 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
 <h1>hello admin</h1>
 
-<a href="{{ url_for('admin.logout') }}">logout</a>
+    <section class="admin-dashboard-parent">
+        <h2>اضافه کردن دکتر</h2>
+        <form action="{{ url_for('admin.dashboard')}}" method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="text" name="doctor_name" placeholder="نام">
+            <input type="number" name="experience_years" placeholder="چند سال تجربه">
+            <input type="text" name="biography" placeholder="بیوگرافی">
+            <input type="number" name="visit_price" placeholder="قیمت ویزیت">
+            <input type="text" name="specials" placeholder="تخصص ها">
+            <input type="file" name="profile_image">
+            
+            <input type="submit" value="ثبت دکتر">
+
+        </form>
+    </section>
+
+
+<a href="{{ url_for('admin.logout') }}">خروج از حساب ادمین</a>
 
 
 {% endblock %}

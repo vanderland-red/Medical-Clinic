@@ -21,13 +21,13 @@ class User(db.Model, UserMixin):
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # One to One 
+    # One to One with Patient
     patient = db.relationship(
     "Patient",
     back_populates="user",
     uselist=False,
     cascade="all, delete-orphan"
-)
+    )
 
 
 
@@ -37,9 +37,23 @@ class Patient(db.Model):
     __tablename__ = "patients"
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), unique=True, nullable=False)
     birth_date = db.Column(db.Date, nullable=True)
     gender = db.Column(db.String(10),nullable=True)
     address = db.Column(db.Text,nullable=True)
 
     user = db.relationship ("User",back_populates="patient")
+
+
+
+
+class Doctor(db.Model):
+    __tablename__ = "doctors"
+
+    id = db.Column(db.Integer, primary_key=True)
+    doctor_name = db.Column(db.String(100), nullable=False)
+    experience_years = db.Column(db.Integer, nullable=False)
+    biography = db.Column(db.Text, nullable=True)
+    visit_price = db.Column(db.Integer, nullable=False)
+    profile_image = db.Column(db.String(255), nullable=True)
+    specials = db.Column(db.String(200), nullable=False)

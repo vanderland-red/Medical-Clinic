@@ -37,3 +37,12 @@ app.register_blueprint(user)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)
+
+
+# {% if request.endpoint.startswith("general") %}
+#   {% if current_user.is_authenticated %}
+#          <a href="{{ url_for('user.dashboard') }}" class="header-btn">حساب کاربری</a>
+       # {% else %}
+            # <a href="{{ url_for('user.register') }}" class="header-btn">ثبت نام</a>
+       #{% endif%}
+   # {% endif %}
