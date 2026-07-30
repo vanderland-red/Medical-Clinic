@@ -1,89 +1,128 @@
 {% extends "base.html" %}
 
 {% block title %}
-صفحه اصلی
+پنل مدیریت
 {% endblock %}
 
 {% block body %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-<h1>hello admin</h1>
 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_dashboard.css') }}">
 
-<section class="admin-dashboard-parent">
-    <h2>اضافه کردن دکتر</h2>
-    <form action="{{ url_for('admin.dashboard')}}" method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-        <input type="text" name="doctor_name" placeholder="نام">
-        <input type="number" name="experience_years" placeholder="چند سال تجربه">
-        <textarea name="biography" placeholder="بیوگرافی"></textarea>
-        <input type="number" name="visit_price" placeholder="قیمت ویزیت">
-        <input type="text" name="specials" placeholder="تخصص ها">
-        <input type="file" name="profile_image">
+<div class="admin-container">
 
-        <input type="submit" value="ثبت دکتر">
+    <div class="admin-header">
 
-    </form>
-
-</section>
-
-
-
-<section class="site-doctors">
-
-    <h2>دکتر های کلینیک</h2>
-
-    <div class="doctors-parent-admin">
-
-        {% for doctor in doctors %}
-
-        <div class="doctor-box">
-
-            <div class="doctor-image">
-                <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
-                    alt="{{ doctor.doctor_name }}">
-            </div>
-
-            <h5>دکتر</h5>
-            <div class="doctor-name">
-                <h3>{{ doctor.doctor_name }}</h3>
-            </div>
-
-            <div class="doctor-takhassos">
-                <h4>{{ doctor.specials }}</h4>
-            </div>
-
+        <div>
+            <h1>پنل مدیریت کلینیک</h1>
+            <p>مدیریت پزشکان کلینیک</p>
         </div>
 
-        <!--------------->
-        <!--دکمه ویرایش دکتر-->
-        <!---------------->
-
-        <a href="{{ url_for('admin.edit_doctor', id=doctor.id) }}" class="edit-btn">
-            ویرایش
+        <a href="{{ url_for('admin.logout') }}" class="logout-btn">
+            خروج
         </a>
 
-        <!--------------->
-        <!--دکمه حذف دکتر-->
-        <!---------------->
-        <form action="{{ url_for('admin.delete_doctor', id=doctor.id) }}" method="POST"
-            onsubmit="return confirm('آیا از حذف این دکتر مطمئن هستید؟')">
+    </div>
+
+
+    <!-- فرم -->
+
+    <section class="admin-dashboard-parent">
+
+        <h2>افزودن پزشک جدید</h2>
+
+        <form action="{{ url_for('admin.dashboard') }}" method="POST" enctype="multipart/form-data">
 
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-            <button type="submit" class="delete-btn">
-                حذف
+            <input type="text" name="doctor_name" placeholder="نام پزشک">
+
+            <input type="number" name="experience_years" placeholder="سال تجربه">
+
+            <input type="text" name="specials" placeholder="تخصص">
+
+            <input type="number" name="visit_price" placeholder="هزینه ویزیت">
+
+            <textarea name="biography" placeholder="بیوگرافی پزشک"></textarea>
+
+            <input type="file" name="profile_image">
+
+            <button type="submit">
+                ثبت پزشک
             </button>
 
         </form>
 
-        {% endfor %}
-
-    </div>
-
-</section>
+    </section>
 
 
-<a href="{{ url_for('admin.logout') }}">خروج از حساب ادمین</a>
 
+    <!-- لیست پزشکان -->
+
+    <section class="site-doctors">
+
+        <h2>پزشکان ثبت شده</h2>
+
+        <div class="doctors-parent-admin">
+
+            {% for doctor in doctors %}
+
+            <div class="doctor-box">
+
+                <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
+                    alt="{{ doctor.doctor_name }}">
+
+                <div class="doctor-content">
+
+                    <span class="doctor-role">
+                        پزشک
+                    </span>
+
+                    <h3>{{ doctor.doctor_name }}</h3>
+
+                    <p>{{ doctor.specials }}</p>
+
+                    <div class="doctor-price">
+                        <p>قیمت ویزیت :</p>
+                        {{ doctor.visit_price }} تومان
+
+                    </div>
+
+                    <div class="doctor-biography">
+                        <p>بیوگرافی :</p>
+                        {{ doctor.biography }}
+                    </div>
+
+                    <div class="doctor-actions">
+
+                        <a href="{{ url_for('admin.edit_doctor', id=doctor.id) }}" class="edit-btn">
+                            ویرایش
+                        </a>
+
+                        <form action="{{ url_for('admin.delete_doctor', id=doctor.id) }}" method="POST"
+                            onsubmit="return confirm('آیا از حذف این پزشک مطمئن هستید؟')">
+
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                            <button type="submit" class="delete-btn">
+
+                                حذف
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
+
+</div>
 
 {% endblock %}

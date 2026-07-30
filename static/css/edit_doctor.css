@@ -1,0 +1,154 @@
+.admin-dashboard-parent{
+
+    width:650px;
+    max-width:95%;
+
+    margin:50px auto;
+
+    background:#b5c196;
+
+    border-radius:16px;
+
+    padding:35px;
+
+    box-shadow:0 12px 30px rgba(0,0,0,.08);
+
+}
+
+.admin-dashboard-parent h2{
+
+    text-align:center;
+
+    color:#1565c0;
+
+    margin-bottom:30px;
+
+    font-size:28px;
+
+}
+
+.admin-dashboard-parent form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.admin-dashboard-parent input,
+.admin-dashboard-parent textarea{
+
+    width:100%;
+
+    padding:12px 15px;
+
+    border:1px solid #d8e1ea;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.admin-dashboard-parent textarea{
+
+    resize:none;
+
+    height:120px;
+
+}
+
+.admin-dashboard-parent input:focus,
+.admin-dashboard-parent textarea:focus{
+
+    outline:none;
+
+    border-color:#2196f3;
+
+    box-shadow:0 0 8px rgba(33,150,243,.25);
+
+}
+
+.admin-dashboard-parent input[type=file]{
+
+    border:none;
+
+    padding:0;
+
+}
+
+.admin-dashboard-parent img{
+
+    width:180px;
+
+    height:180px;
+
+    object-fit:cover;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    border:5px solid #eaf2fb;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+
+}
+
+.admin-dashboard-parent input[type=submit]{
+
+    width:180px;
+
+    height:45px;
+
+    margin:auto;
+
+    background:#1976d2;
+
+    color:#fff;
+
+    border:none;
+
+    border-radius:8px;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    transition:.3s;
+
+}
+
+.admin-dashboard-parent input[type=submit]:hover{
+
+    background:#0d5bb7;
+
+    transform:translateY(-2px);
+
+}
+
+@media(max-width:768px){
+
+    .admin-dashboard-parent{
+
+        width:95%;
+
+        padding:25px;
+
+    }
+
+    .admin-dashboard-parent img{
+
+        width:140px;
+
+        height:140px;
+
+    }
+
+}
