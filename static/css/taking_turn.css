@@ -1,0 +1,121 @@
+h1{
+    text-align:center;
+    color:#0d5c75;
+    margin:40px 0;
+    font-size:2.5rem;
+}
+
+.site-doctors{
+    width:90%;
+    max-width:1400px;
+    margin:50px auto;
+}
+
+.site-doctors h2{
+    text-align:center;
+    color:#0d5c75;
+    font-size:2rem;
+    margin-bottom:40px;
+    position:relative;
+}
+
+.site-doctors h2::after{
+    content:"";
+    width:90px;
+    height:4px;
+    background:#17b890;
+    display:block;
+    margin:12px auto 0;
+    border-radius:50px;
+}
+
+.doctors-parent-admin{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:35px;
+}
+
+.doctor-box{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 8px 25px rgba(0,0,0,.08);
+    transition:.35s;
+    text-align:center;
+    padding-bottom:25px;
+    border:1px solid #e8eef3;
+}
+
+.doctor-box:hover{
+    transform:translateY(-10px);
+    box-shadow:0 15px 35px rgba(0,0,0,.15);
+}
+
+.doctor-image{
+    width:150px;
+    height:150px;
+    margin:30px auto 20px;
+    border-radius:50%;
+    overflow:hidden;
+    border:6px solid #17b890;
+}
+
+.doctor-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.doctor-box h5{
+    color:#17b890;
+    font-size:1rem;
+    margin-bottom:8px;
+    letter-spacing:1px;
+}
+
+.doctor-info h3{
+    color:#12344d;
+    font-size:1.4rem;
+    margin-bottom:15px;
+}
+
+.doctor-takhassos{
+    display:inline-block;
+    background:#eef9f6;
+    color:#17b890;
+    padding:10px 22px;
+    border-radius:30px;
+    font-size:.95rem;
+    font-weight:bold;
+}
+
+.doctor-box::before{
+    content:"";
+    display:block;
+    width:100%;
+    height:90px;
+    background:linear-gradient(135deg,#0d5c75,#17b890);
+}
+
+.doctor-image{
+    margin-top:-45px;
+    position:relative;
+    z-index:10;
+}
+
+@media(max-width:768px){
+
+    h1{
+        font-size:2rem;
+    }
+
+    .site-doctors h2{
+        font-size:1.6rem;
+    }
+
+    .doctor-box{
+        max-width:330px;
+        margin:auto;
+    }
+
+}

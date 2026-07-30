@@ -5,7 +5,11 @@
 {% endblock %}
 
 {% block body %}
-<h1>heloo TAKING_TURN</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/taking_turn.css') }}">
+
+
+<h1>نوبت دهی آنلاین</h1>
+
 
 <section class="site-doctors">
 
@@ -22,8 +26,13 @@
                         alt="{{ doctor.doctor_name }}">
                 </div>
 
+                <h5>دکتر</h5>
                 <div class="doctor-info">
                     <h3>{{ doctor.doctor_name }}</h3>
+                </div>
+
+                <div class="doctor-takhassos">
+                    <h4>{{ doctor.specials }}</h4>
                 </div>
 
             </div>
