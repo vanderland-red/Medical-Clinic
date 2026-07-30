@@ -7,7 +7,32 @@
 {% block body %}
 <h1>heloo TAKING_TURN</h1>
 
+<section class="site-doctors">
 
+        <h2>دکتر های کلینیک</h2>
+
+        <div class="doctors-parent-admin">
+
+            {% for doctor in doctors %}
+
+            <div class="doctor-box">
+
+                <div class="doctor-image">
+                    <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
+                        alt="{{ doctor.doctor_name }}">
+                </div>
+
+                <div class="doctor-info">
+                    <h3>{{ doctor.doctor_name }}</h3>
+                </div>
+
+            </div>
+
+            {% endfor %}
+
+        </div>
+
+    </section>
 
 
 {% endblock %}

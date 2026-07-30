@@ -49,43 +49,45 @@ def logout():
 #====================
 @bp.route("/dashboard", methods=['GET', 'POST'])
 def dashboard ():
-    if request.method == "POST":
+    if request.method == "GET" :
+        doctors = Doctor.query.all()
+        return render_template("admin/admin_dashboard.html", doctors=doctors)
+    
 
-        doctor_name = request.form.get("doctor_name").strip()
-        experience_years = request.form.get("experience_years").strip()
-        biography = request.form.get("biography").strip()
-        visit_price = request.form.get("visit_price").strip()
-        specials = request.form.get("specials").strip()
+    doctor_name = request.form.get("doctor_name").strip()
+    experience_years = request.form.get("experience_years").strip()
+    biography = request.form.get("biography").strip()
+    visit_price = request.form.get("visit_price").strip()
+    specials = request.form.get("specials").strip()
 
-        profile_image = request.files.get("profile_image")
+    profile_image = request.files.get("profile_image")
 
-        doctor = Doctor(
-            doctor_name=doctor_name,
-            experience_years=experience_years,
-            biography=biography,
-            visit_price=visit_price,
-            specials=specials
-        )
+    doctor = Doctor(
+        doctor_name=doctor_name,
+        experience_years=experience_years,
+        biography=biography,
+        visit_price=visit_price,
+        specials=specials
+    )
 
-        db.session.add(doctor)
+    db.session.add(doctor)
+    db.session.commit()
+
+    if profile_image and profile_image.filename != "":
+
+        filename = secure_filename(profile_image.filename)
+
+        profile_image.save(os.path.join("static", "doctor_profile", filename))
+
+        doctor.profile_image = filename # چون یدونه عکس هستش
+
         db.session.commit()
 
-        if profile_image and profile_image.filename != "":
+    flash("دکتر با موفقیت ثبت شد.", "success")
 
-            filename = secure_filename(profile_image.filename)
+    return redirect(url_for("admin.dashboard"))
 
-            profile_image.save(os.path.join("static", "doctor_profile", filename))
 
-            doctor.profile_image = filename
 
-            db.session.commit()
-
-        flash("دکتر با موفقیت ثبت شد.", "success")
-
-        return redirect(url_for("admin.dashboard"))
-
-    return render_template("admin/admin_dashboard.html")
-
-    
 
 
