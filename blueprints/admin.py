@@ -79,7 +79,7 @@ def dashboard ():
 
         profile_image.save(os.path.join("static", "doctor_profile", filename))
 
-        doctor.profile_image = filename # چون یدونه عکس هستش
+        doctor.profile_image = filename # چون یدونه عکس هستش و همچنین نام فایل رو میذاره توی جدول دیتابیس
 
         db.session.commit()
 
@@ -88,6 +88,72 @@ def dashboard ():
     return redirect(url_for("admin.dashboard"))
 
 
+#====================
+# ADMIN Edit Doctor
+#====================
+@bp.route("/doctor/edit/<int:id>", methods=["GET", "POST"])
+def edit_doctor(id):
+
+    doctor = Doctor.query.get_or_404(id)
+
+    if request.method == "POST":
+
+        doctor.doctor_name = request.form.get("doctor_name").strip()
+        doctor.experience_years = int(request.form.get("experience_years"))
+        doctor.biography = request.form.get("biography").strip()
+        doctor.visit_price = int(request.form.get("visit_price"))
+        doctor.specials = request.form.get("specials").strip()
+
+        profile_image = request.files.get("profile_image")
+
+
+        if profile_image and profile_image.filename != "":
+
+            # حذف عکس قبلی
+            if doctor.profile_image:
+            
+                old_image = os.path.join("static", "doctor_profile", doctor.profile_image)
+                if os.path.exists(old_image): os.remove(old_image)
+
+            # ایجاد عکس جدید
+            filename = secure_filename(profile_image.filename)
+
+            profile_image.save(os.path.join("static", "doctor_profile", filename))
+
+            doctor.profile_image = filename
+
+        db.session.commit()
+
+        flash("اطلاعات دکتر با موفقیت ویرایش شد.", "success")
+
+        return redirect(url_for("admin.dashboard"))
+
+    return render_template("admin/edit_doctor.html", doctor=doctor)
 
 
 
+
+
+
+#====================
+# ADMIN Delete Doctor Image
+#====================
+@bp.route("/dashboard/delete/<int:id>", methods=["POST"])
+def delete_doctor(id):
+
+    # حذف اطلاعات دکتر
+    doctor = Doctor.query.get_or_404(id)
+
+    # حذف خود عکس دکتر
+    if doctor.profile_image:
+
+        image_path = os.path.join("static", "doctor_profile", doctor.profile_image)
+        
+        if os.path.exists(image_path): os.remove(image_path)
+
+    db.session.delete(doctor)
+    db.session.commit()
+
+    flash("دکتر با موفقیت حذف شد.", "success")
+
+    return redirect(url_for("admin.dashboard"))

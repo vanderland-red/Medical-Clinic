@@ -47,8 +47,9 @@ h1{
 }
 
 .doctor-box:hover{
-    transform:translateY(-10px);
-    box-shadow:0 15px 35px rgba(0,0,0,.15);
+    cursor: pointer;
+    transform:translateY(-3px);
+    box-shadow:0 15px 35px rgba(0, 0, 0, 0.501);
 }
 
 .doctor-image{

@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block title %}
+صفحه ادیت دکتر
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/edit_doctor.css') }}">
+
+
+<section class="admin-dashboard-parent">
+
+    <h2>ویرایش دکتر</h2>
+
+    <form action="" method="POST" enctype="multipart/form-data">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        
+        <input type="text" name="doctor_name" value="{{ doctor.doctor_name }}" placeholder="نام">
+        <input type="number" name="experience_years" value="{{ doctor.experience_years }}" placeholder="سال تجربه">
+        <textarea name="biography" placeholder="بیوگرافی">{{ doctor.biography }}</textarea>
+        <input type="number" name="visit_price" value="{{ doctor.visit_price }}" placeholder="قیمت ویزیت">
+        <input type="text" name="specials" value="{{ doctor.specials }}" placeholder="تخصص">
+        <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}" width="150">
+        <input type="file" name="profile_image">
+
+        <input type="submit" value="ذخیره تغییرات">
+
+    </form>
+
+</section>
+
+
+
+{% endblock %}
