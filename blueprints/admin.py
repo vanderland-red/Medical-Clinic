@@ -179,6 +179,7 @@ def add_schedule():
     day_of_week = request.form.get("day_of_week")
     start_time = request.form.get("start_time")
     end_time = request.form.get("end_time")
+    max_visits = int(request.form.get("max_visits"))
 
 
     # checkbox
@@ -190,6 +191,11 @@ def add_schedule():
 
     if not doctor:
         flash("دکتر مورد نظر پیدا نشد", "error")
+        return redirect(url_for("admin.dashboard"))
+
+
+    if not start_time or not end_time:
+        flash("ساعت شروع و پایان الزامی است", "error")
         return redirect(url_for("admin.dashboard"))
 
 
@@ -212,7 +218,8 @@ def add_schedule():
         day_of_week=day_of_week,
         start_time=start_time,
         end_time=end_time,
-        active=active
+        active=active,
+        max_visits=max_visits
     )
 
     db.session.add(schedule)

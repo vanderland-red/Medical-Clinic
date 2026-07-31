@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
-from models.tables import User,Doctor
+from models.tables import User,Doctor,DoctorSchedule
 from extentions import db
 from flask_login import login_user, login_required,current_user,logout_user
 import re
@@ -171,6 +171,38 @@ def taking_turn ():
 @bp.route("/want_doctor/<int:id>")
 def want_doctor(id):
     doctor = Doctor.query.get_or_404(id)
-    print(doctor.template_name)
     return render_template(f"user/doctors/{doctor.template_name}", doctor=doctor) # اینجا باید بری تو فایل یوزر فایل اچ تی ام ال رو بسازی تا به این آدرس بره
-        
+
+
+# ===================================
+    # روش دوم (بدون Relationship)
+    # ==============================
+    # schedules = DoctorSchedule.query.filter_by(
+    #     doctor_id=doctor.id,
+    #     active=True
+    # ).all()
+    #
+    # return render_template(
+    #     f"user/doctors/{doctor.template_name}",
+    #     doctor=doctor,
+    #     schedules=schedules
+    # )
+
+
+
+ # توی HTML 
+
+    # {% for schedule in schedules %}
+       
+        # <p>{{ schedule.day_of_week }}</p>
+        # <p>{{ schedule.start_time }}</p>
+        # <p>{{ schedule.end_time }}</p>
+                    
+    # {% endfor %}
+
+# ====================================
+
+
+# ===================================
+
+# ===================================

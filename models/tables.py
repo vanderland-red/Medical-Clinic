@@ -75,6 +75,16 @@ class DoctorSchedule(db.Model):
     start_time = db.Column(db.Time, nullable=False)
     end_time = db.Column(db.Time, nullable=False)
     active = db.Column(db.Boolean, default=True, nullable=False)
+    max_visits = db.Column(db.Integer, nullable=False)
+    booked_visits = db.Column(db.Integer, default=0, nullable=False)
 
     # One to Many
     doctor = db.relationship("Doctor", back_populates="schedules")
+
+    def visit_status(self):
+        if self.booked_visits >= self.max_visits :
+            return "full"
+        return "allowed"
+
+
+

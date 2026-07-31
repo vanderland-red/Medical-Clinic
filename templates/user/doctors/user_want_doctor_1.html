@@ -10,4 +10,13 @@
 <h1>heloo want doctor</h1>
 
 
+<section class="time-doctor-parent">
+    {% for schedule in doctor.schedules %}
+        <p>{{ schedule.day_of_week }}</p>
+        <p>{{ schedule.start_time }}</p>
+        <p>{{ schedule.end_time }}</p>
+        <p>{{ schedule.max_visits }}</p>
+    {% endfor %}
+</section>
+
     {% endblock %}
