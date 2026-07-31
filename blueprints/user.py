@@ -172,5 +172,5 @@ def taking_turn ():
 def want_doctor(id):
     doctor = Doctor.query.get_or_404(id)
     print(doctor.template_name)
-    return render_template(f"user/doctors/{doctor.template_name}", doctor=doctor)
+    return render_template(f"user/doctors/{doctor.template_name}", doctor=doctor) # اینجا باید بری تو فایل یوزر فایل اچ تی ام ال رو بسازی تا به این آدرس بره
         
