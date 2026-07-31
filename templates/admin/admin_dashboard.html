@@ -23,6 +23,9 @@
 
     </div>
 
+        {% include "admin/doctor_schedule.html" %}
+
+
 
     <!-- فرم -->
 
@@ -32,27 +35,35 @@
 
         <form action="{{ url_for('admin.dashboard') }}" method="POST" enctype="multipart/form-data">
 
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-            <input type="text" name="doctor_name" placeholder="نام پزشک">
+    <label for="doctor_name">نام دکتر</label>
+    <input type="text" id="doctor_name" name="doctor_name" placeholder="نام دکتر">
 
-            <input type="number" name="experience_years" placeholder="سال تجربه">
+    <label for="experience_years">سال تجربه</label>
+    <input type="number" id="experience_years" name="experience_years" placeholder="سال تجربه">
 
-            <input type="text" name="specials" placeholder="تخصص">
+    <label for="specials">تخصص</label>
+    <input type="text" id="specials" name="specials" placeholder="تخصص">
 
-            <input type="number" name="visit_price" placeholder="هزینه ویزیت">
+    <label for="visit_price">هزینه ویزیت (تومان)</label>
+    <input type="number" id="visit_price" name="visit_price" placeholder="هزینه ویزیت">
 
-            <textarea name="biography" placeholder="بیوگرافی پزشک"></textarea>
+    <label for="biography">بیوگرافی دکتر</label>
+    <textarea id="biography" name="biography" placeholder="بیوگرافی دکتر"></textarea>
 
-            <input type="text" name="template_name" placeholder="نام فایل قالب (مثلاً user_want_doctor.html)">
+    <label for="template_name">نام فایل قالب</label>
+    <input type="text" id="template_name" name="template_name"
+           placeholder="مثلاً user_want_doctor.html">
 
-            <input type="file" name="profile_image">
+    <label for="profile_image">تصویر پروفایل دکتر</label>
+    <input type="file" id="profile_image" name="profile_image">
 
-            <button type="submit">
-                ثبت دکتر
-            </button>
+    <button type="submit">
+        ثبت دکتر
+    </button>
 
-        </form>
+</form>
 
     </section>
 

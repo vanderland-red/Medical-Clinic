@@ -1,9 +1,10 @@
 from flask import Blueprint,render_template,request,session,abort,flash,redirect,url_for
 from config import ADMIN_USERNAME,ADMIN_PASSWORD
-from models.tables import Doctor
+from models.tables import Doctor,DoctorSchedule
 from extentions import db
 from werkzeug.utils import secure_filename
 import os
+from datetime import datetime
 
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
@@ -159,4 +160,63 @@ def delete_doctor(id):
 
     flash("دکتر با موفقیت حذف شد.", "success")
 
+    return redirect(url_for("admin.dashboard"))
+
+
+
+
+#====================
+# ADMIN Doctor Schedule
+#====================
+@bp.route("/add_schedule", methods=["POST"])
+def add_schedule():
+
+    if not session.get("admin_login"):
+        abort(403)
+
+
+    doctor_id = request.form.get("doctor_id")
+    day_of_week = request.form.get("day_of_week")
+    start_time = request.form.get("start_time")
+    end_time = request.form.get("end_time")
+
+
+    # checkbox
+    active = "active" in request.form
+
+
+    # بررسی وجود پزشک
+    doctor = Doctor.query.get(doctor_id)
+
+    if not doctor:
+        flash("دکتر مورد نظر پیدا نشد", "error")
+        return redirect(url_for("admin.dashboard"))
+
+
+    # تبدیل ساعت به Time
+    start_time = datetime.strptime(
+        start_time,
+        "%H:%M" # H => hours   and   M => minute
+    ).time() 
+
+
+    end_time = datetime.strptime(
+        end_time,
+        "%H:%M"
+    ).time()
+
+
+    # ساخت برنامه کاری در دیتابیس
+    schedule = DoctorSchedule(
+        doctor_id=doctor.id,
+        day_of_week=day_of_week,
+        start_time=start_time,
+        end_time=end_time,
+        active=active
+    )
+
+    db.session.add(schedule)
+    db.session.commit()
+
+    flash("برنامه کاری پزشک با موفقیت ثبت شد", "success")
     return redirect(url_for("admin.dashboard"))

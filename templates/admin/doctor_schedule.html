@@ -1,0 +1,81 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_schedule.css') }}">
+
+<h1>schedule doctor</h1>
+
+<section>
+
+    <form action="{{ url_for('admin.add_schedule') }}" method="POST">
+
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="form-group">
+            <label for="doctor_id">انتخاب پزشک</label>
+            <select name="doctor_id" id="doctor_id">
+
+                <option value="">انتخاب کنید</option>
+
+                {% for doctor in doctors %}
+                <option value="{{ doctor.id }}">
+                    {{ doctor.doctor_name }}
+                </option>
+                {% endfor %}
+
+            </select>
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="day_of_week">روز هفته</label>
+            <select name="day_of_week" id="day_of_week">
+
+                <option value="">انتخاب روز</option>
+
+                <option value="شنبه">شنبه</option>
+                <option value="یکشنبه">یکشنبه</option>
+                <option value="دوشنبه">دوشنبه</option>
+                <option value="سه‌شنبه">سه‌شنبه</option>
+                <option value="چهارشنبه">چهارشنبه</option>
+                <option value="پنج‌شنبه">پنج‌شنبه</option>
+                <option value="جمعه">جمعه</option>
+
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="start_time">ساعت شروع</label>
+            <input type="time" name="start_time" id="start_time">
+
+        </div>
+
+        <div class="form-group">
+
+            <label for="end_time">ساعت پایان</label>
+            <input type="time" name="end_time" id="end_time">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                <input type="checkbox" name="active" checked>
+
+                فعال باشد
+
+            </label>
+
+        </div>
+
+
+        <button type="submit">
+            ذخیره برنامه کاری
+        </button>
+
+    </form>
+
+</section>
+
