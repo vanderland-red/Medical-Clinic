@@ -28,7 +28,7 @@
 
     <section class="admin-dashboard-parent">
 
-        <h2>افزودن پزشک جدید</h2>
+        <h2>افزودن دکتر جدید</h2>
 
         <form action="{{ url_for('admin.dashboard') }}" method="POST" enctype="multipart/form-data">
 
@@ -44,10 +44,12 @@
 
             <textarea name="biography" placeholder="بیوگرافی پزشک"></textarea>
 
+            <input type="text" name="template_name" placeholder="نام فایل قالب (مثلاً user_want_doctor.html)">
+
             <input type="file" name="profile_image">
 
             <button type="submit">
-                ثبت پزشک
+                ثبت دکتر
             </button>
 
         </form>
@@ -74,7 +76,7 @@
                 <div class="doctor-content">
 
                     <span class="doctor-role">
-                        پزشک
+                        دکتر
                     </span>
 
                     <h3>{{ doctor.doctor_name }}</h3>

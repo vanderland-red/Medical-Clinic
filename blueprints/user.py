@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
-from models.tables import User
+from models.tables import User,Doctor
 from extentions import db
 from flask_login import login_user, login_required,current_user,logout_user
 import re
@@ -159,3 +159,18 @@ def logout():
 
     flash("از حساب کاربری خارج شدید.", "success")
     return redirect(url_for("general.home"))
+
+@bp.route("/taking_turn")
+def taking_turn ():
+    doctors = Doctor.query.all()
+    return render_template("user/taking_turn.html", doctors=doctors)
+
+
+
+
+@bp.route("/want_doctor/<int:id>")
+def want_doctor(id):
+    doctor = Doctor.query.get_or_404(id)
+    print(doctor.template_name)
+    return render_template(f"user/doctors/{doctor.template_name}", doctor=doctor)
+        

@@ -7,7 +7,3 @@ bp = Blueprint('general', __name__)
 def home ():
     return render_template("home.html")
 
-@bp.route("/taking_turn")
-def taking_turn ():
-    doctors = Doctor.query.all()
-    return render_template("taking_turn.html", doctors=doctors)

@@ -55,10 +55,11 @@ def dashboard ():
     
 
     doctor_name = request.form.get("doctor_name").strip()
-    experience_years = request.form.get("experience_years").strip()
+    experience_years = int(request.form.get("experience_years"))
     biography = request.form.get("biography").strip()
-    visit_price = request.form.get("visit_price").strip()
+    visit_price = int(request.form.get("visit_price"))
     specials = request.form.get("specials").strip()
+    template_name = request.form.get("template_name").strip() # دیگه خودش صفحه برای دکتر ساخته میشه
 
     profile_image = request.files.get("profile_image")
 
@@ -67,7 +68,8 @@ def dashboard ():
         experience_years=experience_years,
         biography=biography,
         visit_price=visit_price,
-        specials=specials
+        specials=specials,
+        template_name=template_name
     )
 
     db.session.add(doctor)
@@ -103,6 +105,7 @@ def edit_doctor(id):
         doctor.biography = request.form.get("biography").strip()
         doctor.visit_price = int(request.form.get("visit_price"))
         doctor.specials = request.form.get("specials").strip()
+        doctor.template_name = request.form.get("template_name").strip()
 
         profile_image = request.files.get("profile_image")
 

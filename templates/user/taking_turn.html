@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+
+{% block title %}
+صفحه نوبت دهی
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/taking_turn.css') }}">
+
+
+<h1>نوبت دهی آنلاین</h1>
+
+
+<section class="site-doctors">
+
+
+
+
+    <div class="doctors-parent-admin">
+
+        {% for doctor in doctors %}
+
+            <a href="{{ url_for('user.want_doctor', id=doctor.id) }}">
+
+                <div class="doctor-box">
+
+                    <div class="doctor-image">
+                        <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
+                            alt="{{ doctor.doctor_name }}">
+                    </div>
+
+                    <h5>دکتر</h5>
+                    <div class="doctor-info">
+                        <h3>{{ doctor.doctor_name }}</h3>
+                    </div>
+
+                    <div class="doctor-takhassos">
+                        <h4>{{ doctor.specials }}</h4>
+                    </div>
+
+                </div>
+            </a>
+
+        {% endfor %}
+
+    </div>
+
+
+</section>
+
+
+{% endblock %}

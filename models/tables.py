@@ -57,3 +57,5 @@ class Doctor(db.Model):
     visit_price = db.Column(db.Integer, nullable=False)
     profile_image = db.Column(db.String(255), nullable=True)
     specials = db.Column(db.String(200), nullable=False)
+
+    template_name = db.Column(db.String(100)) 
