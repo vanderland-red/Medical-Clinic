@@ -168,21 +168,24 @@ def delete_doctor(id):
 #====================
 # ADMIN Doctor Schedule
 #====================
+
 @bp.route("/add_schedule", methods=["GET","POST"])
 def add_schedule():
+
+    if not session.get("admin_login"):
+            abort(403)
+
     if request.method == "GET" :
         doctors = Doctor.query.all()
         return render_template("admin/doctor_schedule.html", doctors=doctors)
 
-    if not session.get("admin_login"):
-        abort(403)
 
 
     doctor_id = request.form.get("doctor_id")
     day_of_week = request.form.get("day_of_week")
     start_time = request.form.get("start_time")
     end_time = request.form.get("end_time")
-    max_visits = int(request.form.get("max_visits"))
+    max_visits = int(request.form.get("max_visits" ))
 
 
     # checkbox
@@ -228,16 +231,22 @@ def add_schedule():
     db.session.add(schedule)
     db.session.commit()
 
+
     flash("برنامه کاری پزشک با موفقیت ثبت شد", "success")
-    return redirect(url_for("admin.dashboard"))
+    return redirect(url_for("admin.show_schedule_doctors"))
 
 
 
 
 
 
-@bp.route("/edit_add_schedule", methods=["GET","POST"])
-def edit_want_doctor():
+@bp.route("/edit_add_schedule/<int:id>", methods=["GET","POST"])
+def edit_want_doctor(id):
+
+    if not session.get("admin_login"):
+        abort(403)
+        
     if request.method == "GET" :
-        return render_template("admin/edit_add_schedule.html")
+        doctor = Doctor.query.get_or_404(id)
+        return render_template("admin/edit_add_schedule.html", doctor=doctor)
     pass

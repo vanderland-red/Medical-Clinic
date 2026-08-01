@@ -1,1 +1,70 @@
-<h1>heloo BABY</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/edit_add_schedule.css') }}"> <!--This Page-->
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}"> <!--Fonts-->
+
+
+
+
+<div class="doctor-schedule-title">
+
+    <h1 class="doctor-schedule-heading">
+        <span>ویرایش برنامه دکتر :</span>
+    </h1>
+
+    <h2 class="doctor-name">
+        {{ doctor.doctor_name }}
+    </h2>
+
+</div>
+
+<article class="doctor-schedule-list">
+
+    {% for schedule in doctor.schedules %}
+
+    <a href="#" class="doctor-schedule-link">
+
+        <div class="doctor-schedule-card">
+
+            <div class="doctor-schedule-header">
+                {{ schedule.day_of_week }}
+            </div>
+
+            <div class="doctor-schedule-body">
+
+                <div class="doctor-info-box">
+                    <span class="doctor-info-label">ساعت شروع</span>
+                    <span>{{ schedule.start_time.strftime('%H:%M') }}</span>
+                </div>
+
+                <div class="doctor-info-box">
+                    <span class="doctor-info-label">ساعت پایان</span>
+                    <span>{{ schedule.end_time.strftime('%H:%M') }}</span>
+                </div>
+
+                <div class="doctor-info-box">
+                    <span class="doctor-info-label">تعداد ویزیت</span>
+                    <span>{{ schedule.max_visits }}</span>
+                </div>
+
+                <div class="doctor-info-box">
+                    <span class="doctor-info-label">اخذ شده</span>
+                    <span>{{ schedule.booked_visits }}</span>
+                </div>
+
+            </div>
+
+            <form action="#" method="POST">
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                <button type="submit">حذف</button>
+            </form>
+
+            <a href="#" class="edit-schedule-btn">
+                ویرایش
+            </a>
+
+        </div>
+
+    </a>
+
+    {% endfor %}
+
+</article>

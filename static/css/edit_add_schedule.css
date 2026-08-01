@@ -1,0 +1,201 @@
+body{
+    direction: rtl;
+    margin: 0;
+    padding: 30px;
+    background: rgba(184,202,149,.56);
+}
+
+/*==========================
+        عنوان صفحه
+==========================*/
+
+.doctor-schedule-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:35px;
+    padding:15px 20px;
+    background:linear-gradient(135deg,#00160a,#0e1e00);
+    border-radius:14px;
+}
+
+.doctor-schedule-heading{
+    margin:0;
+    font-size:28px;
+    color:#fff;
+}
+
+.doctor-schedule-heading span{
+    color:#d50000;
+    background-color: #dbe3ee;
+}
+
+.doctor-name{
+    margin:0;
+    color:#fff;
+    font-size:24px;
+    font-weight:600;
+}
+
+/*==========================
+        لیست کارت‌ها
+==========================*/
+
+.doctor-schedule-list{
+    display:flex;
+    flex-direction: row;
+    justify-content:center;
+    flex-wrap: wrap;
+    gap:22px;
+}
+
+/*==========================
+            لینک
+==========================*/
+
+.doctor-schedule-link{
+    text-decoration:none;
+    color:inherit;
+}
+
+/*==========================
+            کارت
+==========================*/
+
+.doctor-schedule-card{
+    background:#fff;
+    border-radius:15px;
+    overflow:hidden;
+    border:1px solid #e5e7eb;
+    box-shadow:0 8px 18px rgba(0,0,0,.08);
+    transition:.3s;
+}
+
+.doctor-schedule-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 14px 28px rgba(0,0,0,.18);
+}
+
+/*==========================
+          هدر کارت
+==========================*/
+
+.doctor-schedule-header{
+    background:linear-gradient(135deg,#2563eb,#3b82f6);
+    color:#fff;
+    text-align:center;
+    padding:13px;
+    font-size:18px;
+    font-weight:bold;
+}
+
+/*==========================
+        اطلاعات کارت
+==========================*/
+
+.doctor-schedule-body{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    padding:15px;
+}
+
+.doctor-info-box{
+    width:52px;
+    height:68px;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    background:#f8fafc;
+    border:1px solid #dbe3ee;
+    border-radius:10px;
+}
+
+.doctor-info-label{
+    font-size:11px;
+    color:#6b7280;
+    margin-bottom:5px;
+    text-align:center;
+}
+
+.doctor-info-box span:last-child{
+    color:#2563eb;
+    font-size:15px;
+    font-weight:bold;
+}
+
+/*==========================
+         دکمه حذف
+==========================*/
+
+.doctor-schedule-card form{
+    margin:0;
+    padding:0 15px;
+}
+
+.doctor-schedule-card button{
+    width:100%;
+    padding:10px;
+    border:none;
+    border-radius:8px;
+    background:#ef4444;
+    color:#fff;
+    cursor:pointer;
+    font-size:14px;
+    transition:.3s;
+}
+
+.doctor-schedule-card button:hover{
+    background:#dc2626;
+}
+
+/*==========================
+        دکمه ویرایش
+==========================*/
+
+.edit-schedule-btn{
+    display:block;
+    margin:12px 15px 15px;
+    padding:10px;
+    text-align:center;
+    text-decoration:none;
+    color:#fff;
+    background:#2563eb;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.edit-schedule-btn:hover{
+    background:#1d4ed8;
+}
+
+/*==========================
+         ریسپانسیو
+==========================*/
+
+@media(max-width:1150px){
+
+    .doctor-schedule-list{
+        grid-template-columns:repeat(3,250px);
+    }
+
+}
+
+@media(max-width:850px){
+
+    .doctor-schedule-list{
+        grid-template-columns:repeat(2,250px);
+    }
+
+}
+
+@media(max-width:560px){
+
+    .doctor-schedule-list{
+        grid-template-columns:250px;
+    }
+
+}

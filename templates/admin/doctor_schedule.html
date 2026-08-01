@@ -103,7 +103,7 @@
 
             {% for doctor in doctors %}
 
-            <a href="{{ url_for('admin.edit_want_doctor') }}">
+            <a href="{{ url_for('admin.edit_want_doctor', id=doctor.id) }}">
 
                 <div class="doctor-box">
 
