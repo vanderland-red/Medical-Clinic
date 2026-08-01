@@ -168,8 +168,11 @@ def delete_doctor(id):
 #====================
 # ADMIN Doctor Schedule
 #====================
-@bp.route("/add_schedule", methods=["POST"])
+@bp.route("/add_schedule", methods=["GET","POST"])
 def add_schedule():
+    if request.method == "GET" :
+        doctors = Doctor.query.all()
+        return render_template("admin/doctor_schedule.html", doctors=doctors)
 
     if not session.get("admin_login"):
         abort(403)
@@ -227,3 +230,14 @@ def add_schedule():
 
     flash("برنامه کاری پزشک با موفقیت ثبت شد", "success")
     return redirect(url_for("admin.dashboard"))
+
+
+
+
+
+
+@bp.route("/edit_add_schedule", methods=["GET","POST"])
+def edit_want_doctor():
+    if request.method == "GET" :
+        return render_template("admin/edit_add_schedule.html")
+    pass

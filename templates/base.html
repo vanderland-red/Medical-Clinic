@@ -10,12 +10,12 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
 
     {% block header %}
+        {% include "part/header.html" %}
     {% endblock %}
 </head>
 
 <body>
 
-        {% include "part/header.html" %}
 
         {% include "part/flash_message.html" %}
     

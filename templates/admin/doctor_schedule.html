@@ -1,86 +1,135 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_schedule.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}">
 
-<h1>schedule doctor</h1>
 
-<section>
+<h1>تنظیم برنامه کاری دکتر ها</h1>
 
-    <form action="{{ url_for('admin.add_schedule') }}" method="POST">
+<section class="global-parent-schedule">
 
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <section>
 
-        <div class="form-group">
-            <label for="doctor_id">انتخاب پزشک</label>
-            <select name="doctor_id" id="doctor_id">
+        <form action="{{ url_for('admin.add_schedule') }}" method="POST">
 
-                <option value="">انتخاب کنید</option>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-                {% for doctor in doctors %}
-                <option value="{{ doctor.id }}">
-                    {{ doctor.doctor_name }}
-                </option>
-                {% endfor %}
+            <div class="form-group">
+                <label for="doctor_id">انتخاب پزشک</label>
+                <select name="doctor_id" id="doctor_id">
 
-            </select>
+                    <option value="">انتخاب کنید</option>
+
+                    {% for doctor in doctors %}
+                    <option value="{{ doctor.id }}">
+                        {{ doctor.doctor_name }}
+                    </option>
+                    {% endfor %}
+
+                </select>
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="day_of_week">روز هفته</label>
+                <select name="day_of_week" id="day_of_week">
+
+                    <option value="">انتخاب روز</option>
+
+                    <option value="شنبه">شنبه</option>
+                    <option value="یکشنبه">یکشنبه</option>
+                    <option value="دوشنبه">دوشنبه</option>
+                    <option value="سه‌شنبه">سه‌شنبه</option>
+                    <option value="چهارشنبه">چهارشنبه</option>
+                    <option value="پنج‌شنبه">پنج‌شنبه</option>
+                    <option value="جمعه">جمعه</option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="start_time">ساعت شروع</label>
+                <input type="time" name="start_time" id="start_time">
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="end_time">ساعت پایان</label>
+                <input type="time" name="end_time" id="end_time">
+
+            </div>
+
+            <div class="form-group">
+                <label for="max_visits">تعداد ویزیت</label>
+                <input type="number" name="max_visits" id="max_visits">
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    <input type="checkbox" name="active" checked>
+
+                    فعال باشد
+
+                </label>
+
+            </div>
+
+
+            <button type="submit">
+                ذخیره برنامه کاری
+            </button>
+
+        </form>
+
+    </section>
+
+    <!--===============================-->
+    <!--===============================-->
+
+    <!--👇لیست دکتر های کلینیک👇-->
+
+    <!--===============================-->
+    <!--===============================-->
+
+
+    <section>
+        <h2>لیست دکتر ها</h2>
+        <div class="doctors-parent-admin">
+
+            {% for doctor in doctors %}
+
+            <a href="{{ url_for('admin.edit_want_doctor') }}">
+
+                <div class="doctor-box">
+
+                    <div class="doctor-image">
+                        <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
+                            alt="{{ doctor.doctor_name }}">
+                    </div>
+
+                    <h5>دکتر</h5>
+                    <div class="doctor-info">
+                        <h3>{{ doctor.doctor_name }}</h3>
+                    </div>
+
+                    <div class="doctor-takhassos">
+                        <h4>{{ doctor.specials }}</h4>
+                    </div>
+
+                </div>
+            </a>
+
+            {% endfor %}
+
         </div>
 
 
-        <div class="form-group">
 
-            <label for="day_of_week">روز هفته</label>
-            <select name="day_of_week" id="day_of_week">
-
-                <option value="">انتخاب روز</option>
-
-                <option value="شنبه">شنبه</option>
-                <option value="یکشنبه">یکشنبه</option>
-                <option value="دوشنبه">دوشنبه</option>
-                <option value="سه‌شنبه">سه‌شنبه</option>
-                <option value="چهارشنبه">چهارشنبه</option>
-                <option value="پنج‌شنبه">پنج‌شنبه</option>
-                <option value="جمعه">جمعه</option>
-
-            </select>
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label for="start_time">ساعت شروع</label>
-            <input type="time" name="start_time" id="start_time">
-
-        </div>
-
-        <div class="form-group">
-
-            <label for="end_time">ساعت پایان</label>
-            <input type="time" name="end_time" id="end_time">
-
-        </div>
-
-        <div class="form-group">
-            <label for="max_visits">تعداد ویزیت</label>
-            <input type="number" name="max_visits" id="max_visits">
-        </div>
-
-
-        <div class="form-group">
-
-            <label>
-                <input type="checkbox" name="active" checked>
-
-                فعال باشد
-
-            </label>
-
-        </div>
-
-
-        <button type="submit">
-            ذخیره برنامه کاری
-        </button>
-
-    </form>
+    </section>
 
 </section>
-
