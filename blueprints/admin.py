@@ -245,8 +245,32 @@ def edit_want_doctor(id):
 
     if not session.get("admin_login"):
         abort(403)
-        
+
     if request.method == "GET" :
         doctor = Doctor.query.get_or_404(id)
         return render_template("admin/edit_add_schedule.html", doctor=doctor)
     pass
+
+
+
+
+
+#==============================
+# ADMIN Delete Doctor Schedule
+#==============================
+@bp.route("/delete_doctor_schedule/<int:id>", methods=["POST"])
+def delete_doctor_schedule(id):
+
+    if not session.get("admin_login"):
+        abort(403)
+
+    doctor_schedule = DoctorSchedule.query.get_or_404(id)
+
+    doctor_id = doctor_schedule.doctor_id # برای اینکه روت بتواند همین صفحه را بشناسد
+
+    db.session.delete(doctor_schedule)
+    db.session.commit()
+
+    flash("برنامه کاری دکتر با موفقیت حذف شد", "success")
+    return redirect(url_for("admin.edit_want_doctor", id=doctor_id))
+    

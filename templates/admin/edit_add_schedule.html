@@ -52,9 +52,14 @@
 
             </div>
 
-            <form action="#" method="POST">
+            <form
+                action="{{ url_for('admin.delete_doctor_schedule', id=schedule.id) }}"
+                method="POST"
+                onsubmit="return confirm('آیا از حذف این برنامه کاری مطمئن هستید؟');"
+                >
+
                 <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <button type="submit">حذف</button>
+                <button type="submit" >حذف</button>
             </form>
 
             <a href="#" class="edit-schedule-btn">
