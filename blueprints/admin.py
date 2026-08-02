@@ -233,13 +233,15 @@ def add_schedule():
 
 
     flash("برنامه کاری پزشک با موفقیت ثبت شد", "success")
-    return redirect(url_for("admin.show_schedule_doctors"))
+    return redirect(url_for("admin.add_schedule"))
 
 
 
 
 
-
+#===========================
+# ADMIN Edit Doctor Schedule
+#===========================
 @bp.route("/edit_add_schedule/<int:id>", methods=["GET","POST"])
 def edit_want_doctor(id):
 
@@ -249,7 +251,42 @@ def edit_want_doctor(id):
     if request.method == "GET" :
         doctor = Doctor.query.get_or_404(id)
         return render_template("admin/edit_add_schedule.html", doctor=doctor)
-    pass
+
+
+
+
+#====================================================
+# ADMIN Edit Doctor Schedule JUST Button Edit Click
+#====================================================
+@bp.route("/edit_doctor_schedule/<int:id>", methods=["POST"])
+def edit_doctor_schedule(id):
+
+    if not session.get("admin_login"):
+        abort(403)
+
+    schedule = DoctorSchedule.query.get_or_404(id)
+
+    schedule.day_of_week = request.form.get("day_of_week")
+
+    schedule.start_time = datetime.strptime(
+        request.form.get("start_time"),
+        "%H:%M"
+    ).time()
+
+    schedule.end_time = datetime.strptime(
+        request.form.get("end_time"),
+        "%H:%M"
+    ).time()
+
+    schedule.max_visits = int(request.form.get("max_visits"))
+
+    schedule.active = "active" in request.form
+
+    db.session.commit()
+
+    flash("برنامه کاری با موفقیت ویرایش شد.", "success")
+
+    return redirect(url_for("admin.edit_want_doctor",id=schedule.doctor_id))
 
 
 

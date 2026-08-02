@@ -198,3 +198,229 @@ body{
     }
 
 }
+
+
+/*==========================
+        Modal
+==========================*/
+
+.modal{
+    display:none;
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.55);
+    justify-content:center;
+    align-items:center;
+    z-index:1000;
+}
+
+/*==========================
+      محتوای مودال
+==========================*/
+
+.modal-content{
+
+    width:420px;
+    max-width:90%;
+
+    background:#fff;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    box-shadow:0 15px 35px rgba(0,0,0,.35);
+
+    position:relative;
+
+    animation:modalShow .3s ease;
+}
+
+/*==========================
+      عنوان مودال
+==========================*/
+
+.modal-content h2{
+
+    margin:0 0 20px;
+
+    text-align:center;
+
+    color:#0e1e00;
+
+    font-size:24px;
+
+}
+
+/*==========================
+        دکمه بستن
+==========================*/
+
+#closeModal{
+
+    position:absolute;
+
+    top:12px;
+
+    left:15px;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    color:#777;
+
+    transition:.3s;
+
+}
+
+#closeModal:hover{
+
+    color:#dc2626;
+
+}
+
+/*==========================
+         فرم
+==========================*/
+
+#editForm{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:15px;
+
+}
+
+#editForm label{
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:#374151;
+
+}
+
+/*==========================
+      input و select
+==========================*/
+
+#editForm input,
+#editForm select{
+
+    width:100%;
+
+    padding:10px 12px;
+
+    border:1px solid #d1d5db;
+
+    border-radius:8px;
+
+    font-size:15px;
+
+    box-sizing:border-box;
+
+    transition:.3s;
+
+}
+
+#editForm input:focus,
+#editForm select:focus{
+
+    border-color:#2563eb;
+
+    outline:none;
+
+    box-shadow:0 0 0 3px rgba(37,99,235,.15);
+
+}
+
+/*==========================
+        چک باکس
+==========================*/
+
+.checkbox-group{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+}
+
+.checkbox-group input{
+
+    width:18px;
+
+    height:18px;
+
+}
+
+/*==========================
+      دکمه ذخیره
+==========================*/
+
+#editForm button{
+
+    margin-top:10px;
+
+    border:none;
+
+    border-radius:8px;
+
+    background:#2563eb;
+
+    color:#fff;
+
+    padding:12px;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+    transition:.3s;
+
+}
+
+#editForm button:hover{
+
+    background:#1d4ed8;
+
+}
+
+/*==========================
+        انیمیشن
+==========================*/
+
+@keyframes modalShow{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(-30px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.edit-btn{
+    background-color: #00a606 !important;
+    max-width: 80px !important;
+    margin-right: 37%;
+    margin-top: 5px;
+}

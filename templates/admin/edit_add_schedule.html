@@ -4,72 +4,187 @@
 
 
 
-<div class="doctor-schedule-title">
-
-    <h1 class="doctor-schedule-heading">
-        <span>ویرایش برنامه دکتر :</span>
-    </h1>
-
-    <h2 class="doctor-name">
-        {{ doctor.doctor_name }}
-    </h2>
-
-</div>
-
 <article class="doctor-schedule-list">
 
     {% for schedule in doctor.schedules %}
 
-    <a href="#" class="doctor-schedule-link">
+    <div class="doctor-schedule-card">
 
-        <div class="doctor-schedule-card">
+        <div class="doctor-schedule-header">
+            {{ schedule.day_of_week }}
+        </div>
 
-            <div class="doctor-schedule-header">
-                {{ schedule.day_of_week }}
+        <div class="doctor-schedule-body">
+
+            <div class="doctor-info-box">
+                <span class="doctor-info-label">ساعت شروع</span>
+                <span>{{ schedule.start_time.strftime('%H:%M') }}</span>
             </div>
 
-            <div class="doctor-schedule-body">
-
-                <div class="doctor-info-box">
-                    <span class="doctor-info-label">ساعت شروع</span>
-                    <span>{{ schedule.start_time.strftime('%H:%M') }}</span>
-                </div>
-
-                <div class="doctor-info-box">
-                    <span class="doctor-info-label">ساعت پایان</span>
-                    <span>{{ schedule.end_time.strftime('%H:%M') }}</span>
-                </div>
-
-                <div class="doctor-info-box">
-                    <span class="doctor-info-label">تعداد ویزیت</span>
-                    <span>{{ schedule.max_visits }}</span>
-                </div>
-
-                <div class="doctor-info-box">
-                    <span class="doctor-info-label">اخذ شده</span>
-                    <span>{{ schedule.booked_visits }}</span>
-                </div>
-
+            <div class="doctor-info-box">
+                <span class="doctor-info-label">ساعت پایان</span>
+                <span>{{ schedule.end_time.strftime('%H:%M') }}</span>
             </div>
 
-            <form
-                action="{{ url_for('admin.delete_doctor_schedule', id=schedule.id) }}"
-                method="POST"
-                onsubmit="return confirm('آیا از حذف این برنامه کاری مطمئن هستید؟');"
-                >
+            <div class="doctor-info-box">
+                <span class="doctor-info-label">تعداد ویزیت</span>
+                <span>{{ schedule.max_visits }}</span>
+            </div>
 
-                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-                <button type="submit" >حذف</button>
-            </form>
-
-            <a href="#" class="edit-schedule-btn">
-                ویرایش
-            </a>
+            <div class="doctor-info-box">
+                <span class="doctor-info-label">اخذ شده</span>
+                <span>{{ schedule.booked_visits }}</span>
+            </div>
 
         </div>
 
-    </a>
+        <form action="{{ url_for('admin.delete_doctor_schedule', id=schedule.id) }}" method="POST"
+            onsubmit="return confirm('آیا از حذف این برنامه مطمئن هستید؟')">
+
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <button type="submit">
+                حذف
+            </button>
+
+        </form>
+
+        <button
+            type="button" class="edit-btn"
+
+                data-id="{{ schedule.id }}"
+                data-day="{{ schedule.day_of_week }}"
+                data-start="{{ schedule.start_time.strftime('%H:%M') }}"
+                data-end="{{ schedule.end_time.strftime('%H:%M') }}"
+                data-max="{{ schedule.max_visits }}"
+                data-active="{{ schedule.active }}"
+
+            >
+
+            ویرایش
+
+        </button>
+
+    </div>
 
     {% endfor %}
 
 </article>
+
+
+
+
+
+<!--تغییرات زیبای دکمه ویرایش با جاوااسکریپت-->
+<div id="editModal" class="modal">
+
+    <div class="modal-content">
+
+        <span id="closeModal">&times;</span>
+
+        <h2>ویرایش برنامه کاری</h2>
+
+        <form id="editForm" method="POST">
+
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <label>روز هفته</label>
+
+            <select name="day_of_week" id="edit_day">
+
+                <option value="شنبه">شنبه</option>
+                <option value="یکشنبه">یکشنبه</option>
+                <option value="دوشنبه">دوشنبه</option>
+                <option value="سه‌شنبه">سه‌شنبه</option>
+                <option value="چهارشنبه">چهارشنبه</option>
+                <option value="پنج‌شنبه">پنج‌شنبه</option>
+                <option value="جمعه">جمعه</option>
+
+            </select>
+
+            <label>ساعت شروع</label>
+
+            <input type="time" name="start_time" id="edit_start">
+
+            <label>ساعت پایان</label>
+
+            <input type="time" name="end_time" id="edit_end">
+
+            <label>تعداد ویزیت</label>
+
+            <input type="number" name="max_visits" id="edit_max">
+
+            <label>
+
+                <input type="checkbox" name="active" id="edit_active">
+
+                فعال باشد
+
+            </label>
+
+            <button type="submit">
+                ذخیره تغییرات
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+
+<!--جاوااسکریچت جذاب دکمه ویرایش-->
+<script>
+
+    const modal = document.getElementById("editModal");
+
+    const closeBtn = document.getElementById("closeModal");
+
+    const form = document.getElementById("editForm");
+
+    document.querySelectorAll(".edit-btn").forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            form.action = "/admin/edit_doctor_schedule/" + this.dataset.id;
+
+            document.getElementById("edit_day").value =
+                this.dataset.day;
+
+            document.getElementById("edit_start").value =
+                this.dataset.start;
+
+            document.getElementById("edit_end").value =
+                this.dataset.end;
+
+            document.getElementById("edit_max").value =
+                this.dataset.max;
+
+            document.getElementById("edit_active").checked =
+                this.dataset.active === "True";
+
+            modal.style.display = "flex";
+
+        });
+
+    });
+
+    closeBtn.onclick = function () {
+
+        modal.style.display = "none";
+
+    }
+
+    window.onclick = function (event) {
+
+        if (event.target == modal) {
+
+            modal.style.display = "none";
+
+        }
+
+    }
+
+</script>
