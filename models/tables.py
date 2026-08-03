@@ -21,29 +21,8 @@ class User(db.Model, UserMixin):
     is_active = db.Column(db.Boolean, default=True, nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
-    # One to One 
-    patient = db.relationship(
-    "Patient",
-    back_populates="user",
-    uselist=False,
-    cascade="all, delete-orphan"
-    )
-
-
-
-
-class Patient(db.Model):
-
-    __tablename__ = "patients"
-
-    id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), unique=True, nullable=False)
-    birth_date = db.Column(db.Date, nullable=True)
-    gender = db.Column(db.String(10),nullable=True)
-    address = db.Column(db.Text,nullable=True)
-
-    # One to One
-    user = db.relationship ("User",back_populates="patient")
+    # One to Many
+    appointments = db.relationship("Appointment", back_populates="user")
 
 
 
@@ -63,6 +42,10 @@ class Doctor(db.Model):
     # One to Many
     schedules = db.relationship("DoctorSchedule", back_populates="doctor", cascade="all, delete-orphan")
 
+    # One to Many
+    appointments = db.relationship("Appointment",back_populates="doctor")
+
+
 
 
 
@@ -81,6 +64,8 @@ class DoctorSchedule(db.Model):
     # One to Many
     doctor = db.relationship("Doctor", back_populates="schedules")
 
+    appointments = db.relationship("Appointment",back_populates="schedule")
+
     def visit_status(self):
         if self.booked_visits >= self.max_visits :
             return "full"
@@ -88,3 +73,17 @@ class DoctorSchedule(db.Model):
 
 
 
+class Appointment(db.Model):
+    __tablename__ = "appointments"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
+    doctor_id = db.Column(db.Integer, db.ForeignKey("doctors.id"), nullable=False)
+    schedule_id = db.Column(db.Integer, db.ForeignKey("doctor_schedule.id"), nullable=False)
+    status = db.Column(db.Enum("pending", "accepted", "rejected", "done"), default="pending", nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow)
+
+    # Many to One
+    user = db.relationship("User", back_populates="appointments")
+    doctor = db.relationship("Doctor", back_populates="appointments")
+    schedule = db.relationship("DoctorSchedule", back_populates="appointments")

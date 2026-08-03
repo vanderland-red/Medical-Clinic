@@ -96,7 +96,7 @@ def register():
     }
 
     session["otp"] = otp 
-    # ذخیره زمان فعلی به اضافه 2 دقیقه
+    # ذخیره زمان فعلی به اضافه 5 دقیقه
     session["otp_expire"] = (
     datetime.utcnow() + timedelta(minutes=5)).isoformat()
 

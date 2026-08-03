@@ -9,7 +9,7 @@
 
 <section class="user-register-parent">
     <h2>ثبت اطلاعات</h2>
-    <p>برای ورود و نوبت دهی اطلاعات زیر را کامل کنید</p>
+    <p>برای دریافت نوبت اطلاعات زیر را کامل کنید</p>
     <form action="{{ url_for('user.register') }}" method="POST">
 
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
@@ -30,7 +30,7 @@
             <input type="text" name="national_code" id="national_code" value="{{ national_code or '' }}" placeholder="کد ملی">
         </div>
 
-        <button type="submit">ورود</button>
+        <button type="submit">ثبت اطلاعات</button>
 
     </form>
 </section>

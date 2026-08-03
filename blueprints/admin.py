@@ -64,6 +64,7 @@ def dashboard ():
 
     profile_image = request.files.get("profile_image")
 
+
     doctor = Doctor(
         doctor_name=doctor_name,
         experience_years=experience_years,
