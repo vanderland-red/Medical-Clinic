@@ -42,7 +42,7 @@ if __name__ == "__main__":
 # {% if request.endpoint.startswith("general") %}
 #   {% if current_user.is_authenticated %}
 #          <a href="{{ url_for('user.dashboard') }}" class="header-btn">حساب کاربری</a>
-       # {% else %}
-            # <a href="{{ url_for('user.register') }}" class="header-btn">ثبت نام</a>
-       #{% endif%}
-   # {% endif %}
+#        {% else %}
+#             <a href="{{ url_for('user.register') }}" class="header-btn">ثبت نام</a>
+#        {% endif%}
+#    {% endif %}

@@ -3,18 +3,18 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/fonts.css') }}"> <!--Fonts-->
 
 
-{% include "part/header.html" %} 
+{% include "part/header.html" %}
 
 <div class="title-doctor-up">
-<h1 class="page-title">دکتر انتخاب شده :</h1>
-<h2>{{ doctor.doctor_name }}</h2>
+    <h1 class="page-title">دکتر انتخاب شده :</h1>
+    <h2>{{ doctor.doctor_name }}</h2>
 </div>
 
 <section class="time-doctor-parent">
 
     {% for schedule in doctor.schedules %}
 
-    <a href="#" class="schedule-link">
+    <a href="{{ url_for('user.register') }}" class="schedule-link">
 
         <div class="schedule-card">
 
@@ -51,5 +51,7 @@
     </a>
 
     {% endfor %}
+
+
 
 </section>

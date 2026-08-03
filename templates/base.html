@@ -11,18 +11,21 @@
 
     {% block header %}
         {% include "part/header.html" %}
+
+
     {% endblock %}
 </head>
 
 <body>
 
 
-        {% include "part/flash_message.html" %}
-    
 
-        {% block body %}
+    {% include "part/flash_message.html" %}
 
-        {% endblock %}
+
+    {% block body %}
+
+    {% endblock %}
 
 
 </body>

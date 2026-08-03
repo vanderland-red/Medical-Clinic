@@ -109,12 +109,6 @@ body{
 }
 
 
-.info-box:hover{
-    background:#eff6ff;
-    border-color:#2563eb;
-}
-
-
 .label{
     font-size: 11px;
     color:#6b7280;
@@ -136,6 +130,15 @@ body{
     .schedule-body{
         gap: 10px;
     }
+
+    .time-doctor-parent{
+    display: grid;
+    grid-template-columns: repeat(1, 350px);
+    margin-right: 10px;
+    gap: 20px;
+    justify-content: center;
+    }
+
 
     .info-box{
         width: calc(50% - 10px);
