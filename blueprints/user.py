@@ -28,7 +28,7 @@ def dashboard ():
 def register():
 
 
-    schedule_id = request.args.get("schedule_id")
+    schedule_id = request.args.get("schedule_id") # for Appointment
 
     if schedule_id:
         session["schedule_id"] = schedule_id

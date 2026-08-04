@@ -5,6 +5,7 @@ from flask_login import LoginManager
 from blueprints.general import bp as general
 from blueprints.admin import bp as admin
 from blueprints.user import bp as user
+from blueprints.doctor import bp as doctor
 from extentions import db
 
 from models.tables import User
@@ -34,6 +35,7 @@ def load_user(user_id):
 app.register_blueprint(general)
 app.register_blueprint(admin)
 app.register_blueprint(user)
+app.register_blueprint(doctor)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

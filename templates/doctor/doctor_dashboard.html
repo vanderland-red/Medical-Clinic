@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+صفحه ثبت اطلاعات
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_dashboard.css') }}">
+<h1>Hello doctor</h1>
+
+    {% for appoint in appointment %}
+        {{ appoint.user.fullname }}
+        {{ appoint.schedule.day_of_week }}
+        {{ appoint.schedule.start_time }}
+        {{ appoint.schedule.end_time }}
+    {% endfor %}
+    <section>
+
+    </section>
+
+
+    {% endblock %}
