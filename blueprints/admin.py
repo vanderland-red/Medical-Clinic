@@ -320,9 +320,19 @@ def delete_doctor_schedule(id):
 
 
 
-#=================================
-# ADMIN Change PHONE and PASSWORD
-#=================================
+#=========================================
+# ADMIN Doctor Change PHONE and PASSWORD
+#=========================================
+
+@bp.route("/doctor_important", methods=["GET", "POST"])
+def doctor_important ():
+    if request.method == "GET" :
+        doctors = Doctor.query.all()
+        return render_template("admin/admin_doctor_important.html", doctors=doctors)
+
+    return redirect(url_for("admin.doctor_important"))
+    
+
 
 
     

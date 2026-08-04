@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+
+{% block title %}
+صفحه ثبت اطلاعات
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin_doctor_important.css') }}">
+
+
+<section class="doctor-account-section">
+
+    <h2 class="doctor-account-title">
+        تغییر شماره موبایل و رمز دکترها
+    </h2>
+
+    <div class="doctor-account-container">
+
+        {% for doctor in doctors %}
+
+        <div class="doctor-account-card">
+
+            <div class="doctor-image-box">
+                <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
+                    alt="{{ doctor.doctor_name }}">
+            </div>
+
+
+            <div class="doctor-info">
+
+                <h3>{{ doctor.doctor_name }}</h3>
+
+                <p>
+                    <span>تخصص:</span>
+                    {{ doctor.specials }}
+                </p>
+
+                <p>
+                    <span>شماره موبایل:</span>
+                    {{ doctor.phone }}
+                </p>
+
+            </div>
+
+
+            <div class="doctor-actions">
+
+                <a href="#" class="edit-doctor-btn">
+                    تغییر اطلاعات ورود
+                </a>
+
+            </div>
+
+
+        </div>
+
+        {% endfor %}
+
+    </div>
+
+</section>
+
+
+
+
+
+{% endblock %}
+
+
+<!-- <section>
+        <form action="#" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            
+            <div>
+                <label for="phone">شماره موبایل</label>
+                <input type="text" name="phone" id="phone" value="{{ doctor.phone }}">
+            </div>
+
+            <div>
+                <label for="password">رمز عبور</label>
+                <input type="password" name="password" id="password" placeholder="تغییر رمز">
+            </div>
+
+            <button type="submit">تغییر اطلاعات</button>
+
+        </form>
+    </section> -->
