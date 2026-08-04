@@ -7,3 +7,5 @@ bp = Blueprint('general', __name__)
 def home ():
     return render_template("home.html")
 
+
+

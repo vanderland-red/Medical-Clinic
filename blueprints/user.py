@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
-from models.tables import User,Doctor,DoctorSchedule
+from models.tables import User,Doctor,DoctorSchedule,Appointment
 from extentions import db
 from flask_login import login_user, login_required,current_user,logout_user
 import re
@@ -26,6 +26,12 @@ def dashboard ():
 #===================
 @bp.route("/register", methods=["GET", "POST"])
 def register():
+
+
+    schedule_id = request.args.get("schedule_id")
+
+    if schedule_id:
+        session["schedule_id"] = schedule_id
 
     if request.method == "GET":
         return render_template("user/user_login.html")
@@ -137,15 +143,77 @@ def verify ():
 
     login_user(new_user)
 
+    schedule_id = session.get("schedule_id")
+
+    if schedule_id:
+
+        schedule = DoctorSchedule.query.get(schedule_id)
+
+        if schedule and schedule.visit_status() != "full":
+
+            appointment = Appointment(
+                user_id=new_user.id,
+                doctor_id=schedule.doctor.id,
+                schedule_id=schedule.id
+            )
+
+            schedule.booked_visits += 1
+
+            db.session.add(appointment)
+            db.session.commit()
+
+
     # پاک کردن اطلاعات موقت زیرا دیگه به آنها احتیاجی نداریم
     session.pop("otp", None)
     session.pop("otp_expire", None)
     session.pop("register_data", None)
+    session.pop("schedule_id", None)
 
     flash("با موفقیت وارد شدید.", "success")
     return redirect(url_for("user.dashboard"))
 
 
+
+
+#===========================
+# USER and Doctor Appointment
+#===========================
+@login_required
+@bp.route("/appointment/<int:schedule_id>", methods=["POST"])
+def appointment(schedule_id):
+
+    schedule = DoctorSchedule.query.get_or_404(schedule_id)
+
+    doctor = schedule.doctor
+
+    exists = Appointment.query.filter_by(
+    user_id=current_user.id,
+    schedule_id=schedule.id
+    ).first()
+
+    if exists:
+        flash("شما قبلاً این نوبت را رزرو کرده‌اید.", "warning")
+        return redirect(url_for("user.want_doctor", id=doctor.id))
+
+    if schedule.visit_status() == "full" :
+        flash("ظرفیت این زمان تکمیل شده است.", "error")
+        return redirect(url_for("user.want_doctor", id=doctor.id))
+
+    appointment = Appointment(
+    user_id=current_user.id,
+    doctor_id=doctor.id,
+    schedule_id=schedule.id
+    )
+
+    schedule.booked_visits += 1
+
+    
+    
+    db.session.add(appointment)
+    db.session.commit()
+
+    flash("نوبت شما با موفقیت ثبت شد.", "success")
+    return redirect(url_for("user.dashboard"))
 
 
 #===================

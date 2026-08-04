@@ -73,6 +73,7 @@ class DoctorSchedule(db.Model):
 
 
 
+# اتصاب دادن بین دکتر و یوزر
 class Appointment(db.Model):
     __tablename__ = "appointments"
 
