@@ -5,6 +5,7 @@ from extentions import db
 from werkzeug.utils import secure_filename
 import os
 from datetime import datetime
+from werkzeug.security import generate_password_hash
 
 
 bp = Blueprint("admin", __name__, url_prefix="/admin")
@@ -55,14 +56,16 @@ def dashboard ():
         return render_template("admin/admin_dashboard.html", doctors=doctors)
     
 
-    doctor_name = request.form.get("doctor_name").strip()
-    experience_years = int(request.form.get("experience_years"))
-    biography = request.form.get("biography").strip()
-    visit_price = int(request.form.get("visit_price"))
-    specials = request.form.get("specials").strip()
-    template_name = request.form.get("template_name").strip() # دیگه خودش صفحه برای دکتر ساخته میشه
+    doctor_name = request.form.get("doctor_name", "").strip()
+    experience_years = int(request.form.get("experience_years") or 0) 
+    biography = request.form.get("biography", "").strip()
+    visit_price = int(request.form.get("visit_price") or 0)
+    specials = request.form.get("specials", "").strip()
+    template_name = request.form.get("template_name", "").strip() # دیگه خودش صفحه برای دکتر ساخته میشه
+    phone = request.form.get("phone", "").strip()
+    password = generate_password_hash(request.form.get("password", "").strip())
 
-    profile_image = request.files.get("profile_image")
+    profile_image = request.files.get("profile_image", "")
 
 
     doctor = Doctor(
@@ -71,7 +74,9 @@ def dashboard ():
         biography=biography,
         visit_price=visit_price,
         specials=specials,
-        template_name=template_name
+        template_name=template_name,
+        phone=phone,
+        password=password
     )
 
     db.session.add(doctor)
@@ -311,4 +316,13 @@ def delete_doctor_schedule(id):
 
     flash("برنامه کاری دکتر با موفقیت حذف شد", "success")
     return redirect(url_for("admin.edit_want_doctor", id=doctor_id))
+    
+
+
+
+#=================================
+# ADMIN Change PHONE and PASSWORD
+#=================================
+
+
     

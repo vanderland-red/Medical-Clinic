@@ -38,6 +38,8 @@ class Doctor(db.Model):
     profile_image = db.Column(db.String(255), nullable=True)
     specials = db.Column(db.String(200), nullable=False)
     template_name = db.Column(db.String(100)) 
+    phone = db.Column(db.String(11), unique=True, nullable=False)
+    password = db.Column(db.String(255)) 
 
     # One to Many
     schedules = db.relationship("DoctorSchedule", back_populates="doctor", cascade="all, delete-orphan")

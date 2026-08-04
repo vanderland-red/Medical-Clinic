@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}
+صفحه ثبت اطلاعات
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_dashboard.css') }}">
+<h1>Hello doctor Login what a happend your Life</h1>
+
+    <section>
+        <form action="{{ url_for('doctor.doctor_login') }}" method="POST">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div>
+                <label for="phone">شماره تلفن</label>
+                <input type="text" name="phone" id="phone" placeholder="شماره موبایل">
+            </div>
+
+            <div>
+                <label for="password">رمز عبور</label>
+                <input type="password" name="password" id="password" placeholder="رمز عبور">
+            </div>
+
+            <div>
+                <button type="submit">ورود</button>
+            </div>
+        </form>
+    </section>
+    
+
+
+    {% endblock %}
