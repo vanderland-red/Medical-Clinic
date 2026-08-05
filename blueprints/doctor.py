@@ -1,6 +1,7 @@
 from flask import Blueprint,render_template,request,flash,redirect,url_for,session
 from models.tables import Appointment,Doctor
 from werkzeug.security import check_password_hash
+from extentions import db
 
 bp = Blueprint("doctor", __name__, url_prefix="/doctor")
 
@@ -31,3 +32,17 @@ def doctor_login():
     flash("با موفقیت وارد شدید", "success")
     return redirect(url_for("doctor.dashboard", id=doctor.id))
 
+
+
+
+@bp.route("/delete/<int:id>", methods = ["GET"])
+def delete(id):
+
+    appoint = Appointment.query.get_or_404(id)
+
+    db.session.delete(appoint)
+    db.session.commit()
+    
+    flash(" با موفقیت حذف شد", "success")
+    
+    return redirect(url_for("doctor.dashboard", id=appoint.doctor_id))

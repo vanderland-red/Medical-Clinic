@@ -6,17 +6,72 @@
 
 {% block body %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_dashboard.css') }}">
-<h1>Hello doctor</h1>
-
-    {% for appoint in appointment %}
-        {{ appoint.user.fullname }}
-        {{ appoint.schedule.day_of_week }}
-        {{ appoint.schedule.start_time }}
-        {{ appoint.schedule.end_time }}
-    {% endfor %}
-    <section>
-
-    </section>
 
 
-    {% endblock %}
+
+<section class="appointments-section">
+    <div class="container">
+
+        {% if appointment %}
+        <div class="appointments-grid">
+            {% for appoint in appointment %}
+            <div class="appointment-card">
+                <div class="card-header">
+                    <div class="patient-info">
+                        <div class="patient-avatar">
+                            {{ appoint.user.fullname[0]|upper }}
+                        </div>
+                        <div class="patient-details">
+                            <h3 class="patient-name">{{ appoint.user.fullname }}</h3>
+                            <span class="patient-code">کد ملی: {{ appoint.user.national_code }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-body">
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">📅 روز هفته</span>
+                            <span class="info-value">{{ appoint.schedule.day_of_week }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">⏰ ساعت شروع</span>
+                            <span class="info-value">{{ appoint.schedule.start_time.strftime('%H:%M') }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">⏰ ساعت پایان</span>
+                            <span class="info-value">{{ appoint.schedule.end_time.strftime('%H:%M') }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">📞 تلفن</span>
+                            <span class="info-value">{{ appoint.user.phone }}</span>
+                        </div>
+                        <div class="info-item full-width">
+                            <span class="info-label">📆 تاریخ ثبت</span>
+                            <span class="info-value">{{ appoint.user.created_at.strftime('%Y/%m/%d - %H:%M') }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-footer">
+                    <a href="{{ url_for('doctor.delete', id=appoint.id) }}" class="btn-delete"
+                        onclick="return confirm('آیا از حذف این نوبت اطمینان دارید؟')">
+                        <span class="icon">🗑️</span>
+                        حذف نوبت
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <div class="empty-state">
+            <div class="empty-icon">📭</div>
+            <h3>هیچ نوبتی ثبت نشده است</h3>
+            <p>هنوز بیماری برای شما نوبت ثبت نکرده است.</p>
+        </div>
+        {% endif %}
+    </div>
+</section>
+
+
+{% endblock %}

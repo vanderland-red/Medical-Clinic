@@ -1,0 +1,290 @@
+/*========================== Container ==========================*/
+.appointments-section {
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/*========================== Header ==========================*/
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    background: white;
+    padding: 20px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.section-header h2 {
+    margin: 0;
+    color: #2c3e50;
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.appointments-count {
+    background: #3498db;
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: 600;
+}
+
+/*========================== Grid ==========================*/
+.appointments-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 3fr);
+    gap: 25px;
+}
+
+/*========================== Card ==========================*/
+.appointment-card {
+    background: white;
+    border-radius: 18px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.appointment-card:hover {
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.71);
+}
+
+/* Card Header */
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.patient-info {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.patient-avatar {
+    width: 50px;
+    height: 50px;
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 22px;
+    font-weight: 700;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.patient-details {
+    color: white;
+}
+
+.patient-name {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.patient-code {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.appointment-status {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    backdrop-filter: blur(5px);
+}
+
+/* Card Body */
+.card-body {
+    padding: 25px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr ;
+}
+
+.info-item {
+    background: #f8f9fa;
+    padding: 12px 15px;
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+
+.info-item.full-width {
+    grid-column: 1 / -1;
+}
+
+.info-label {
+    display: block;
+    font-size: 12px;
+    color: #7f8c8d;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 5px;
+}
+
+.info-value {
+    display: block;
+    font-size: 16px;
+    color: #2c3e50;
+    font-weight: 600;
+}
+
+/* Card Footer */
+.card-footer {
+    padding: 15px 25px 25px;
+    border-top: 1px solid #ecf0f1;
+}
+
+.btn-delete {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    background: #e74c3c;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-delete:hover {
+    background: #c0392b;
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+}
+
+.btn-delete .icon {
+    font-size: 18px;
+}
+
+/*========================== Empty State ==========================*/
+.empty-state {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 18px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.empty-icon {
+    font-size: 80px;
+    margin-bottom: 20px;
+}
+
+.empty-state h3 {
+    color: #2c3e50;
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.empty-state p {
+    color: #7f8c8d;
+    font-size: 16px;
+}
+
+/*========================== Responsive ==========================*/
+@media (max-width: 1024px) {
+    .appointments-grid {
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 20px;
+    }
+}
+
+@media (max-width: 768px) {
+    .appointments-section {
+        padding: 20px 15px;
+    }
+
+    .section-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px 20px;
+    }
+
+    .section-header h2 {
+        font-size: 22px;
+    }
+
+    .appointments-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+
+    .appointment-status {
+        align-self: flex-start;
+    }
+
+    .info-grid {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+
+    .info-item.full-width {
+        grid-column: 1;
+    }
+
+    .patient-name {
+        font-size: 16px;
+    }
+
+    .btn-delete {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-header h2 {
+        font-size: 20px;
+    }
+
+    .appointments-count {
+        font-size: 14px;
+        padding: 6px 16px;
+    }
+
+    .patient-avatar {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .patient-name {
+        font-size: 15px;
+    }
+}
