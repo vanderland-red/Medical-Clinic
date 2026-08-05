@@ -5,7 +5,8 @@ bp = Blueprint('general', __name__)
 
 @bp.route("/")
 def home ():
-    return render_template("home.html")
+    doctor = Doctor.query.all()
+    return render_template("home.html", doctor=doctor)
 
 
 

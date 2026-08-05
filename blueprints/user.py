@@ -230,17 +230,19 @@ def logout():
 
 @bp.route("/taking_turn")
 def taking_turn ():
-    doctors = Doctor.query.all()
+    doctors = Doctor.query.join(Doctor.schedules)\
+    .filter(DoctorSchedule.active == 1)\
+    .all()
     return render_template("user/taking_turn.html", doctors=doctors)
 
 
 
 
-@bp.route("/want_doctor/<int:id>")
-def want_doctor(id):
-    doctor = Doctor.query.get_or_404(id)
-    return render_template(f"user/doctors/{doctor.template_name}", doctor=doctor) # اینجا باید بری تو فایل یوزر فایل اچ تی ام ال رو بسازی تا به این آدرس بره
-
+@bp.route("/doctor_details/<int:id>")
+def doctor_details(id):
+    doctor = Doctor.query.get_or_404(id) # اطلاعات دکتر مورد نظر
+    schedule = DoctorSchedule.query.filter_by(doctor_id=id).all() # برنامه کاری دکتر مورد نظر
+    return render_template("user/doctor_details.html", doctor=doctor, schedule=schedule)
 
 # ===================================
     # روش دوم (بدون Relationship)

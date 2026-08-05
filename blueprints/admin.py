@@ -61,7 +61,6 @@ def dashboard ():
     biography = request.form.get("biography", "").strip()
     visit_price = int(request.form.get("visit_price") or 0)
     specials = request.form.get("specials", "").strip()
-    template_name = request.form.get("template_name", "").strip() # دیگه خودش صفحه برای دکتر ساخته میشه
     phone = request.form.get("phone", "").strip()
     password = generate_password_hash(request.form.get("password", "").strip())
 
@@ -74,7 +73,6 @@ def dashboard ():
         biography=biography,
         visit_price=visit_price,
         specials=specials,
-        template_name=template_name,
         phone=phone,
         password=password
     )
