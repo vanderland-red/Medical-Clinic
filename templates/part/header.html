@@ -1,11 +1,15 @@
-
-
 <header>
-    <a class="apadana-logo-link" href="{{ url_for('general.home') }}">
+
+    <a class="medical-logo-link" href="{{ url_for('general.home') }}">
+        <div class="medical-logo-parent">
+            <img class="medical-logo" src="{{ url_for('static', filename='cover/medical-logo.png') }}"alt="medical-logo">
+        </div>
     </a>
 
     <nav>
         <ul>
+            
+
             <li><a href="{{ url_for('general.home') }}">خانه</a></li>
             <li><a href="#">درباره ما</a></li>
             <li><a href="#">بخش ها</a></li>
@@ -16,10 +20,10 @@
         </ul>
     </nav>
 
-    {% if request.endpoint != 'user.want_doctor' 
-    and request.endpoint != 'user.taking_turn'  
+    {% if request.endpoint != 'user.want_doctor'
+    and request.endpoint != 'user.taking_turn'
     %}
-        <a class="nobat-dehi-link" href="{{ url_for('user.taking_turn') }}">نوبت دهی کلینیک</a>
+    <a class="nobat-dehi-link" href="{{ url_for('user.taking_turn') }}">نوبت دهی کلینیک</a>
     {% endif %}
 
 </header>

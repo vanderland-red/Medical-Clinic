@@ -22,17 +22,11 @@ header{
         Logo
 ========================== */
 
-.apadana-logo-link{
-    text-decoration:none;
-}
-
-.logo img{
-    width:75px;
-    transition:.35s;
-}
-
-.logo img:hover{
-    transform:scale(1.08);
+.medical-logo{
+    width: 130px;
+    height: auto;
+    border-radius: 10px;
+    
 }
 
 /* ==========================
@@ -47,12 +41,13 @@ nav ul{
 
 nav ul li a{
     text-decoration:none;
-    color:#000000;
+    color:#000;
     font-size:17px;
     font-weight:600;
     position:relative;
     transition:.3s;
-    padding: 8px;
+    padding:8px 12px;
+    border-radius:10px;
 }
 
 nav ul li a::after{
@@ -60,7 +55,7 @@ nav ul li a::after{
     position:absolute;
     width:0;
     height:3px;
-    background:#000000;
+    background:#000;
     right:0;
     bottom:-8px;
     border-radius:10px;
@@ -68,9 +63,7 @@ nav ul li a::after{
 }
 
 nav ul li a:hover{
-    background:linear-gradient(135deg,#ffffff,#ffffff);
-    border-radius: 10px;
-
+    background:#fff;
 }
 
 nav ul li a:hover::after{
@@ -81,11 +74,11 @@ nav ul li a:hover::after{
       Appointment Button
 ========================== */
 
-header>a:last-child{
+.nobat-dehi-link{
     text-decoration:none;
-    color:#ffffff;
+    color:#fff;
+    background:#0b74c9;
     border:2px solid #0b74c9;
-    background-color: #0b74c9;
     padding:12px 30px;
     border-radius:10px;
     font-size:15px;
@@ -93,10 +86,11 @@ header>a:last-child{
     transition:.35s;
 }
 
-header>a:last-child:hover{
-    background:#ffffff;
+.nobat-dehi-link:hover{
+    background:#fff;
     color:#0b74c9;
     transform:translateY(-2px);
+    box-shadow:0 8px 18px rgba(11,116,201,.25);
 }
 
 /* ==========================
@@ -117,7 +111,7 @@ header>a:last-child:hover{
         font-size:15px;
     }
 
-    header>a:last-child{
+    .nobat-dehi-link{
         padding:12px 20px;
     }
 

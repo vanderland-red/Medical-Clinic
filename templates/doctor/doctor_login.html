@@ -5,10 +5,40 @@
 {% endblock %}
 
 {% block body %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_dashboard.css') }}">
-<h1>Hello doctor Login what a happend your Life</h1>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_login.css') }}">
 
-    <section>
+<section class="login-section">
+
+    <form action="{{ url_for('doctor.doctor_login') }}" method="POST" class="login-form">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <h2 class="login-title">ورود به حساب کاربری</h2>
+        <p class="login-subtitle">برای مشاهده نوبت‌های خود وارد شوید.</p>
+
+        <div class="input-group">
+            <label for="phone">شماره موبایل</label>
+            <input type="text" name="phone" id="phone" placeholder="09123456789" autocomplete="off">
+        </div>
+
+        <div class="input-group">
+            <label for="password">رمز عبور</label>
+            <input type="password" name="password" id="password" placeholder="رمز عبور">
+        </div>
+
+        <button type="submit" class="login-btn">
+            ورود
+        </button>
+
+    </form>
+
+</section>
+
+
+
+{% endblock %}
+
+
+ <section>
         <form action="{{ url_for('doctor.doctor_login') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
@@ -27,7 +57,3 @@
             </div>
         </form>
     </section>
-    
-
-
-    {% endblock %}
