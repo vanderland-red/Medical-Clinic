@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template,request,flash,redirect,url_for,session
-from models.tables import Appointment,Doctor
+from models.tables import Appointment,Doctor,DoctorSchedule
 from werkzeug.security import check_password_hash
 from extentions import db
 
@@ -39,6 +39,10 @@ def doctor_login():
 def delete(id):
 
     appoint = Appointment.query.get_or_404(id)
+
+    # یدونه از ویزیت اخذ شده کم میکنه
+    if appoint.schedule.booked_visits > 0:
+        appoint.schedule.booked_visits -= 1
 
     db.session.delete(appoint)
     db.session.commit()
