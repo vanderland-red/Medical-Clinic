@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+صفحه دشبورد کاربر
+{% endblock %}
+
+{% block body %}
+
+<section>
+    <form action="{{ url_for('user.login_this') }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <div class="form-group">
+            <label for="phone">شماره موبایل</label>
+            <input type="tel" id="phone" name="phone" value="{{ phone or '' }}" placeholder="09123456789">
+        </div>
+
+        
+    </form>
+</section>
+
+{% endblock %}

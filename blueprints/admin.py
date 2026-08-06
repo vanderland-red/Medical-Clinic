@@ -333,4 +333,37 @@ def doctor_important ():
 
 
 
+
+@bp.route("/edit_doctor_login/<int:id>", methods=["POST"])
+def edit_doctor_login(id):
+
+    if not session.get("admin_login"):
+        abort(403)
+
+    doctor = Doctor.query.get_or_404(id)
+
+    phone = request.form.get("phone")
+    password = request.form.get("password")
+
+    # بررسی تکراری نبودن شماره موبایل
+    exists = Doctor.query.filter(
+        Doctor.phone == phone,
+        Doctor.id != id
+    ).first()
+
+    if exists:
+        flash("این شماره موبایل قبلاً ثبت شده است.", "warning")
+        return redirect(url_for("admin.doctor_important"))
+
+    doctor.phone = phone
+
+    # اگر رمز وارد شده باشد، تغییر کند
+    if password:
+        doctor.password = generate_password_hash(password)
+
+    db.session.commit()
+
+    flash("اطلاعات ورود پزشک با موفقیت بروزرسانی شد.", "success")
+
+    return redirect(url_for("admin.doctor_important"))
     

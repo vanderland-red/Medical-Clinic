@@ -1,5 +1,6 @@
 body{
     direction: rtl;
+    background-color: rgba(184, 202, 149, 0.567);
 }
 
 
@@ -8,10 +9,22 @@ body{
 ========================*/
 
 .doctor-account-section{
-
     width: 90%;
     margin: 40px auto;
+}
 
+.btn-edit{
+    padding: 5px;
+    border-radius: 10px;
+    background-color: rgb(25, 36, 118);
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+}
+.btn-edit:hover{
+    color: rgb(25, 36, 118);
+    background-color: white;
+    transition: 0.3s;
 }
 
 
@@ -44,7 +57,7 @@ body{
 
 .doctor-account-card{
 
-    background: white;
+    background:linear-gradient(135deg,#0d5c75,#17b890);
     border-radius: 20px;
     padding: 25px;
 
@@ -58,12 +71,6 @@ body{
 
 }
 
-
-.doctor-account-card:hover{
-
-    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.67);
-
-}
 
 
 
@@ -106,7 +113,7 @@ body{
 
 .doctor-info h3{
 
-    color: #1565c0;
+    color: #ffffff;
     margin-bottom: 15px;
 
 }
@@ -181,5 +188,160 @@ body{
         #0d47a1,
         #1976d2
     );
+
+}
+
+
+
+/*==================================
+        Modal Background
+==================================*/
+
+.modal-box{
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.45);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+/*==================================
+        Modal
+==================================*/
+
+.modal-content{
+    width: 100%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 18px;
+    padding: 30px;
+    position: relative;
+    box-shadow: 0 18px 40px rgba(0,0,0,.2);
+    animation: modalShow .25s ease;
+}
+
+/*==================================
+        Close Button
+==================================*/
+
+#close-modal-box{
+    position: absolute;
+    left: 20px;
+    top: 15px;
+    font-size: 34px;
+    font-weight: bold;
+    color: #888;
+    cursor: pointer;
+    transition: .25s;
+}
+
+#close-modal-box:hover{
+    color: #e53935;
+    transform: rotate(90deg);
+}
+
+/*==================================
+        Title
+==================================*/
+
+.modal-content h2{
+    margin: 0 0 25px;
+    text-align: center;
+    color: #245c3b;
+    font-size: 24px;
+}
+
+/*==================================
+        Form
+==================================*/
+
+#edit-form{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.edit-inside-form{
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.edit-inside-form label{
+    font-size: 15px;
+    font-weight: 700;
+    color: #333;
+}
+
+.edit-inside-form input{
+    padding: 12px 15px;
+    border: 1px solid #cfd8dc;
+    border-radius: 10px;
+    font-size: 15px;
+    outline: none;
+    transition: .25s;
+}
+
+.edit-inside-form input:focus{
+    border-color: #4caf50;
+    box-shadow: 0 0 0 4px rgba(76,175,80,.15);
+}
+
+/*==================================
+        Submit Button
+==================================*/
+
+#edit-form button{
+    margin-top: 10px;
+    padding: 13px;
+    border: none;
+    border-radius: 10px;
+    background: linear-gradient(135deg,#43a047,#2e7d32);
+    color: #fff;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: .25s;
+}
+
+#edit-form button:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(46,125,50,.35);
+}
+
+/*==================================
+        Animation
+==================================*/
+
+@keyframes modalShow{
+
+    from{
+        opacity: 0;
+        transform: translateY(-20px) scale(.95);
+    }
+
+    to{
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+/*==================================
+        Responsive
+==================================*/
+
+@media(max-width:600px){
+
+    .modal-content{
+        width: calc(100% - 30px);
+        padding: 22px;
+    }
+
+    .modal-content h2{
+        font-size: 20px;
+    }
 
 }

@@ -5,34 +5,20 @@
 {% endblock %}
 
 {% block body %}
-<h1>heloo Karbar</h1>
 
-<section>
-    <h3>اطلاعات مربوطه را وارد کنید</h3>
-    <form action="#" method="POST">
-
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-
-        <div class="form-group">
-            <label for="birth_date">تاریخ تولد</label>
-            <input type="date" name="birth_date" id="birth_date" placeholder="تاریخ تولد">
+{% if appointment %}
+        <div class="appointments-grid">
+            {% for appoint in appointment %}
+            
+                {{ appoint.doctor.doctor_name }}
+                
+            {% endfor %}
         </div>
-
-        <div class="form-group">
-            <label for="gender">جنسیت</label>
-            <select name="gender" id="gender">
-                <option class="option-1" value="male">مرد</option>
-                <option class="option-2" value="female">زن</option>
-            </select>
+        {% else %}
+        <div>
+            <h2>بدون نوبت</h2>
         </div>
-
-        <div class="form-group">
-            <label for="address">آدرس</label>
-            <textarea name="address" id="address" placeholder="آدرس محل سکونت ..."></textarea>
-        </div>
-
-    </form>
-</section>
+    {% endif %}
 
 <a href="{{ url_for('user.logout') }}">خروج از حساب</a>
 

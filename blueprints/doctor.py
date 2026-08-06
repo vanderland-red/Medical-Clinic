@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template,request,flash,redirect,url_for,session
-from models.tables import Appointment,Doctor,DoctorSchedule
+from models.tables import Appointment,Doctor
 from werkzeug.security import check_password_hash
 from extentions import db
 

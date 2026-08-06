@@ -45,12 +45,17 @@
 
             <div class="doctor-actions">
 
-                <a href="#" class="edit-doctor-btn">
-                    تغییر اطلاعات ورود
-                </a>
+                <button type="button" class="btn-edit"
+
+                    data-id="{{ doctor.id }}"
+                    data-phone="{{ doctor.phone }}"
+                    
+                    >
+                        تغییر اطلاعات ورود
+
+                </button>
 
             </div>
-
 
         </div>
 
@@ -62,26 +67,72 @@
 
 
 
+<div id="modal-box" class="modal-box">
 
+    <div class="modal-content">
 
-{% endblock %}
+        <span id="close-modal-box">&times;</span>
 
+        <h2>ویرایش اطلاعات ورود</h2>
 
-<!-- <section>
-        <form action="#" method="POST">
+        <form id="edit-form" method="POST">
+
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            
-            <div>
+
+            <div class="edit-inside-form">
                 <label for="phone">شماره موبایل</label>
-                <input type="text" name="phone" id="phone" value="{{ doctor.phone }}">
+                <input type="text" name="phone" id="phone">
             </div>
 
-            <div>
-                <label for="password">رمز عبور</label>
-                <input type="password" name="password" id="password" placeholder="تغییر رمز">
+            <div class="edit-inside-form">
+                <label for="password">رمز عبور جدید</label>
+                <input type="password" name="password" id="password" placeholder="در صورت نیاز وارد کنید">
             </div>
 
-            <button type="submit">تغییر اطلاعات</button>
+            <button type="submit">
+                ذخیره تغییرات
+            </button>
 
         </form>
-    </section> -->
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+    const modal = document.getElementById("modal-box");
+    const closeBtn = document.getElementById("close-modal-box");
+    const form = document.getElementById("edit-form");
+    const phoneInput = document.getElementById("phone");
+    const passwordInput = document.getElementById("password");
+
+    document.querySelectorAll(".btn-edit").forEach(button => {
+
+        button.addEventListener("click", function () {
+
+            form.action = "/admin/edit_doctor_login/" + this.dataset.id;
+
+            phoneInput.value = this.dataset.phone;
+
+            passwordInput.value = "";
+
+            modal.style.display = "block";
+        });
+
+    });
+
+    closeBtn.onclick = function () {
+        modal.style.display = "none";
+    };
+
+    window.onclick = function (event) {
+        if (event.target === modal) {
+            modal.style.display = "none";
+        }
+    };
+
+</script>
+{% endblock %}

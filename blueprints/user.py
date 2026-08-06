@@ -17,7 +17,8 @@ bp = Blueprint("user", __name__, url_prefix="/user")
 @login_required
 @bp.route("/dashboard", methods=["GET"])
 def dashboard ():
-    return render_template("user/user_dashboard.html")
+    appointment = Appointment.query.filter_by(user_id=current_user.id).all()
+    return render_template("user/user_dashboard.html", appointment=appointment)
 
 
 
@@ -175,6 +176,16 @@ def verify ():
 
 
 
+#===========================
+# USER LOGIN
+#===========================
+
+@bp.route("/login", methods=["GET", "POST"])
+def login_this():
+    if request.method == "GET" :
+        return render_template("user/user_login_this.html")
+    pass
+    
 #===========================
 # USER and Doctor Appointment
 #===========================
