@@ -34,6 +34,10 @@
     background: #dc3545;
 }
 
+.flash-info{
+    background: blue;
+}
+
 .flash-text{
     flex: 1;
     margin-left: 10px;

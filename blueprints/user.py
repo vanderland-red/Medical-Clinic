@@ -113,9 +113,9 @@ def register():
 
 
 
-#===================
-# USER Verify OTP
-#===================
+#=============================
+# USER Register Verify OTP
+#=============================
 @bp.route("/verify", methods=["GET", "POST"])
 def verify ():
     if request.method == "GET":
@@ -179,12 +179,79 @@ def verify ():
 #===========================
 # USER LOGIN
 #===========================
-
 @bp.route("/login", methods=["GET", "POST"])
 def login_this():
     if request.method == "GET" :
         return render_template("user/user_login_this.html")
-    pass
+    
+    phone = request.form.get("phone")
+
+    if not re.fullmatch(r"(?:\+98|0)9\d{9}", phone):
+        flash("شماره موبایل وارد شده صحیح نیست", "warning")
+        return redirect(url_for("user.login_this"))
+
+    phone_exit = User.query.filter_by(phone=phone).first()
+
+    if phone_exit is None :
+        flash("شماره موبایل مورد نظر یافت نشد !", "error")
+        return redirect(url_for("user.login_this"))
+
+    otp = f"{random.randint(0, 999999):06d}"
+
+    session["login_data"] = {
+    "phone": phone
+    }
+
+    session["otp"] = otp 
+    # ذخیره زمان فعلی به اضافه 5 دقیقه
+    session["otp_expire"] = (
+    datetime.utcnow() + timedelta(minutes=5)).isoformat()
+
+    print(f"OTP: {otp}") # چاپ کد تایید در ترمینال
+
+    return redirect(url_for("user.verify_login"))
+
+
+
+#===========================
+# USER LOGIN Verify OTP
+#===========================
+@bp.route("/verify-user-login", methods=["GET", "POST"])
+def verify_login ():
+    if request.method == "GET":
+        return render_template("user/user_verify_this.html")
+
+    
+    user_otp = request.form["user_otp"].strip()
+    
+    # بررسی صحت کد
+    if user_otp != session.get("otp"):
+        flash("کد تایید اشتباه است.", "error")
+        return render_template("user/user_verify.html")
+
+    phone = session["login_data"]["phone"]
+
+    user_login = User.query.filter_by(phone=phone).first()
+
+    # یا به این روش هم میشه دیتا ذخیره کرد
+    # data = session["login_data"]
+    # user_login = User.query.filter_by(phone=data["phone"]).first()
+
+    if user_login is None:
+        flash("کاربر یافت نشد.", "error")
+        return redirect(url_for("user.login_this"))
+
+    login_user(user_login)
+
+    session.pop("otp", None)
+    session.pop("otp_expire", None)
+    session.pop("login_data", None)
+
+    return redirect(url_for("user.dashboard"))
+
+
+
+
     
 #===========================
 # USER and Doctor Appointment
