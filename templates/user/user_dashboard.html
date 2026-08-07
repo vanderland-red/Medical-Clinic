@@ -7,18 +7,54 @@
 {% block body %}
 
 {% if appointment %}
-        <div class="appointments-grid">
-            {% for appoint in appointment %}
-            
-                {{ appoint.doctor.doctor_name }}
-                
-            {% endfor %}
-        </div>
-        {% else %}
-        <div>
-            <h2>بدون نوبت</h2>
-        </div>
-    {% endif %}
+<div class="appointments-grid">
+    {% for appoint in appointment %}
+
+    <div>
+        <h3>دکتر</h3>
+        {{ appoint.doctor.doctor_name }}
+
+    </div>
+
+    <div>
+        <h4>تخصص :</h4>
+        {{ appoint.doctor.specials }}
+    </div>
+
+    <div>
+        روز :
+        {{ appoint.schedule.day_of_week }}
+    </div>
+
+    <div>
+        ساعت شروع :
+        {{ appoint.schedule.start_time.strftime('%H:%M') }}
+    </div>
+
+    <div>
+        ساعت پایان :
+        {{ appoint.schedule.end_time.strftime('%H:%M') }}
+    </div>
+
+
+    <form action="{{ url_for('user.schedule_delete', id=appoint.id) }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <button type="submit" onclick="return confirm('آیا از حذف این سرویس خود مطمئن هستید ؟')">
+            حذف
+        </button>
+
+    </form>
+    {% endfor %}
+</div>
+
+
+{% else %}
+
+<div>
+    <h2>بدون نوبت</h2>
+</div>
+{% endif %}
 
 <a href="{{ url_for('user.logout') }}">خروج از حساب</a>
 

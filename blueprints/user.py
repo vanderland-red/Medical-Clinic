@@ -351,6 +351,24 @@ def doctor_details(id):
 # ====================================
 
 
-# ===================================
+
+
 
 # ===================================
+# USER Schedule Delete
+# ===================================
+@bp.route("/schedule_delete/<int:id>", methods=["POST"])
+def schedule_delete(id):
+
+    item = Appointment.query.filter_by(
+        id=id,
+        user_id=current_user.id
+    ).first_or_404()
+
+    item.schedule.booked_visits -= 1
+
+    db.session.delete(item)
+    db.session.commit()
+
+    flash("نوبت با موفقیت حذف شد", "success")
+    return redirect(url_for("user.dashboard"))
