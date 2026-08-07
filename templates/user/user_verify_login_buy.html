@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block title %}
-صفحه دشبورد کاربر
+صفحه ثبت اطلاعات
 {% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_verify.css') }}">
 
-
-<!--صفحه ورود به پنل کاربری یوزر-->
-<section>
+<!--صفحه هنگام اخذ نوبت با لاگین کردن-->
+    <section>
         <h2>لطفا کد پیامکی ارسال شده را وارد کنید</h2>
-        <form action="{{ url_for('user.verify_login') }}" method="POST">
+        <form action="{{ url_for('user.verify_login_buy') }}" method="POST">
             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
             
             <div class="form-group">
@@ -22,7 +22,6 @@
         </form>
     </section>
 
-    <p class="test-otp">
-    کد آزمایشی: {{ session.get('otp') }}
-    </p>
-{% endblock %}
+
+
+    {% endblock %}
