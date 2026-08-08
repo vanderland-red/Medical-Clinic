@@ -8,7 +8,6 @@ class User(db.Model, UserMixin):
     __tablename__ = "users"
 
     id = db.Column(db.Integer, primary_key=True)
-    fullname = db.Column(db.String(100), nullable=False)
     phone = db.Column(db.String(20), nullable=False)
     national_code = db.Column(db.String(10), nullable=False)
 

@@ -38,35 +38,23 @@ def register():
     if request.method == "GET":
         return render_template("user/user_login.html")
 
-    fullname = request.form["fullname"].strip()
     phone = request.form["phone"].strip()
     national_code = request.form["national_code"].strip()
-
-    if len(fullname) < 5:
-        flash("لطفا نام و نام خانوادگی را کامل وارد کنید", "warning")
-        return render_template(
-        "user/user_login.html",
-        fullname=fullname, 
-        phone=phone,
-        national_code=national_code
-    ) # این باعث میشه اگه کاربر رمز عبور رو اشتباه زد دیگه کل اطلاعات پاک نمیشن
 
 
     if not re.fullmatch(r"(?:\+98|0)9\d{9}", phone):
         flash("شماره موبایل وارد شده صحیح نیست", "warning")
         return render_template( 
         "user/user_login.html",
-        fullname=fullname,
         phone=phone,
         national_code=national_code
-    )
+    ) # این باعث میشه اگه کاربر رمز عبور رو اشتباه زد دیگه کل اطلاعات پاک نمیشن
 
 
     if not national_code.isdigit() or len(national_code) != 10:
         flash("کد ملی صحیح نیست", "error")
         return render_template(
         "user/user_login.html",
-        fullname=fullname,
         phone=phone,
         national_code=national_code
     )
@@ -78,7 +66,6 @@ def register():
     otp = f"{random.randint(0, 999999):06d}" # d = integer , 6 = Number of digits , 0 : اگر کمتر از 6 رقم بود بقیه را با صفر پر کن
 
     session["register_data"] = {
-    "fullname": fullname,
     "phone": phone,
     "national_code": national_code,
     "role": "patient"
@@ -129,7 +116,6 @@ def verify ():
 
     else :
         user = User(
-            fullname=data["fullname"],
             phone=data["phone"],
             national_code=data["national_code"],
             role=data["role"]
