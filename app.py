@@ -6,9 +6,11 @@ from blueprints.general import bp as general
 from blueprints.admin import bp as admin
 from blueprints.user import bp as user
 from blueprints.doctor import bp as doctor
+from blueprints.payment import bp as payment
 from extentions import db
-
 from models.tables import User
+from flask_migrate import Migrate
+
 
 app = Flask(__name__)
 
@@ -19,6 +21,8 @@ app.config["SECRET_KEY"] = SECRET_KEY
 csrf = CSRFProtect(app)
 
 db.init_app(app)
+
+migrate = Migrate(app, db)
 
 
 login_manager = LoginManager()
@@ -36,6 +40,7 @@ app.register_blueprint(general)
 app.register_blueprint(admin)
 app.register_blueprint(user)
 app.register_blueprint(doctor)
+app.register_blueprint(payment)
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

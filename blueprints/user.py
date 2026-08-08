@@ -1,11 +1,12 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
-from models.tables import User,Doctor,DoctorSchedule,Appointment
+from models.tables import User,Doctor,DoctorSchedule,Appointment,Payment
 from extentions import db
 from flask_login import login_user, login_required,current_user,logout_user
 import re
 from flask import session
 import random
 from datetime import datetime, timedelta
+
 
 
 
@@ -60,15 +61,6 @@ def register():
         national_code=national_code
     )
 
-    user_phone = User.query.filter_by(phone=phone).first()
-    if user_phone :
-        flash("این شماره موبایل قبلاً ثبت شده است.", "error")
-        return render_template(
-        "user/user_login.html",
-        fullname=fullname,
-        phone=phone,
-        national_code=national_code
-    )
 
     if not national_code.isdigit() or len(national_code) != 10:
         flash("کد ملی صحیح نیست", "error")
@@ -80,16 +72,6 @@ def register():
     )
     
     
-    user_national = User.query.filter_by(national_code=national_code).first()
-
-    if user_national:
-        flash("این کد ملی قبلاً ثبت شده است.", "error")
-        return render_template(
-            "user/user_login.html",
-            fullname=fullname,
-            phone=phone,
-            national_code=national_code
-        )
 
     
 
@@ -132,55 +114,56 @@ def verify ():
     # اگر کد صحیح بود
     data = session["register_data"]
 
-    new_user = User(
-        fullname=data["fullname"],
+    user = User.query.filter_by(
         phone=data["phone"],
-        national_code=data["national_code"],
-        role=data["role"]
-    )
+        national_code=data["national_code"]
+    ).first()
 
-    db.session.add(new_user)
-    db.session.commit()
+    if user :
+        login_user(user)
 
-    login_user(new_user)
+        schedule_id = session.get("schedule_id")
+        
+        if schedule_id:
+            return redirect(url_for("payment.create_payment", schedule_id=schedule_id))
 
-    schedule_id = session.get("schedule_id")
+    else :
+        user = User(
+            fullname=data["fullname"],
+            phone=data["phone"],
+            national_code=data["national_code"],
+            role=data["role"]
+        )
 
-    if schedule_id:
+        db.session.add(user)
+        db.session.commit()
 
-        schedule = DoctorSchedule.query.get(schedule_id)
+        login_user(user)
 
-        if schedule and schedule.visit_status() != "full":
+        # پاک کردن اطلاعات موقت زیرا دیگه به آنها احتیاجی نداریم
 
-            appointment = Appointment(
-                user_id=new_user.id,
-                doctor_id=schedule.doctor.id,
-                schedule_id=schedule.id
-            )
+        session.pop("otp", None)
+        session.pop("otp_expire", None)
+        session.pop("register_data", None)
 
-            schedule.booked_visits += 1
+        schedule_id = session.get("schedule_id")
 
-            db.session.add(appointment)
-            db.session.commit()
+        if schedule_id:
 
-
-    # پاک کردن اطلاعات موقت زیرا دیگه به آنها احتیاجی نداریم
-    session.pop("otp", None)
-    session.pop("otp_expire", None)
-    session.pop("register_data", None)
-    session.pop("schedule_id", None)
-
-    flash("با موفقیت وارد شدید.", "success")
-    return redirect(url_for("user.dashboard"))
+            return redirect(url_for("payment.create_payment", schedule_id=schedule_id))
 
 
 
 
-#===========================
-# USER LOGIN
-#===========================
+
+
+#=====================================
+# USER LOGIN for going to dashboard
+#=====================================
 @bp.route("/login", methods=["GET", "POST"])
 def login_this():
+
+
     if request.method == "GET" :
         return render_template("user/user_login_this.html")
     
@@ -213,9 +196,9 @@ def login_this():
 
 
 
-#===========================
-# USER LOGIN Verify OTP
-#===========================
+#================================================
+# USER LOGIN Verify OTP for going to dashboard
+#================================================
 @bp.route("/verify-user-login", methods=["GET", "POST"])
 def verify_login ():
     if request.method == "GET":
@@ -227,7 +210,7 @@ def verify_login ():
     # بررسی صحت کد
     if user_otp != session.get("otp"):
         flash("کد تایید اشتباه است.", "error")
-        return render_template("user/user_verify.html")
+        return redirect(url_for("user.verify_login"))
 
     phone = session["login_data"]["phone"]
 
@@ -273,25 +256,17 @@ def appointment(schedule_id):
         flash("شما قبلاً این نوبت را رزرو کرده‌اید.", "warning")
         return redirect(url_for("user.want_doctor", id=doctor.id))
 
-    if schedule.visit_status() == "full" :
-        flash("ظرفیت این زمان تکمیل شده است.", "error")
-        return redirect(url_for("user.want_doctor", id=doctor.id))
+    schedule_id = session.get("schedule_id")
 
-    appointment = Appointment(
-    user_id=current_user.id,
-    doctor_id=doctor.id,
-    schedule_id=schedule.id
-    )
 
-    schedule.booked_visits += 1
+    if schedule_id:
 
-    
-    
-    db.session.add(appointment)
-    db.session.commit()
+        return redirect(url_for("payment.create_payment", schedule_id=schedule_id))
 
     flash("نوبت شما با موفقیت ثبت شد.", "success")
     return redirect(url_for("user.dashboard"))
+
+
 
 
 #===================
@@ -374,120 +349,3 @@ def schedule_delete(id):
     return redirect(url_for("user.dashboard"))
 
 
-
-
-
-
-# 👇👇👇👇👇👇👇👇
-# این دوباره همون کد بخش لاگین هستش که در بالا تر نوشته شده و فقط صفحات اچ تی ام ال تغییر کردند
-
-
-
-
-# ========================================
-# USER Want Schedule Doctor if is Login
-# ========================================
-@bp.route("/user-doctor-details-login-by", methods=["GET", "POST"])
-def login_buy():
-
-    schedule_id = request.args.get("schedule_id") # انتخاب دکتر مورد نظر
-    
-    if schedule_id:
-        session["schedule_id"] = schedule_id
-
-
-    if request.method == "GET":
-        return render_template("user/login_buy_doctor_details.html")
-    
-
-    phone = request.form.get("phone")
-    
-    if not re.fullmatch(r"(?:\+98|0)9\d{9}", phone):
-        flash("شماره موبایل وارد شده صحیح نیست", "warning")
-        return redirect(url_for("user.login_buy"))
-
-    phone_exit = User.query.filter_by(phone=phone).first()
-
-    if phone_exit is None :
-        flash("شماره موبایل مورد نظر یافت نشد !", "error")
-        return redirect(url_for("user.login_buy"))
-
-    otp = f"{random.randint(0, 999999):06d}"
-
-    session["login_data"] = {
-    "phone": phone
-    }
-
-    session["otp"] = otp 
-    # ذخیره زمان فعلی به اضافه 5 دقیقه
-    session["otp_expire"] = (
-    datetime.utcnow() + timedelta(minutes=5)).isoformat()
-
-    print(f"OTP: {otp}") # چاپ کد تایید در ترمینال
-    
-    return redirect(url_for("user.verify_login_buy"))
-
-
-
-
-
-
-# ==============================================
-# USER Want Schedule Doctor if is Login Verify
-# ==============================================
-@bp.route("/verify-user-login-buy", methods=["GET", "POST"])
-def verify_login_buy ():
-    if request.method == "GET":
-        return render_template("user/user_verify_login_buy.html")
-
-    
-    user_otp = request.form["user_otp"].strip()
-    
-    # بررسی صحت کد
-    if user_otp != session.get("otp"):
-        flash("کد تایید اشتباه است.", "error")
-        return redirect(url_for("user.verify_login_buy"))
-
-    phone = session["login_data"]["phone"]
-
-    user_login = User.query.filter_by(phone=phone).first()
-
-    if user_login is None:
-        flash("کاربر یافت نشد.", "error")
-        return redirect(url_for("user.verify_login_buy"))
-
-    login_user(user_login)
-
-    schedule_id = session.get("schedule_id")
-
-    if schedule_id:
-
-        schedule = DoctorSchedule.query.get(schedule_id)
-
-        if schedule and schedule.visit_status() != "full":
-
-            exists = Appointment.query.filter_by(
-                user_id=user_login.id,
-                schedule_id=schedule.id
-            ).first()
-
-            if not exists:
-
-                appointment = Appointment(
-                    user_id=user_login.id,
-                    doctor_id=schedule.doctor.id,
-                    schedule_id=schedule.id
-                )
-
-                schedule.booked_visits += 1
-
-                db.session.add(appointment)
-                db.session.commit()
-
-    session.pop("otp", None)
-    session.pop("otp_expire", None)
-    session.pop("login_data", None)
-    session.pop("schedule_id", None)
-
-    flash("نوبت شما با موفقیت ثبت شد", "success")
-    return redirect(url_for("user.dashboard"))

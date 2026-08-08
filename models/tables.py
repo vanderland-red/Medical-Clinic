@@ -9,8 +9,8 @@ class User(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     fullname = db.Column(db.String(100), nullable=False)
-    phone = db.Column(db.String(20), unique=True, nullable=False)
-    national_code = db.Column(db.String(10), unique=True, nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
+    national_code = db.Column(db.String(10), nullable=False)
 
     role = db.Column(
         db.Enum("patient", "doctor", "admin", name="user_roles"),
@@ -82,6 +82,7 @@ class Appointment(db.Model):
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     doctor_id = db.Column(db.Integer, db.ForeignKey("doctors.id"), nullable=False)
     schedule_id = db.Column(db.Integer, db.ForeignKey("doctor_schedule.id"), nullable=False)
+    payment_id = db.Column(db.Integer, db.ForeignKey("payments.id"), nullable=False, unique=True)
     status = db.Column(db.Enum("pending", "accepted", "rejected", "done"), default="pending", nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
 
@@ -89,3 +90,24 @@ class Appointment(db.Model):
     user = db.relationship("User", back_populates="appointments")
     doctor = db.relationship("Doctor", back_populates="appointments")
     schedule = db.relationship("DoctorSchedule", back_populates="appointments")
+    payment = db.relationship("Payment", back_populates="appointment")
+
+
+
+
+
+class Payment(db.Model):
+    __tablename__ = "payments"
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"),nullable=False)
+    schedule_id = db.Column(db.Integer,db.ForeignKey("doctor_schedule.id"),nullable=False)
+    amount = db.Column(db.Integer, nullable=False)
+    authority = db.Column(db.String(100),unique=True)
+    status = db.Column(db.String(20), default="pending")
+    created_at = db.Column(db.DateTime,default=datetime.utcnow)
+
+
+    user = db.relationship("User", backref="payments")
+    schedule = db.relationship("DoctorSchedule", backref="payments")
+    appointment = db.relationship("Appointment", back_populates="payment", uselist=False)

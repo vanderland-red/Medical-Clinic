@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+
+{% block title %}
+صفحه دشبورد کاربر
+{% endblock %}
+
+{% block body %}
+
+<div class="payment-box">
+
+    <div class="payment-header">
+        <h2>درگاه پرداخت آزمایشی</h2>
+        <p>Medical Clinic Payment Gateway</p>
+    </div>
+
+    <div class="payment-info">
+
+        <div class="info-row">
+            <span>مبلغ قابل پرداخت</span>
+            <strong>{{ "{:,}".format(payment.amount) }} تومان</strong>
+        </div>
+
+        <div class="info-row">
+            <span>وضعیت</span>
+            <strong class="pending">در انتظار پرداخت</strong>
+        </div>
+
+    </div>
+
+    <form action="{{ url_for('payment.verify', authority=payment.authority) }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <button type="submit" class="pay-btn" name="status" value="success">
+
+            پرداخت موفق
+        </button>
+
+        <button type="submit" class="cancel-btn" name="status" value="failed">
+
+            انصراف از پرداخت
+        </button>
+
+    </form>
+
+</div>
+
+{% endblock %}

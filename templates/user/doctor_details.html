@@ -41,6 +41,7 @@
             {% for schedule in doctor.schedules %}
 
             <a href="{{ url_for('user.register', schedule_id=schedule.id) }}" class="schedule-link">
+            
 
                 <div class="schedule-card">
 
@@ -77,7 +78,8 @@
                     </div>
 
                 </div>
-
+            
+            </a>
             </a>
 
             {% endfor %}
