@@ -1,0 +1,176 @@
+{% extends "base.html" %}
+
+{% block title %}
+ارتباط با ما
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/ertebat_ba_ma.css') }}">
+
+<section class="contact-section">
+
+    <div class="contact-container">
+
+        <!-- Header -->
+        <div class="contact-header">
+
+            <span class="contact-label">
+                ارتباط با کلینیک
+            </span>
+
+            <h1>
+                با ما در ارتباط باشید
+            </h1>
+
+            <p>
+                برای دریافت اطلاعات بیشتر، هماهنگی نوبت و ارتباط با مجموعه
+                کلینیک می‌توانید از راه‌های ارتباطی زیر با ما در تماس باشید.
+            </p>
+
+        </div>
+
+
+        <!-- Contact Cards -->
+        <div class="contact-grid">
+
+            <!-- Phone -->
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    ☎
+                </div>
+
+                <div class="contact-content">
+
+                    <h3>
+                        تلفن تماس
+                    </h3>
+
+                    <p>
+                        برای دریافت اطلاعات و راهنمایی با ما تماس بگیرید.
+                    </p>
+
+                    <a href="tel:02112345678">
+                        ۰۲۱-۱۲۳۴۵۶۷۸
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Email -->
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    ✉
+                </div>
+
+                <div class="contact-content">
+
+                    <h3>
+                        ایمیل
+                    </h3>
+
+                    <p>
+                        سوالات و درخواست‌های خود را از طریق ایمیل ارسال کنید.
+                    </p>
+
+                    <a href="mailto:info@clinic.com">
+                        info@clinic.com
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Address -->
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    📍
+                </div>
+
+                <div class="contact-content">
+
+                    <h3>
+                        آدرس کلینیک
+                    </h3>
+
+                    <p>
+                        تهران-نیاوران-خیابان سعد آباد
+                    </p>
+
+                    <span>
+                        تهران-ایران
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- Working Hours -->
+            <div class="contact-card">
+
+                <div class="contact-icon">
+                    🕐
+                </div>
+
+                <div class="contact-content">
+
+                    <h3>
+                        ساعات کاری
+                    </h3>
+
+                    <p>
+                        شنبه تا پنجشنبه
+                    </p>
+
+                    <span>
+                        ۸:۰۰ صبح تا ۲۰:۰۰
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Bottom Info -->
+        <div class="contact-bottom">
+
+            <div class="contact-bottom-content">
+
+                <span class="bottom-icon">
+                    🏥
+                </span>
+
+                <div>
+                    <h2>
+                        کلینیک تخصصی ما
+                    </h2>
+
+                    <p>
+                        سلامت شما، اولویت ماست. با بهره‌گیری از پزشکان
+                        متخصص و کادر درمانی مجرب در کنار شما هستیم.
+                    </p>
+                </div>
+
+            </div>
+
+            <a href="{{ url_for('user.taking_turn') }}" class="contact-button">
+                دریافت نوبت
+                <span>←</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
+```

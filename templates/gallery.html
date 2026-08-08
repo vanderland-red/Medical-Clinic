@@ -1,0 +1,129 @@
+{% extends "base.html" %}
+
+{% block title %}
+گالری کلینیک
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/gallery.css') }}">
+
+<section class="gallery-section">
+
+    <div class="gallery-container">
+
+        <!-- Header -->
+        <div class="gallery-header">
+
+            <span class="gallery-label">
+                گالری کلینیک
+            </span>
+
+            <h1 class="gallery-title">
+                نگاهی به محیط کلینیک
+            </h1>
+
+            <p class="gallery-description">
+                در این بخش می‌توانید تصاویری از محیط، بخش‌ها،
+                امکانات و فضای درمانی کلینیک را مشاهده کنید.
+            </p>
+
+        </div>
+
+
+        <!-- Gallery -->
+        <div class="gallery-grid">
+
+            <div class="gallery-item gallery-large">
+                <img src="{{ url_for('static', filename='gallery/clinic-1.jpg') }}"
+                     alt="محیط کلینیک">
+                
+                <div class="gallery-overlay">
+                    <span>محیط کلینیک</span>
+                    <h3>فضایی آرام و مجهز</h3>
+                </div>
+            </div>
+
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='gallery/clinic-2.jpg') }}"
+                     alt="اتاق پزشک">
+
+                <div class="gallery-overlay">
+                    <span>اتاق پزشک</span>
+                    <h3>اتاق‌های مجهز</h3>
+                </div>
+            </div>
+
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='gallery/clinic-3.jpg') }}"
+                     alt="پذیرش کلینیک">
+
+                <div class="gallery-overlay">
+                    <span>پذیرش</span>
+                    <h3>پذیرش بیماران</h3>
+                </div>
+            </div>
+
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='gallery/clinic-4.jpg') }}"
+                     alt="اتاق انتظار">
+
+                <div class="gallery-overlay">
+                    <span>اتاق انتظار</span>
+                    <h3>محیطی آرام برای بیماران</h3>
+                </div>
+            </div>
+
+
+            <div class="gallery-item gallery-wide">
+                <img src="{{ url_for('static', filename='gallery/clinic-5.jpg') }}"
+                     alt="تجهیزات پزشکی">
+
+                <div class="gallery-overlay">
+                    <span>تجهیزات پزشکی</span>
+                    <h3>تجهیزات مدرن و استاندارد</h3>
+                </div>
+            </div>
+
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='gallery/clinic-6.jpg') }}"
+                     alt="بخش درمان">
+
+                <div class="gallery-overlay">
+                    <span>بخش درمان</span>
+                    <h3>خدمات تخصصی</h3>
+                </div>
+            </div>
+
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='gallery/clinic-7.jpg') }}"
+                     alt="فضای کلینیک">
+
+                <div class="gallery-overlay">
+                    <span>فضای کلینیک</span>
+                    <h3>محیطی مدرن و بهداشتی</h3>
+                </div>
+            </div>
+
+
+            <div class="gallery-item">
+                <img src="{{ url_for('static', filename='gallery/clinic-8.jpg') }}"
+                     alt="امکانات کلینیک">
+
+                <div class="gallery-overlay">
+                    <span>امکانات</span>
+                    <h3>امکانات کامل درمانی</h3>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}

@@ -1,0 +1,238 @@
+{% extends "base.html" %}
+
+{% block title %}
+اخبار
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/akhbar.css') }}">
+    <!-- =================================
+     News Section
+================================= -->
+
+<section class="news-section">
+
+    <div class="news-container">
+
+        <!-- Header -->
+        <div class="news-header">
+
+            <span class="news-label">
+                آخرین مطالب
+            </span>
+
+            <h2 class="news-title">
+                اخبار و مقالات پزشکی
+            </h2>
+
+            <p class="news-description">
+                جدیدترین اخبار، مطالب آموزشی و اطلاعات پزشکی
+                را از کلینیک ما دنبال کنید.
+            </p>
+
+        </div>
+
+
+        <!-- News Grid -->
+        <div class="news-grid">
+
+
+            <!-- News Card -->
+            <article class="news-card">
+
+                <div class="news-image">
+
+                    <img
+                        src="{{ url_for('static', filename='cover/news-1.jpg') }}"
+                        alt="اخبار پزشکی"
+                    >
+
+                    <span class="news-category">
+                        پزشکی
+                    </span>
+
+                </div>
+
+
+                <div class="news-content">
+
+                    <div class="news-meta">
+
+                        <span>
+                            📅 ۱۵ مرداد ۱۴۰۵
+                        </span>
+
+                        <span>
+                            👁 ۱۲۴
+                        </span>
+
+                    </div>
+
+
+                    <h3 class="news-card-title">
+                        اهمیت مراجعه منظم به پزشک
+                    </h3>
+
+
+                    <p class="news-excerpt">
+                        مراجعه منظم به پزشک می‌تواند به تشخیص زودهنگام
+                        بسیاری از بیماری‌ها و حفظ سلامت بدن کمک کند.
+                    </p>
+
+
+                    <a href="#" class="news-read-more">
+
+                        <span>
+                            مطالعه بیشتر
+                        </span>
+
+                        <span class="news-arrow">
+                            ←
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- News Card -->
+            <article class="news-card">
+
+                <div class="news-image">
+
+                    <img
+                        src="{{ url_for('static', filename='cover/news-2.jpg') }}"
+                        alt="سلامت قلب"
+                    >
+
+                    <span class="news-category">
+                        سلامت
+                    </span>
+
+                </div>
+
+
+                <div class="news-content">
+
+                    <div class="news-meta">
+
+                        <span>
+                            📅 ۱۲ مرداد ۱۴۰۵
+                        </span>
+
+                        <span>
+                            👁 ۲۱۸
+                        </span>
+
+                    </div>
+
+
+                    <h3 class="news-card-title">
+                        چگونه از سلامت قلب خود مراقبت کنیم؟
+                    </h3>
+
+
+                    <p class="news-excerpt">
+                        تغذیه مناسب، فعالیت بدنی و کنترل فشار خون
+                        از مهم‌ترین عوامل حفظ سلامت قلب هستند.
+                    </p>
+
+
+                    <a href="#" class="news-read-more">
+
+                        <span>
+                            مطالعه بیشتر
+                        </span>
+
+                        <span class="news-arrow">
+                            ←
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+            <!-- News Card -->
+            <article class="news-card">
+
+                <div class="news-image">
+
+                    <img
+                        src="{{ url_for('static', filename='cover/news-3.jpg') }}"
+                        alt="تغذیه سالم"
+                    >
+
+                    <span class="news-category">
+                        تغذیه
+                    </span>
+
+                </div>
+
+
+                <div class="news-content">
+
+                    <div class="news-meta">
+
+                        <span>
+                            📅 ۱۰ مرداد ۱۴۰۵
+                        </span>
+
+                        <span>
+                            👁 ۱۸۷
+                        </span>
+
+                    </div>
+
+
+                    <h3 class="news-card-title">
+                        نقش تغذیه سالم در سلامت بدن
+                    </h3>
+
+
+                    <p class="news-excerpt">
+                        یک رژیم غذایی متعادل می‌تواند نقش مهمی
+                        در پیشگیری از بیماری‌ها داشته باشد.
+                    </p>
+
+
+                    <a href="#" class="news-read-more">
+
+                        <span>
+                            مطالعه بیشتر
+                        </span>
+
+                        <span class="news-arrow">
+                            ←
+                        </span>
+
+                    </a>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+        <!-- All News -->
+        <div class="news-all">
+
+            <a href="#" class="news-all-button">
+                مشاهده همه اخبار
+                <span>←</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

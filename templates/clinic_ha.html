@@ -1,0 +1,323 @@
+{% extends "base.html" %}
+
+{% block title %}
+کلینیک رازی | درمان و سلامت
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/clinic_ha.css') }}">
+
+
+<!-- =================================
+     Clinics Section
+================================= -->
+
+<section class="clinics-section">
+
+    <div class="clinics-container">
+
+        <!-- Header -->
+        <div class="clinics-header">
+
+            <span class="clinics-label">
+                مراکز درمانی
+            </span>
+
+            <h2 class="clinics-title">
+                کلینیک‌های ما
+            </h2>
+
+            <p class="clinics-description">
+                بهترین مراکز درمانی را پیدا کنید و با انتخاب پزشک مورد نظر،
+                به راحتی نوبت خود را رزرو کنید.
+            </p>
+
+        </div>
+
+
+        <!-- Clinics Grid -->
+        <div class="clinics-grid">
+
+            <!-- Clinic Card -->
+            <a href="#" class="clinic-card">
+
+                <div class="clinic-image">
+
+                    <img
+                        src="{{ url_for('static', filename='cover/clinic-1.jpg') }}"
+                        alt="کلینیک تخصصی"
+                    >
+
+                    <span class="clinic-status">
+                        فعال
+                    </span>
+
+                </div>
+
+
+                <div class="clinic-content">
+
+                    <span class="clinic-category">
+                        کلینیک تخصصی
+                    </span>
+
+                    <h3>
+                        کلینیک تخصصی رازی
+                    </h3>
+
+                    <p class="clinic-description">
+                        ارائه خدمات تخصصی پزشکی با حضور پزشکان
+                        مجرب و متخصص.
+                    </p>
+
+
+                    <div class="clinic-info">
+
+                        <div class="clinic-info-item">
+                            <span class="clinic-icon">📍</span>
+                            <span>
+                                اصفهان، خیابان اصلی
+                            </span>
+                        </div>
+
+                        <div class="clinic-info-item">
+                            <span class="clinic-icon">☎</span>
+                            <span>
+                                031-12345678
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="clinic-footer">
+
+                        <span class="clinic-more">
+                            مشاهده کلینیک
+                        </span>
+
+                        <span class="clinic-arrow">
+                            ←
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- Clinic Card -->
+            <a href="#" class="clinic-card">
+
+                <div class="clinic-image">
+
+                    <img
+                        src="{{ url_for('static', filename='cover/clinic-2.jpg') }}"
+                        alt="کلینیک قلب"
+                    >
+
+                    <span class="clinic-status">
+                        فعال
+                    </span>
+
+                </div>
+
+
+                <div class="clinic-content">
+
+                    <span class="clinic-category">
+                        قلب و عروق
+                    </span>
+
+                    <h3>
+                        کلینیک قلب و عروق
+                    </h3>
+
+                    <p class="clinic-description">
+                        تشخیص و درمان بیماری‌های قلبی و عروقی
+                        توسط پزشکان متخصص.
+                    </p>
+
+
+                    <div class="clinic-info">
+
+                        <div class="clinic-info-item">
+                            <span class="clinic-icon">📍</span>
+                            <span>
+                                اصفهان، خیابان چهارباغ
+                            </span>
+                        </div>
+
+                        <div class="clinic-info-item">
+                            <span class="clinic-icon">☎</span>
+                            <span>
+                                031-87654321
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="clinic-footer">
+
+                        <span class="clinic-more">
+                            مشاهده کلینیک
+                        </span>
+
+                        <span class="clinic-arrow">
+                            ←
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- Clinic Card -->
+            <a href="#" class="clinic-card">
+
+                <div class="clinic-image">
+
+                    <img
+                        src="{{ url_for('static', filename='cover/clinic-3.jpg') }}"
+                        alt="کلینیک کودکان"
+                    >
+
+                    <span class="clinic-status">
+                        فعال
+                    </span>
+
+                </div>
+
+
+                <div class="clinic-content">
+
+                    <span class="clinic-category">
+                        کودکان
+                    </span>
+
+                    <h3>
+                        کلینیک تخصصی کودکان
+                    </h3>
+
+                    <p class="clinic-description">
+                        خدمات پزشکی و مراقبت‌های تخصصی برای
+                        کودکان و نوجوانان.
+                    </p>
+
+
+                    <div class="clinic-info">
+
+                        <div class="clinic-info-item">
+                            <span class="clinic-icon">📍</span>
+                            <span>
+                                اصفهان، خیابان توحید
+                            </span>
+                        </div>
+
+                        <div class="clinic-info-item">
+                            <span class="clinic-icon">☎</span>
+                            <span>
+                                031-11223344
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="clinic-footer">
+
+                        <span class="clinic-more">
+                            مشاهده کلینیک
+                        </span>
+
+                        <span class="clinic-arrow">
+                            ←
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+
+            <!-- Clinic Card -->
+            <a href="#" class="clinic-card">
+
+                <div class="clinic-image">
+
+                    <img
+                        src="{{ url_for('static', filename='cover/clinic-4.jpg') }}"
+                        alt="کلینیک پوست و مو"
+                    >
+
+                    <span class="clinic-status">
+                        فعال
+                    </span>
+
+                </div>
+
+
+                <div class="clinic-content">
+
+                    <span class="clinic-category">
+                        پوست و مو
+                    </span>
+
+                    <h3>
+                        کلینیک پوست و مو
+                    </h3>
+
+                    <p class="clinic-description">
+                        خدمات تخصصی پوست، مو و زیبایی با استفاده
+                        از تجهیزات مدرن.
+                    </p>
+
+
+                    <div class="clinic-info">
+
+                        <div class="clinic-info-item">
+                            <span class="clinic-icon">📍</span>
+                            <span>
+                                اصفهان، خیابان آمادگاه
+                            </span>
+                        </div>
+
+                        <div class="clinic-info-item">
+                            <span class="clinic-icon">☎</span>
+                            <span>
+                                031-55667788
+                            </span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="clinic-footer">
+
+                        <span class="clinic-more">
+                            مشاهده کلینیک
+                        </span>
+
+                        <span class="clinic-arrow">
+                            ←
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+{% endblock %}

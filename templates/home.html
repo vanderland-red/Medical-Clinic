@@ -1,16 +1,410 @@
 {% extends "base.html" %}
 
 {% block title %}
-صفحه اصلی
+کلینیک رازی | درمان و سلامت
 {% endblock %}
 
 {% block body %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
-<h1>hello mr moragan</h1>
 
-<a href="{{ url_for('admin.login') }}">admin</a><br><br>
-<a href="{{ url_for('user.login_this') }}">ورود</a><br><br>
-<a href="{{ url_for('doctor.doctor_login') }}">پنل دکتر</a>
+<section class="home-hero">
 
+    <div class="hero-container">
+
+        <div class="hero-content">
+
+            <span class="hero-badge">
+                🩺 مراقبت حرفه‌ای، سلامت پایدار
+            </span>
+
+            <h1>
+                سلامت شما،
+                <span>اولویت ماست</span>
+            </h1>
+
+            <p>
+                در کلینیک رازی، با کمک پزشکان متخصص و
+                خدمات پزشکی حرفه‌ای، مسیر رسیدن به
+                سلامتی را برای شما ساده‌تر می‌کنیم.
+            </p>
+
+            <div class="hero-buttons">
+
+                <a href="{{ url_for('user.taking_turn') }}"
+                   class="hero-primary-btn">
+                    دریافت نوبت
+                    <span>←</span>
+                </a>
+
+                <a href="#about-clinic"
+                   class="hero-secondary-btn">
+                    درباره کلینیک
+                </a>
+
+            </div>
+
+            <div class="hero-stats">
+
+                <div class="hero-stat">
+                    <strong>+20</strong>
+                    <span>پزشک متخصص</span>
+                </div>
+
+                <div class="hero-stat">
+                    <strong>+10</strong>
+                    <span>تخصص پزشکی</span>
+                </div>
+
+                <div class="hero-stat">
+                    <strong>+5000</strong>
+                    <span>بیمار موفق</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-visual">
+
+            <div class="hero-circle"></div>
+
+            <div class="hero-doctor-card">
+
+                <div class="doctor-avatar">
+                    🧑‍⚕️
+                </div>
+
+                <div>
+                    <strong>
+                        پزشکان متخصص
+                    </strong>
+
+                    <span>
+                        آماده خدمت‌رسانی به شما
+                    </span>
+                </div>
+
+            </div>
+
+
+            <div class="hero-main-icon">
+                🏥
+            </div>
+
+
+            <div class="hero-floating-card">
+
+                <div class="floating-icon">
+                    ✓
+                </div>
+
+                <div>
+                    <strong>
+                        نوبت‌دهی آنلاین
+                    </strong>
+
+                    <span>
+                        سریع و آسان
+                    </span>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     SERVICES
+========================================= -->
+
+<section class="home-services">
+
+    <div class="home-container">
+
+        <div class="home-section-header">
+
+            <span>
+                خدمات ما
+            </span>
+
+            <h2>
+                مراقبت کامل از سلامت شما
+            </h2>
+
+            <p>
+                تمامی خدمات مورد نیاز شما در یک مجموعه
+                حرفه‌ای و مجهز.
+            </p>
+
+        </div>
+
+
+        <div class="services-grid">
+
+            <div class="service-box">
+
+                <div class="service-icon">
+                    🩺
+                </div>
+
+                <h3>
+                    ویزیت پزشک
+                </h3>
+
+                <p>
+                    دسترسی آسان به پزشکان متخصص
+                    در زمینه‌های مختلف پزشکی.
+                </p>
+
+                <a href="{{ url_for('user.taking_turn') }}">
+                    دریافت نوبت ←
+                </a>
+
+            </div>
+
+
+            <div class="service-box">
+
+                <div class="service-icon">
+                    📅
+                </div>
+
+                <h3>
+                    نوبت‌دهی آنلاین
+                </h3>
+
+                <p>
+                    بدون نیاز به مراجعه حضوری،
+                    نوبت پزشک مورد نظر خود را رزرو کنید.
+                </p>
+
+                <a href="{{ url_for('user.taking_turn') }}">
+                    رزرو نوبت ←
+                </a>
+
+            </div>
+
+
+            <div class="service-box">
+
+                <div class="service-icon">
+                    ❤️
+                </div>
+
+                <h3>
+                    مراقبت سلامت
+                </h3>
+
+                <p>
+                    ارائه خدمات پزشکی با تمرکز بر
+                    سلامت و رضایت بیماران.
+                </p>
+
+                <a href="#about-clinic">
+                    بیشتر بدانید ←
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     ABOUT
+========================================= -->
+
+<section class="home-about" id="about-clinic">
+
+    <div class="home-container about-container">
+
+        <div class="about-visual">
+
+            <div class="about-main-card">
+
+                <span class="about-big-icon">
+                    🏥
+                </span>
+
+                <strong>
+                    کلینیک رازی
+                </strong>
+
+                <small>
+                    همراه شما برای سلامتی
+                </small>
+
+            </div>
+
+            <div class="about-experience">
+                <strong>10+</strong>
+                <span>سال تجربه</span>
+            </div>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <span class="about-label">
+                درباره کلینیک
+            </span>
+
+            <h2>
+                همراه مطمئن شما
+                در مسیر سلامتی
+            </h2>
+
+            <p>
+                کلینیک رازی با هدف ارائه خدمات پزشکی
+                باکیفیت و ایجاد تجربه‌ای بهتر برای بیماران
+                فعالیت می‌کند.
+            </p>
+
+            <p>
+                ما تلاش می‌کنیم با استفاده از پزشکان
+                متخصص، محیطی حرفه‌ای و سیستم نوبت‌دهی
+                آنلاین، دسترسی شما به خدمات پزشکی را
+                آسان‌تر کنیم.
+            </p>
+
+
+            <div class="about-features">
+
+                <div>
+                    <span>✓</span>
+                    پزشکان متخصص و باتجربه
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    نوبت‌دهی آنلاین و سریع
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    محیط حرفه‌ای و مجهز
+                </div>
+
+                <div>
+                    <span>✓</span>
+                    توجه ویژه به رضایت بیماران
+                </div>
+
+            </div>
+
+
+            <a href="{{ url_for('general.about') }}"
+               class="about-button">
+                بیشتر درباره ما
+                <span>←</span>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     DEPARTMENTS
+========================================= -->
+
+<section class="home-departments">
+
+    <div class="home-container">
+
+        <div class="home-section-header">
+
+            <span>
+                تخصص‌های پزشکی
+            </span>
+
+            <h2>
+                بخش‌های مختلف کلینیک
+            </h2>
+
+            <p>
+                تخصص مورد نظر خود را انتخاب کنید.
+            </p>
+
+        </div>
+
+
+        <div class="home-departments-grid">
+
+            <a href="#" class="home-department-card">
+                <span>❤️</span>
+                <h3>قلب و عروق</h3>
+                <p>تشخیص و درمان بیماری‌های قلبی</p>
+            </a>
+
+            <a href="#" class="home-department-card">
+                <span>🧠</span>
+                <h3>مغز و اعصاب</h3>
+                <p>خدمات تخصصی مغز و سیستم عصبی</p>
+            </a>
+
+            <a href="#" class="home-department-card">
+                <span>🦴</span>
+                <h3>ارتوپدی</h3>
+                <p>درمان مشکلات استخوان و مفاصل</p>
+            </a>
+
+            <a href="#" class="home-department-card">
+                <span>👶</span>
+                <h3>اطفال</h3>
+                <p>مراقبت تخصصی از کودکان</p>
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<section class="home-cta">
+
+    <div class="cta-container">
+
+        <div>
+
+            <span>
+                همین امروز شروع کنید
+            </span>
+
+            <h2>
+                برای سلامتی خود وقت بگذارید
+            </h2>
+
+            <p>
+                پزشک مورد نظر خود را انتخاب کنید و
+                در چند مرحله ساده نوبت خود را دریافت کنید.
+            </p>
+
+        </div>
+
+        <a href="{{ url_for('user.taking_turn') }}">
+            دریافت نوبت آنلاین
+            <span>←</span>
+        </a>
+
+    </div>
+
+</section>
 
 {% endblock %}

@@ -1,0 +1,245 @@
+{% extends "base.html" %}
+
+{% block title %}
+درباره ما | بیمارستان رازی
+{% endblock %}
+
+{% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">
+
+<section class="about-hero">
+
+    <div class="about-hero-content">
+
+        <span class="about-badge">
+            درباره بیمارستان رازی
+        </span>
+
+        <h1>
+            سلامتی شما،<br>
+            <strong>اولویت ماست</strong>
+        </h1>
+
+        <p>
+            ما تلاش می‌کنیم با فراهم کردن خدمات پزشکی باکیفیت،
+            دسترسی آسان به پزشکان متخصص و سیستم نوبت‌دهی آنلاین،
+            تجربه‌ای ساده و مطمئن برای بیماران ایجاد کنیم.
+        </p>
+
+        <a href="{{ url_for('user.taking_turn') }}" class="about-btn">
+            دریافت نوبت
+        </a>
+
+    </div>
+
+    <div class="about-hero-image">
+        <div class="medical-circle">
+            <span>+</span>
+        </div>
+
+
+        <div class="hero-card card-two">
+            <strong>100%</strong>
+            <span>توجه به بیمار</span>
+        </div>
+    </div>
+
+</section>
+
+
+<section class="about-introduction">
+
+    <div class="section-image">
+
+        <div class="image-placeholder">
+            <span>+</span>
+            <p>سلامتی شما مهم است</p>
+        </div>
+
+    </div>
+
+    <div class="section-content">
+
+        <span class="section-label">
+            ما چه کاری انجام می‌دهیم؟
+        </span>
+
+        <h2>
+            مراقبت بهتر، با دسترسی آسان‌تر
+        </h2>
+
+        <p>
+            بیمارستان رازی با هدف ساده‌تر کردن فرآیند دریافت خدمات
+            پزشکی ایجاد شده است. بیماران می‌توانند پزشک مورد نظر خود
+            را پیدا کنند، برنامه کاری پزشکان را مشاهده کنند و در زمان
+            مناسب برای دریافت نوبت اقدام کنند.
+        </p>
+
+        <p>
+            هدف ما این است که فرآیند نوبت‌گیری از حالت سنتی و زمان‌بر
+            خارج شود و بیمار بتواند در هر زمان و از هر مکان به خدمات
+            مورد نیاز خود دسترسی داشته باشد.
+        </p>
+
+    </div>
+
+</section>
+
+
+<section class="about-features">
+
+    <div class="section-heading">
+
+        <span class="section-label">
+            چرا بیمارستان رازی؟
+        </span>
+
+        <h2>
+            تجربه‌ای ساده و مطمئن
+        </h2>
+
+        <p>
+            امکاناتی که برای راحتی بیشتر بیماران در نظر گرفته‌ایم.
+        </p>
+
+    </div>
+
+
+    <div class="features-grid">
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                +
+            </div>
+
+            <h3>
+                پزشکان متخصص
+            </h3>
+
+            <p>
+                دسترسی آسان به اطلاعات پزشکان و تخصص‌های مختلف
+                برای انتخاب آگاهانه‌تر.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ✓
+            </div>
+
+            <h3>
+                نوبت‌دهی آنلاین
+            </h3>
+
+            <p>
+                بدون نیاز به مراجعه حضوری، زمان مناسب خود را
+                مشاهده و برای دریافت نوبت اقدام کنید.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ◷
+            </div>
+
+            <h3>
+                برنامه مشخص پزشکان
+            </h3>
+
+            <p>
+                زمان‌های حضور پزشکان را مشاهده کنید و بر اساس
+                برنامه خود نوبت بگیرید.
+            </p>
+
+        </div>
+
+
+        <div class="feature-card">
+
+            <div class="feature-icon">
+                ♡
+            </div>
+
+            <h3>
+                توجه به بیمار
+            </h3>
+
+            <p>
+                هدف ما ایجاد تجربه‌ای ساده، سریع و مناسب برای
+                بیماران است.
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="about-mission">
+
+    <div class="mission-content">
+
+        <span class="section-label">
+            مأموریت ما
+        </span>
+
+        <h2>
+            فناوری در خدمت سلامت
+        </h2>
+
+        <p>
+            ما باور داریم که فناوری می‌تواند فرآیند دریافت خدمات
+            پزشکی را ساده‌تر کند. به همین دلیل تلاش کرده‌ایم یک
+            سیستم یکپارچه برای مشاهده پزشکان، برنامه‌های کاری،
+            دریافت نوبت و مدیریت نوبت‌های ثبت‌شده ایجاد کنیم.
+        </p>
+
+        <div class="mission-items">
+
+            <div>
+                <strong>01</strong>
+                <span>دسترسی آسان</span>
+            </div>
+
+            <div>
+                <strong>02</strong>
+                <span>نوبت‌دهی سریع</span>
+            </div>
+
+            <div>
+                <strong>03</strong>
+                <span>تجربه بهتر بیمار</span>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<section class="about-cta">
+
+    <h2>
+        آماده دریافت نوبت هستید؟
+    </h2>
+
+    <p>
+        پزشک مورد نظر خود را پیدا کنید و زمان مناسب خود را انتخاب کنید.
+    </p>
+
+    <a href="{{ url_for('user.taking_turn') }}" class="about-btn">
+        مشاهده پزشکان
+    </a>
+
+</section>
+
+{% endblock %}
