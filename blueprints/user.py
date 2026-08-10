@@ -6,6 +6,7 @@ import re
 from flask import session
 import random
 from datetime import datetime, timedelta
+import jdatetime
 
 
 
@@ -277,39 +278,58 @@ def taking_turn ():
 
 
 
+
+
+
+
+
+# تابع میلادی و بعدا استفاده از آن برای تابع شمسی
+def get_next_date(day_of_week):
+
+    days = {
+        "شنبه": 5,
+        "یکشنبه": 6,
+        "دوشنبه": 0,
+        "سه‌شنبه": 1,
+        "چهارشنبه": 2,
+        "پنجشنبه": 3,
+        "جمعه": 4
+    }
+
+    today = datetime.now().date()
+
+    target_weekday = days[day_of_week]
+
+    days_ahead = (target_weekday - today.weekday()) % 7
+
+    return today + timedelta(days=days_ahead)
+
+
+
+
 @bp.route("/doctor_details/<int:id>")
 def doctor_details(id):
     doctor = Doctor.query.get_or_404(id) # اطلاعات دکتر مورد نظر
-    schedule = DoctorSchedule.query.filter_by(doctor_id=id).all() # برنامه کاری دکتر مورد نظر
-    return render_template("user/doctor_details.html", doctor=doctor, schedule=schedule)
+    schedules = DoctorSchedule.query.filter_by(doctor_id=id, active=True).all() # برنامه کاری دکتر مورد نظر
 
-# ===================================
-    # روش دوم (بدون Relationship)
-    # ==============================
-    # schedules = DoctorSchedule.query.filter_by(
-    #     doctor_id=doctor.id,
-    #     active=True
-    # ).all()
-    #
-    # return render_template(
-    #     f"user/doctors/{doctor.template_name}",
-    #     doctor=doctor,
-    #     schedules=schedules
-    # )
+    # اضافه کردن تاریخ 
+    schedule_data = []
+    
+    for schedule in schedules:
+    
+        next_date = get_next_date(schedule.day_of_week)
 
+        jalali_date = jdatetime.date.fromgregorian(date=next_date)
 
+        persian_date = jalali_date.strftime("%Y/%m/%d")
 
- # توی HTML 
+        schedule_data.append({
+            "schedule": schedule,
+            "persian_date": persian_date
+        })
 
-    # {% for schedule in schedules %}
-       
-        # <p>{{ schedule.day_of_week }}</p>
-        # <p>{{ schedule.start_time }}</p>
-        # <p>{{ schedule.end_time }}</p>
-                    
-    # {% endfor %}
+    return render_template("user/doctor_details.html", doctor=doctor, schedule_data=schedule_data)
 
-# ====================================
 
 
 

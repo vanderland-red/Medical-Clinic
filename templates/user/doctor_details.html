@@ -7,88 +7,89 @@
 {% block body %}
 <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_details.css') }}">
 
+<section class="doctor-card">
 
-<article class="doctor-details-container">
+    <div class="doctor-image-box">
+        <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
+            alt="{{ doctor.doctor_name }}">
+    </div>
 
-    <section class="doctor-card">
+    <div class="doctor-info">
 
-        <div class="doctor-image-box">
-            <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
-                alt="{{ doctor.doctor_name }}">
-        </div>
+        <h2>{{ doctor.doctor_name }}</h2>
 
-        <div class="doctor-info">
+        <span class="doctor-special">
+            {{ doctor.specials }}
+        </span>
 
-            <h2>{{ doctor.doctor_name }}</h2>
+    </div>
 
-            <span class="doctor-special">
-                {{ doctor.specials }}
-            </span>
-
-        </div>
-
-    </section>
+</section>
 
 
-    <section class="schedule-section">
+<section class="schedule-section">
 
-        <h3 class="schedule-title">
-            زمان‌های نوبت‌دهی
-        </h3>
+    <h3 class="schedule-title">
+        زمان‌های نوبت‌دهی
+    </h3>
 
-        <div class="schedule-grid">
+    <div class="schedule-grid">
 
-            {% for schedule in doctor.schedules %}
+        {% for item in schedule_data %}
 
-            <a href="{{ url_for('user.register', schedule_id=schedule.id) }}" class="schedule-link">
-            
+        {% set schedule = item.schedule %}
 
-                <div class="schedule-card">
+        <a href="{{ url_for('user.register', schedule_id=schedule.id) }}" class="schedule-link">
 
-                    <div class="schedule-day">
-                        {{ schedule.day_of_week }}
-                    </div>
+            <div class="schedule-card">
 
-                    <div class="schedule-time">
+                <!-- تاریخ شمسی -->
+                <div class="appointment-date">
+                    {{ item.persian_date }}
+                </div>
 
-                        <span>
-                            {{ schedule.start_time.strftime('%H:%M') }} 
-                        </span>
+                <!-- روز هفته -->
+                <div class="schedule-day">
+                    {{ schedule.day_of_week }}
+                </div>
 
-                        <span class="time-separator">
-                            تا
-                        </span>
+                <!-- ساعت -->
+                <div class="schedule-time">
 
-                        <span>
-                            {{ schedule.end_time.strftime('%H:%M') }}
-                        </span>
+                    <span>
+                        {{ schedule.start_time.strftime('%H:%M') }}
+                    </span>
 
-                    </div>
+                    <span class="time-separator">
+                        تا
+                    </span>
 
-                    <div class="schedule-capacity">
-
-                        تعداد ویزیت :
-                        {{ schedule.max_visits }}
-
-                    </div>
-
-                    <div class="schedule-capacity">
-                        اخذ شده : 
-                        {{ schedule.booked_visits }}
-                    </div>
+                    <span>
+                        {{ schedule.end_time.strftime('%H:%M') }}
+                    </span>
 
                 </div>
-            
-            </a>
-            </a>
 
-            {% endfor %}
+                <!-- ظرفیت -->
+                <div class="schedule-capacity">
+                    تعداد ویزیت:
+                    {{ schedule.max_visits }}
+                </div>
 
-        </div>
+                <!-- رزرو شده -->
+                <div class="schedule-capacity">
+                    اخذ شده:
+                    {{ schedule.booked_visits }}
+                </div>
 
-    </section>
+            </div>
 
-</article>
+        </a>
 
+        {% endfor %}
+
+    </div>
+
+</section>
 
 {% endblock %}

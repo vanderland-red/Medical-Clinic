@@ -1,162 +1,253 @@
-body {
-    direction: rtl;
-    margin: 0;
-    background-color: rgba(200, 222, 155, 0.781);
-}
+/* ==============================
+   Doctor Information
+============================== */
 
-/*========================== Container ==========================*/
-.doctor-details-container {
-    max-width: 1100px;
-    margin: auto;
+body{
+    background-color: rgba(184, 202, 149, 0.567);
 }
-
-/*========================== Doctor Card ==========================*/
-.doctor-card {
-    background:linear-gradient(135deg,#0d5c75,#17b890);
-    display: flex;
-    align-items: center;
-    gap: 35px;
-    border-radius: 18px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, .08);
-    margin-bottom: 40px;
-    padding: 30px 35px;
-}
-
-.doctor-image-box img {
-    width: 160px;
-    height: 160px;
+.doctor-image-box {
+    width: 200px;
+    height: 200px;
+    margin: 35px auto 15px;
     border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid #0091b1;
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.12);
+}
+.doctor-card{
+    background:linear-gradient(135deg,#0d5c75,#17b890);
+    margin-top: -35px;
+}
+.doctor-image-box img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
-    border: 6px solid #dceff1;
+    display: block;
 }
 
 .doctor-info {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
+    text-align: center;
+    margin-bottom: 35px;
 }
 
 .doctor-info h2 {
-    margin: 0;
-    color: #ffffff;
-    font-size: 28px;
+    margin: 0 0 8px;
+    font-size: 24px;
+    color: #f9fafc;
 }
 
 .doctor-special {
-    background: #d7f2f4;
-    color: #0b7285;
-    padding: 8px 16px;
-    border-radius: 30px;
     display: inline-block;
-    width: fit-content;
-    font-size: 14px;
-    font-weight: bold;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 600;
 }
 
-/*========================== Schedule ==========================*/
+
+/* ==============================
+   Schedule Title
+============================== */
+
 .schedule-title {
-    margin-bottom: 25px;
-    color: #234;
-    font-size: 26px;
+    text-align: center;
+    margin: 25px 0;
+    color: #1f2937;
+    font-size: 22px;
 }
+
+
+/* ==============================
+   Schedule Grid
+============================== */
 
 .schedule-grid {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto 50px;
+
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+
+    /* حداکثر 4 کارت در هر ردیف */
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+
     gap: 20px;
 }
 
+
+/* ==============================
+   Schedule Link
+============================== */
+
 .schedule-link {
     text-decoration: none;
+    color: inherit;
+    display: block;
 }
+
+
+/* ==============================
+   Schedule Card
+============================== */
 
 .schedule-card {
-    background: white;
-    border-radius: 14px;
-    padding: 20px 18px;
-    transition: .25s;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, .08);
-    border: 2px solid transparent;
+    width: 100%;
+    min-height: 245px;
+
+    padding: 20px 15px;
+    box-sizing: border-box;
+
+    background-color: white;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.07);
+
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    align-items: center;
+
+    text-align: center;
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        border-color 0.25s ease;
 }
 
-.schedule-card:hover {
-    box-shadow: 0 15px 35px rgba(30, 25, 25, 0.681);
-    transform: translateY(-3px);
+
+/* ==============================
+   Hover
+============================== */
+
+.schedule-link:hover .schedule-card {
+
+    box-shadow: 0 10px 25px rgba(0, 166, 184, 0.725);
 }
+
+
+/* ==============================
+   Persian Date
+============================== */
+
+.appointment-date {
+    width: 100%;
+
+    margin-bottom: 12px;
+    padding-bottom: 12px;
+
+    border-bottom: 1px solid #eeeeee;
+
+    color: #008fa3;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+
+/* ==============================
+   Day
+============================== */
 
 .schedule-day {
-    font-size: 20px;
-    font-weight: bold;
-    color: #19535f;
-    text-align: center;
-    background-color: rgba(226, 243, 161, 0.622);
-    border-radius: 12px;
-    padding: 8px 10px;
+    margin-bottom: 14px;
+
+    color: #374151;
+
+    font-size: 16px;
+    font-weight: 700;
 }
+
+
+/* ==============================
+   Time
+============================== */
 
 .schedule-time {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    gap: 8px;
-    background: #f4f8f9;
-    border-radius: 10px;
-    padding: 10px 12px;
-    color: #444;
+
+    gap: 5px;
+
+    margin-bottom: 15px;
+
+    color: #111827;
+
     font-size: 16px;
+    font-weight: 600;
 }
 
 .time-separator {
-    color: #888;
+    color: #9ca3af;
+    font-size: 13px;
 }
+
+
+/* ==============================
+   Capacity
+============================== */
 
 .schedule-capacity {
-    text-align: center;
-    background: #d7f2f4;
-    color: #0b7285;
-    padding: 10px;
-    border-radius: 10px;
-    font-weight: bold;
+    width: 100%;
+
+    padding: 8px 0;
+
+    color: #6b7280;
+
     font-size: 14px;
+
+    border-top: 1px solid #f1f1f1;
 }
 
-/* Responsive */
-@media (max-width: 1024px) {
+
+/* ==============================
+   Desktop
+   حداکثر 4 کارت
+============================== */
+
+@media (max-width: 1100px) {
+
     .schedule-grid {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(3, minmax(0, 1fr));
     }
+
 }
 
-@media (max-width: 600px) {
-    .doctor-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 25px;
-        gap: 20px;
-    }
 
-    .doctor-info {
-        align-items: center;
-    }
+/* ==============================
+   Tablet
+============================== */
+
+@media (max-width: 800px) {
 
     .schedule-grid {
+        width: 90%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+}
+
+
+/* ==============================
+   Mobile
+============================== */
+
+@media (max-width: 500px) {
+
+    .schedule-grid {
+        width: 88%;
         grid-template-columns: 1fr;
+        gap: 15px;
     }
 
-    .doctor-image-box img {
-        width: 130px;
-        height: 130px;
+    .schedule-card {
+        min-height: 230px;
     }
 
     .doctor-info h2 {
-        font-size: 24px;
+        font-size: 21px;
     }
 
-    .schedule-title {
-        font-size: 22px;
-        text-align: center;
-    }
 }
