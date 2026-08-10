@@ -1,0 +1,319 @@
+/* =================================
+   OTP PAGE
+================================= */
+body{
+    background-color: rgba(184, 202, 149, 0.567);
+
+}
+.otp-page {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    direction: rtl;
+}
+
+
+/* =================================
+   OTP CARD
+================================= */
+
+.otp-card {
+    width: 100%;
+    max-width: 400px;
+
+    padding: 35px 32px;
+
+    border-radius: 20px;
+
+    background-color: #0d9488;
+
+    border: 1px solid #edf1f4;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.08);
+
+    text-align: center;
+}
+
+
+/* =================================
+   ICON
+================================= */
+
+.otp-icon {
+    width: 60px;
+    height: 60px;
+
+    margin: 0 auto 18px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #0d9488,
+        #14b8a6
+    );
+
+    color: #ffffff;
+
+    font-size: 27px;
+    font-weight: bold;
+
+    box-shadow:
+        0 8px 22px rgba(20, 184, 166, 0.25);
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.otp-header h2 {
+    margin: 0 0 9px;
+
+    color: #ffffff;
+
+    font-size: 24px;
+
+    font-weight: 800;
+}
+
+
+.otp-header p {
+    margin: 0 0 28px;
+
+    color: #ffffff;
+
+    font-size: 14px;
+}
+
+
+/* =================================
+   FORM
+================================= */
+
+.otp-form {
+    width: 100%;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 9px;
+
+    text-align: right;
+
+    color: #feffff;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =================================
+   OTP INPUT
+================================= */
+
+.form-group input {
+    width: 100%;
+
+    height: 58px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dfe5eb;
+
+    border-radius: 13px;
+
+    background: #f9fafb;
+
+    outline: none;
+
+    text-align: center;
+
+    direction: ltr;
+
+    font-family: inherit;
+
+    font-size: 25px;
+
+    font-weight: 700;
+
+    letter-spacing: 8px;
+
+    color: #172033;
+
+    transition: 0.25s ease;
+}
+
+
+.form-group input::placeholder {
+    color: #c4cbd3;
+
+    letter-spacing: 7px;
+}
+
+
+.form-group input:hover {
+    border-color: #b9c6d1;
+}
+
+
+.form-group input:focus {
+    background: #ffffff;
+
+    border-color: #14b8a6;
+
+    box-shadow:
+        0 0 0 4px rgba(20, 184, 166, 0.10);
+}
+
+
+/* =================================
+   BUTTON
+================================= */
+
+.otp-button {
+    width: 100%;
+
+    height: 52px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(
+        135deg,
+        #101d4d,
+        #06309a
+    );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    transition: 0.2s ease;
+}
+
+
+.otp-button span {
+    font-size: 18px;
+
+    transition: 0.2s ease;
+}
+
+
+.otp-button:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 10px 25px rgba(20, 184, 166, 0.25);
+}
+
+
+.otp-button:hover span {
+    transform: scale(1.15);
+}
+
+
+.otp-button:active {
+    transform: translateY(0);
+}
+
+
+/* =================================
+   TEST OTP
+================================= */
+
+.test-otp {
+    margin-top: 22px;
+
+    padding: 11px 15px;
+
+    border-radius: 10px;
+
+    background: #f8fafc;
+
+    border: 1px dashed #d6dde5;
+
+    color: #8a94a3;
+
+    font-size: 12px;
+}
+
+
+.test-otp strong {
+    display: inline-block;
+
+    margin-right: 5px;
+
+    color: #0d9488;
+
+    font-size: 15px;
+
+    letter-spacing: 2px;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 500px) {
+
+    .otp-page {
+        padding: 25px 15px;
+    }
+
+    .otp-card {
+        padding: 30px 22px;
+
+        border-radius: 17px;
+    }
+
+    .otp-header h2 {
+        font-size: 21px;
+    }
+
+    .form-group input {
+        height: 54px;
+
+        font-size: 22px;
+
+        letter-spacing: 6px;
+    }
+
+    .otp-button {
+        height: 50px;
+    }
+}

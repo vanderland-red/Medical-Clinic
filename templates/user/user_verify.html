@@ -8,24 +8,59 @@
 <link rel="stylesheet" href="{{ url_for('static', filename='css/user_verify.css') }}">
 
 <!--صفحه هنگام اخذ نوبت با ثبت نام-->
-    <section>
-        <h2>لطفا کد پیامکی ارسال شده را وارد کنید</h2>
-        <form action="{{ url_for('user.verify') }}" method="POST">
-            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
-            
-            <div class="form-group">
-                <label for="user_otp">کد ارسالی</label>
-            <input type="text" name="user_otp" id="user_otp" maxlength="6" placeholder="کد 6 رقمی">
+<section class="otp-page">
 
-            <button type="submit">تایید</button>
+    <div class="otp-card">
+
+        <div class="otp-icon">
+            ✓
         </div>
+
+        <div class="otp-header">
+
+            <h2>تایید شماره موبایل</h2>
+
+            <p>
+                کد ۶ رقمی ارسال شده را وارد کنید
+            </p>
+
+        </div>
+
+
+        <form method="POST" class="otp-form">
+
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+
+                <label for="user_otp">
+                    کد ارسالی
+                </label>
+
+                <input type="text" name="user_otp" id="user_otp" maxlength="6" minlength="6" inputmode="numeric"
+                    autocomplete="one-time-code" placeholder="------" required>
+
+            </div>
+
+
+            <button type="submit" class="otp-button">
+                تایید کد
+                <span>✓</span>
+            </button>
+
         </form>
-    </section>
-
-    <p class="test-otp">
-         کد آزمایشی: {{ session.get('otp') }}
-    </p>
 
 
+        <!-- فقط برای حالت آزمایشی -->
+        <div class="test-otp">
+            <span>کد آزمایشی:</span>
+            <strong>{{ session.get('otp') }}</strong>
+        </div>
 
-    {% endblock %}
+    </div>
+
+</section>
+
+
+
+{% endblock %}

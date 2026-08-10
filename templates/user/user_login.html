@@ -5,35 +5,79 @@
 {% endblock %}
 
 {% block body %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_login.css') }}">
 
 
 <!--برای خرید نوبت-->
-<section class="user-register-parent">
-    <h2>ثبت اطلاعات</h2>
-    <p>برای دریافت نوبت اطلاعات زیر را کامل کنید</p>
-    <form action="{{ url_for('user.register') }}" method="POST">
+<div class="register-page">
 
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <div class="register-card">
 
-        <div class="form-group">
-            <label for="phone">شماره موبایل</label>
-            <input type="tel" id="phone" name="phone" value="{{ phone or '' }}" placeholder="09123456789">
+        <div class="register-header">
+            <div class="register-icon">
+                <span>✚</span>
+            </div>
+
+            <h2>ثبت اطلاعات</h2>
+
+            <p>
+                برای ادامه، اطلاعات خود را وارد کنید
+            </p>
         </div>
 
+        <form method="POST" class="register-form">
 
-        <div class="form-group">
-            <label for="national_code">کد ملی</label>
-            <input type="text" name="national_code" id="national_code" value="{{ national_code or '' }}" placeholder="کد ملی">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+            <div class="form-group">
+
+                <label for="phone">
+                    شماره موبایل
+                </label>
+
+                <div class="input-wrapper">
+                    <span class="input-icon">☎</span>
+
+                    <input type="tel" id="phone" name="phone" value="{{ phone or '' }}" placeholder="09123456789"
+                        autocomplete="tel" required>
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label for="national_code">
+                    کد ملی
+                </label>
+
+                <div class="input-wrapper">
+                    <span class="input-icon">🪪</span>
+
+                    <input type="text" name="national_code" id="national_code" value="{{ national_code or '' }}"
+                        placeholder="کد ملی" inputmode="numeric" maxlength="10" required>
+                </div>
+
+            </div>
+
+
+            <button type="submit" class="register-button">
+                ثبت اطلاعات
+                <span>←</span>
+            </button>
+
+        </form>
+
+        <div class="register-footer">
+            <span>اطلاعات شما نزد ما محفوظ است</span>
         </div>
 
-        <button type="submit">ثبت اطلاعات</button>
+    </div>
 
-    </form>
-</section>
-
+</div>
 
 
 
 
-    {% endblock %}
+
+{% endblock %}

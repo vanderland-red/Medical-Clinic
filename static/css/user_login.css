@@ -1,0 +1,311 @@
+/* ==============================
+   Register Page
+================================= */
+body {
+    background-color: rgba(184, 202, 149, 0.567);
+}
+
+.register-page {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 40px 20px;
+
+    direction: rtl;
+}
+
+
+/* ==============================
+   Register Card
+================================= */
+
+.register-card {
+    width: 100%;
+    max-width: 430px;
+
+    background: linear-gradient(135deg, #0d5c75, #17b890);
+
+    padding: 32px 30px;
+
+    border-radius: 20px;
+
+    box-shadow:
+        0 15px 45px rgba(0, 0, 0, 0.08);
+
+    border: 1px solid #eef2f5;
+}
+
+
+/* ==============================
+   Header
+================================= */
+
+.register-header {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+
+.register-icon {
+    width: 58px;
+    height: 58px;
+
+    margin: 0 auto 14px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 16px;
+
+    background: linear-gradient(135deg,
+            #0d9488,
+            #14b8a6);
+
+    color: white;
+
+    font-size: 25px;
+
+    box-shadow:
+        0 8px 20px rgba(20, 184, 166, 0.25);
+}
+
+
+.register-header h2 {
+    margin: 0 0 8px;
+
+    font-size: 25px;
+
+    color: #fcfcfc;
+
+    font-weight: 800;
+}
+
+
+.register-header p {
+    margin: 0;
+
+    font-size: 14px;
+
+    color: #ffffff;
+}
+
+
+/* ==============================
+   Form
+================================= */
+
+.register-form {
+    width: 100%;
+}
+
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+
+.form-group label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    color: #fdfeff;
+}
+
+
+/* ==============================
+   Input Wrapper
+================================= */
+
+.input-wrapper {
+    position: relative;
+
+    width: 100%;
+}
+
+
+.input-wrapper .input-icon {
+    position: absolute;
+
+    right: 14px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    font-size: 18px;
+
+    color: #0d9488;
+
+    pointer-events: none;
+}
+
+
+.input-wrapper input {
+    width: 100%;
+
+    height: 52px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dfe5eb;
+
+    border-radius: 12px;
+
+    background: #f9fafb;
+
+    padding: 0 45px 0 15px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    color: #1f2937;
+
+    outline: none;
+
+    transition: 0.25s ease;
+}
+
+
+.input-wrapper input::placeholder {
+    color: #a1a9b5;
+}
+
+
+.input-wrapper input:hover {
+    border-color: #b9c6d1;
+}
+
+
+.input-wrapper input:focus {
+    background: #ffffff;
+
+    border-color: #14b8a6;
+
+    box-shadow:
+        0 0 0 4px rgba(20, 184, 166, 0.10);
+}
+
+
+/* ==============================
+   Button
+================================= */
+
+.register-button {
+    width: 100%;
+
+    height: 52px;
+
+    margin-top: 8px;
+
+    border: none;
+
+    border-radius: 12px;
+
+    background: linear-gradient(135deg,
+            #0d9488,
+            #14b8a6);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 10px;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+
+.register-button span {
+    font-size: 19px;
+
+    transition: transform 0.2s ease;
+}
+
+
+.register-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(20, 184, 166, 0.25);
+    background:linear-gradient(135deg,#170d75,#026488);    
+}
+
+
+.register-button:hover span {
+    transform: translateX(-4px);
+}
+
+
+.register-button:active {
+    transform: translateY(0);
+}
+
+
+/* ==============================
+   Footer
+================================= */
+
+.register-footer {
+    text-align: center;
+
+    margin-top: 22px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #edf0f3;
+
+    font-size: 12px;
+
+    color: #ffffff;
+}
+
+
+/* ==============================
+   Responsive
+================================= */
+
+@media (max-width: 500px) {
+
+    .register-page {
+        padding: 25px 15px;
+    }
+
+    .register-card {
+        padding: 27px 20px;
+
+        border-radius: 17px;
+    }
+
+    .register-header h2 {
+        font-size: 22px;
+    }
+
+    .input-wrapper input {
+        height: 50px;
+    }
+
+    .register-button {
+        height: 50px;
+    }
+}
