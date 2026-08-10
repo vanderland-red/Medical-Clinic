@@ -1,0 +1,178 @@
+/* form-details-parent: قالب کلی و پس‌زمینه */
+.form-details-parent {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    padding: 1rem;
+    direction: rtl;
+}
+h2{
+    margin-bottom: 20px;
+}
+
+/* فرم با طراحی کارت مدرن و شیشه‌ای */
+.form-details {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-radius: 2rem;
+    padding: 2.5rem 2rem;
+    width: 100%;
+    max-width: 420px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(255, 255, 255, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-details:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.2), 0 0 0 1px rgba(255, 255, 255, 0.4);
+}
+
+/* گروه ورودی */
+.form-group {
+    margin-bottom: 1.8rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #2d3748;
+    margin-bottom: 0.5rem;
+    letter-spacing: 0.3px;
+    padding-right: 0.3rem;
+}
+
+/* استایل فیلد ورودی */
+.form-group input[type="tel"] {
+    width: 100%;
+    padding: 0.9rem 1.2rem;
+    font-size: 1rem;
+    font-family: inherit;
+    border: 2px solid #e2e8f0;
+    border-radius: 1.2rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(4px);
+    transition: all 0.3s ease;
+    color: #1a202c;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.form-group input[type="tel"]:focus {
+    border-color: #667eea;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+}
+
+.form-group input[type="tel"]::placeholder {
+    color: #a0aec0;
+    font-weight: 300;
+    font-size: 0.95rem;
+}
+
+.form-group input[type="tel"]:hover {
+    border-color: #a0aec0;
+}
+
+/* دکمه ورود با انیمیشن و گرادیان */
+.form-details button[type="submit"] {
+    width: 100%;
+    padding: 0.9rem 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: inherit;
+    color: #fff;
+    background:linear-gradient(135deg,#0d5c75,#17b890);
+    border: none;
+    border-radius: 1.2rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.5px;
+    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.35);
+    position: relative;
+    overflow: hidden;
+}
+
+.form-details button[type="submit"]::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgb(255, 255, 255), transparent);
+    transition: left 0.5s ease;
+}
+
+.form-details button[type="submit"]:hover::before {
+    left: 100%;
+}
+
+.form-details button[type="submit"]:hover {
+    transform: scale(1.02);
+    box-shadow: 0 12px 35px rgba(102, 126, 234, 0.5);
+    background:linear-gradient(135deg,#00a4d6,#00644b);
+}
+
+.form-details button[type="submit"]:active {
+    transform: scale(0.98);
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+}
+
+/* Media Query برای موبایل‌های کوچک */
+@media (max-width: 480px) {
+    .form-details {
+        padding: 1.8rem 1.2rem;
+        border-radius: 1.5rem;
+    }
+    
+    .form-group input[type="tel"] {
+        padding: 0.8rem 1rem;
+        font-size: 0.95rem;
+    }
+    
+    .form-details button[type="submit"] {
+        padding: 0.8rem 1.2rem;
+        font-size: 1rem;
+    }
+}
+
+/* رفع مشکل جهت‌دهی در مرورگرهای مختلف */
+[dir="rtl"] .form-details,
+[dir="rtl"] .form-details-parent {
+    direction: rtl;
+}
+
+/* انیمیشن ورود ملایم برای فرم */
+@keyframes fadeSlideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.form-details {
+    animation: fadeSlideUp 0.6s ease forwards;
+}
+
+/* استایل برای پیام‌های خطا (در صورت نیاز) */
+.form-group .error-message {
+    color: #fc8181;
+    font-size: 0.85rem;
+    margin-top: 0.4rem;
+    padding-right: 0.5rem;
+}
+
+/* highlight روی فیلد در صورت خطا */
+.form-group.error input[type="tel"] {
+    border-color: #fc8181;
+    box-shadow: 0 0 0 4px rgba(252, 129, 129, 0.15);
+}

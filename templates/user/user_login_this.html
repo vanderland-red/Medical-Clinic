@@ -5,12 +5,13 @@
 {% endblock %}
 
 {% block body %}
-
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_login_this.css') }}">
 
 
 <!--برای ورود به صفحه دشبورد کاربر-->
-<section>
-    <form action="{{ url_for('user.login_this') }}" method="POST">
+<section class="form-details-parent">
+    <h2>برای پیگیری نوبت خود لطفا شماره موبایل خود را وارد کنید :</h2>
+    <form class="form-details" action="{{ url_for('user.login_this') }}" method="POST">
         <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
         <div class="form-group">

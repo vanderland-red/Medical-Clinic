@@ -1,15 +1,17 @@
  /* =================================
     News Section
- ================================= */
+ ============
+ ===================== */
 
+body{
+    background-color: rgba(184, 202, 149, 0.567);
+}
 .news-section {
     width: 100%;
 
     padding: 90px 20px;
 
     direction: rtl;
-
-    font-family: "Vazirmatn", sans-serif;
 
     box-sizing: border-box;
 }
@@ -55,7 +57,7 @@
 .news-title {
     margin: 0 0 15px;
 
-    color: #ffffff;
+    color: #003e51;
 
     font-size: 34px;
 
@@ -68,7 +70,7 @@
 
     margin: 0 auto;
 
-    color: rgba(255, 255, 255, 0.86);
+    color: #003e51;
 
     font-size: 15px;
 

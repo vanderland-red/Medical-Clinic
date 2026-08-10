@@ -2,11 +2,7 @@
    HOME PAGE
 ========================================= */
 body {
-    background: linear-gradient(
-        135deg,
-        #3e92aa6b 0%,
-        #479d89a5 100%
-    ) !important;
+    background-color: rgba(184, 202, 149, 0.567);
 }
 .home-hero,
 .home-services,
@@ -705,7 +701,7 @@ body {
 
     text-decoration: none;
 
-    background: #f8fbfc;
+    background-color: rgba(184, 202, 149, 0.567);
 
     border: 1px solid #e7eff2;
 

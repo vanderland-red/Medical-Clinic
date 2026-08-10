@@ -1,8 +1,8 @@
-"""Initial
+"""Initial migration
 
-Revision ID: 0faa859cb44b
+Revision ID: c9525f8dcbe0
 Revises: 
-Create Date: 2026-08-07 23:34:06.030454
+Create Date: 2026-08-10 20:51:44.529447
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0faa859cb44b'
+revision = 'c9525f8dcbe0'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,15 +33,12 @@ def upgrade():
     )
     op.create_table('users',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('fullname', sa.String(length=100), nullable=False),
     sa.Column('phone', sa.String(length=20), nullable=False),
     sa.Column('national_code', sa.String(length=10), nullable=False),
     sa.Column('role', sa.Enum('patient', 'doctor', 'admin', name='user_roles'), nullable=False),
     sa.Column('is_active', sa.Boolean(), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('national_code'),
-    sa.UniqueConstraint('phone')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('doctor_schedule',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -76,6 +73,7 @@ def upgrade():
     sa.Column('payment_id', sa.Integer(), nullable=False),
     sa.Column('status', sa.Enum('pending', 'accepted', 'rejected', 'done'), nullable=False),
     sa.Column('created_at', sa.DateTime(), nullable=True),
+    sa.Column('appointment_date', sa.Date(), nullable=False),
     sa.ForeignKeyConstraint(['doctor_id'], ['doctors.id'], ),
     sa.ForeignKeyConstraint(['payment_id'], ['payments.id'], ),
     sa.ForeignKeyConstraint(['schedule_id'], ['doctor_schedule.id'], ),

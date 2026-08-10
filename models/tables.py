@@ -61,6 +61,7 @@ class DoctorSchedule(db.Model):
     max_visits = db.Column(db.Integer, nullable=False)
     booked_visits = db.Column(db.Integer, default=0, nullable=False)
 
+
     # One to Many
     doctor = db.relationship("Doctor", back_populates="schedules")
 
@@ -84,6 +85,7 @@ class Appointment(db.Model):
     payment_id = db.Column(db.Integer, db.ForeignKey("payments.id"), nullable=False, unique=True)
     status = db.Column(db.Enum("pending", "accepted", "rejected", "done"), default="pending", nullable=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow)
+    appointment_date = db.Column(db.Date, nullable=False)
 
     # Many to One
     user = db.relationship("User", back_populates="appointments")

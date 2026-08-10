@@ -1,0 +1,228 @@
+/* =========================
+   Footer
+========================= */
+
+.site-footer {
+    width: 100%;
+    color: #ffffff;
+
+    background-image:
+        linear-gradient(
+            rgba(15, 23, 42, 0.85),
+            rgba(15, 23, 42, 0.85)
+        ),
+        url("../cover/footer-img.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+
+/* =========================
+   Footer Container
+========================= */
+
+.footer-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1.3fr;
+    gap: 50px;
+
+    padding: 60px 0;
+}
+
+
+/* =========================
+   Footer Sections
+========================= */
+
+.footer-section h3 {
+    font-size: 20px;
+    margin-bottom: 22px;
+    color: #e60101;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+
+/* خط زیر عنوان */
+
+.footer-section h3::after {
+    content: "";
+
+    position: absolute;
+    right: 0;
+    bottom: 0;
+
+    width: 45px;
+    height: 3px;
+
+    background: #38bdf8;
+    border-radius: 10px;
+}
+
+
+/* =========================
+   About
+========================= */
+
+.footer-about p {
+    color: #cbd5e1;
+    line-height: 2;
+    font-size: 14px;
+
+    max-width: 300px;
+}
+
+
+/* =========================
+   Lists
+========================= */
+
+.footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-section ul li {
+    margin-bottom: 13px;
+}
+
+.footer-section ul li a {
+    text-decoration: none;
+    color: #cbd5e1;
+
+    font-size: 14px;
+
+    transition: 0.3s;
+}
+
+.footer-section ul li a:hover {
+    color: #38bdf8;
+    padding-right: 6px;
+}
+
+
+/* =========================
+   Contact
+========================= */
+
+.footer-contact p {
+    color: #cbd5e1;
+
+    font-size: 14px;
+    line-height: 1.8;
+
+    margin-bottom: 15px;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.footer-contact span {
+    color: #38bdf8;
+    font-size: 16px;
+}
+
+
+/* =========================
+   Footer Bottom
+========================= */
+
+.footer-bottom {
+    width: 90%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+
+    padding: 22px 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-bottom p {
+    margin: 0;
+
+    color: #94a3b8;
+
+    font-size: 13px;
+}
+
+
+/* =========================
+   Social
+========================= */
+
+.footer-social {
+    display: flex;
+    gap: 20px;
+}
+
+.footer-social a {
+    color: #94a3b8;
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition: 0.3s;
+}
+
+.footer-social a:hover {
+    color: #38bdf8;
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+
+    .footer-container {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 40px;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .footer-container {
+        width: 85%;
+
+        grid-template-columns: 1fr;
+
+        gap: 35px;
+
+        padding: 45px 0;
+    }
+
+
+    .footer-bottom {
+        width: 85%;
+
+        flex-direction: column;
+
+        gap: 18px;
+
+        text-align: center;
+    }
+
+
+    .footer-social {
+        justify-content: center;
+    }
+
+}

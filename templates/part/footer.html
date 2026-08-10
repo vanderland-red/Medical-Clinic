@@ -1,0 +1,79 @@
+<link rel="stylesheet" href="{{ url_for('static', filename='css/footer.css') }}">
+
+<footer class="site-footer">
+
+    <div class="footer-container">
+
+        <!-- معرفی -->
+        <div class="footer-section footer-about">
+            <h3>بیمارستان رازی</h3>
+            <p>
+                بیمارستان رازی با هدف ارائه خدمات درمانی با کیفیت،
+                در کنار بیماران و همراهان آن‌هاست.
+            </p>
+        </div>
+
+        <!-- لینک‌های سریع -->
+        <div class="footer-section">
+            <h3>دسترسی سریع</h3>
+
+            <ul>
+                <li><a href="{{ url_for('general.home') }}">خانه</a></li>
+                <li><a href="#">درباره ما</a></li>
+                <li><a href="#">پزشکان</a></li>
+                <li><a href="#">گالری</a></li>
+                <li><a href="#">ارتباط با ما</a></li>
+            </ul>
+        </div>
+
+        <!-- خدمات -->
+        <div class="footer-section">
+            <h3>خدمات ما</h3>
+
+            <ul>
+                <li><a href="#">مشاهده پزشکان</a></li>
+                <li><a href="#">دریافت نوبت</a></li>
+                <li><a href="#">رزرو آنلاین</a></li>
+                <li><a href="{{ url_for('user.login_this') }}">پیگیری نوبت</a></li>
+            </ul>
+        </div>
+
+        <!-- اطلاعات تماس -->
+        <div class="footer-section footer-contact">
+            <h3>ارتباط با ما</h3>
+
+            <p>
+                <span>📍</span>
+                آدرس: تهران، خیابان ولیعصر
+            </p>
+
+            <p>
+                <span>☎</span>
+                تلفن: 021-12345678
+            </p>
+
+            <p>
+                <span>✉</span>
+                ایمیل: info@razi-hospital.ir
+            </p>
+        </div>
+
+    </div>
+
+
+    <!-- پایین فوتر -->
+    <div class="footer-bottom">
+
+        <p>
+            © 2026 تمامی حقوق برای بیمارستان رازی محفوظ است.
+        </p>
+
+        <div class="footer-social">
+            <a href="#" aria-label="Instagram">Instagram</a>
+            <a href="#" aria-label="Telegram">Telegram</a>
+            <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        </div>
+
+    </div>
+
+</footer>

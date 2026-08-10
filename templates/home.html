@@ -36,7 +36,7 @@
                     <span>←</span>
                 </a>
 
-                <a href="#about-clinic"
+                <a href="{{ url_for('general.about') }}"
                    class="hero-secondary-btn">
                     درباره کلینیک
                 </a>
@@ -372,39 +372,5 @@
 
 </section>
 
-
-<!-- =========================================
-     CTA
-========================================= -->
-
-<section class="home-cta">
-
-    <div class="cta-container">
-
-        <div>
-
-            <span>
-                همین امروز شروع کنید
-            </span>
-
-            <h2>
-                برای سلامتی خود وقت بگذارید
-            </h2>
-
-            <p>
-                پزشک مورد نظر خود را انتخاب کنید و
-                در چند مرحله ساده نوبت خود را دریافت کنید.
-            </p>
-
-        </div>
-
-        <a href="{{ url_for('user.taking_turn') }}">
-            دریافت نوبت آنلاین
-            <span>←</span>
-        </a>
-
-    </div>
-
-</section>
-
+{% include "part/footer.html" %}
 {% endblock %}

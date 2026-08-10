@@ -1,21 +1,15 @@
-```css
 /* =========================================
    Contact Section
 ========================================= */
-
+body{
+    background-color: rgba(184, 202, 149, 0.567);
+}
 .contact-section {
     width: 100%;
     padding: 90px 20px;
     direction: rtl;
     font-family: "Vazirmatn", sans-serif;
     box-sizing: border-box;
-
-    background: linear-gradient(
-        135deg,
-        #f3fbfc 0%,
-        #eefaf7 50%,
-        #f7fbfc 100%
-    );
 }
 
 .contact-container {
