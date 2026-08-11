@@ -296,9 +296,9 @@ def get_next_date(day_of_week):
         "جمعه": 4
     }
 
-    today = datetime.now().date()
+    today = datetime.now().date() # فقط تاریخ میلادی
 
-    target_weekday = days[day_of_week]
+    target_weekday = days[day_of_week] 
 
     days_ahead = (target_weekday - today.weekday()) % 7
 
@@ -317,9 +317,9 @@ def doctor_details(id):
     
     for schedule in schedules:
     
-        next_date = get_next_date(schedule.day_of_week)
+        next_date = get_next_date(schedule.day_of_week) # صدا زدن تاریخ مورد نظر
 
-        jalali_date = jdatetime.date.fromgregorian(date=next_date)
+        jalali_date = jdatetime.date.fromgregorian(date=next_date) # تبدیل میلادی به شمسی
 
         persian_date = jalali_date.strftime("%Y/%m/%d")
 

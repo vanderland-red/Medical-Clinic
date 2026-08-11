@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+نتایج جستجو
+{% endblock %}
+
+
+{% block body %}
+
+<link rel="stylesheet" href="{{ url_for('static', filename='css/search.css') }}">
+
+
+<section class="search-page">
+
+    <!-- عنوان صفحه -->
+    <div class="search-header">
+
+        <div class="search-icon">
+            🔍
+        </div>
+
+        <h1>
+            نتایج جستجو
+        </h1>
+
+        {% if search %}
+            <p>
+                نتایج جستجو برای:
+                <strong>«{{ search }}»</strong>
+            </p>
+        {% else %}
+            <p>
+                پزشک مورد نظر خود را جستجو کنید
+            </p>
+        {% endif %}
+
+    </div>
+
+
+    <!-- نتایج -->
+    {% if doctors %}
+
+        <div class="results-count">
+            <span>{{ doctors|length }}</span>
+            پزشک پیدا شد
+        </div>
+
+
+        <div class="doctors-grid">
+
+            {% for item in doctors %}
+
+                <div class="doctor-card">
+
+                    <!-- تصویر پزشک -->
+                    <div class="doctor-image-box">
+
+                        {% if item.profile_image %}
+
+                            <img
+                                src="{{ url_for(
+                                    'static',
+                                    filename='doctor_profile/' ~ item.profile_image
+                                ) }}"
+                                alt="{{ item.doctor_name }}"
+                            >
+
+                        {% else %}
+
+                            <div class="no-image">
+                                👨‍⚕️
+                            </div>
+
+                        {% endif %}
+
+                    </div>
+
+
+                    <!-- اطلاعات پزشک -->
+                    <div class="doctor-info">
+
+                        <h2>
+                            {{ item.doctor_name }}
+                        </h2>
+
+                        <p class="doctor-special">
+                            {{ item.specials }}
+                        </p>
+
+
+                        {% if item.experience_years %}
+
+                            <div class="doctor-experience">
+                                <span>●</span>
+                                {{ item.experience_years }}
+                                سال سابقه
+                            </div>
+
+                        {% endif %}
+
+
+                        <!-- دکمه -->
+                        <a
+                            href="{{ url_for(
+                                'user.doctor_details',
+                                id=item.id
+                            ) }}"
+                            class="doctor-button"
+                        >
+                            مشاهده پروفایل
+                            <span>←</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            {% endfor %}
+
+        </div>
+
+
+    {% else %}
+
+        <!-- بدون نتیجه -->
+        <div class="empty-result">
+
+            <div class="empty-icon">
+                🔎
+            </div>
+
+            <h2>
+                پزشکی پیدا نشد
+            </h2>
+
+            {% if search %}
+
+                <p>
+                    برای عبارت
+                    <strong>«{{ search }}»</strong>
+                    نتیجه‌ای پیدا نشد.
+                </p>
+
+            {% else %}
+
+                <p>
+                    نام پزشک یا تخصص مورد نظر خود را وارد کنید.
+                </p>
+
+            {% endif %}
+
+            <a href="{{ url_for('general.home') }}" class="back-button">
+                بازگشت به صفحه اصلی
+            </a>
+
+        </div>
+
+    {% endif %}
+
+</section>
+
+
+{% endblock %}

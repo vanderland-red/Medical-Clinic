@@ -1,29 +1,102 @@
-<header>
+<header class="main-header">
 
+    <!-- لوگو -->
     <a class="medical-logo-link" href="{{ url_for('general.home') }}">
+
         <div class="medical-logo-parent">
-            <img class="medical-logo" src="{{ url_for('static', filename='cover/medical-logo.png') }}"alt="medical-logo">
+
+            <img class="medical-logo" src="{{ url_for('static', filename='cover/medical-logo.png') }}"
+                alt="لوگوی بیمارستان رازی">
+
+            <div class="logo-text">
+                <span>بیمارستان</span>
+                <strong>رازی</strong>
+            </div>
+
         </div>
+
     </a>
 
-    <nav>
-        <ul>
-            
 
-            <li><a href="{{ url_for('general.home') }}">خانه</a></li>
-            <li><a href="{{ url_for('general.about') }}">درباره ما</a></li>
-            <li><a href="{{ url_for('general.bakhsh_ha') }}">بخش ها</a></li>
-            <li><a href="{{ url_for('general.clinic_ha') }}">کلینیک ها</a></li>
-            <li><a href="{{ url_for('general.akhbar') }}">اخبار</a></li>
-            <li><a href="{{ url_for('general.gallery') }}">گالری</a></li>
-            <li><a href="{{ url_for('general.ertebat_ba_ma') }}">ارتباط با ما</a></li>
-        </ul>
-    </nav>
+    <!-- بخش اصلی هدر -->
+    <div class="header-content">
 
+        <!-- منوی ناوبری -->
+        <nav class="main-nav">
+
+            <ul>
+
+                <li>
+                    <a href="{{ url_for('general.home') }}">
+                        خانه
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('general.about') }}">
+                        درباره ما
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('general.bakhsh_ha') }}">
+                        بخش‌ها
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('general.clinic_ha') }}">
+                        کلینیک‌ها
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('general.akhbar') }}">
+                        اخبار
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('general.gallery') }}">
+                        گالری
+                    </a>
+                </li>
+
+                <li>
+                    <a href="{{ url_for('general.ertebat_ba_ma') }}">
+                        ارتباط با ما
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <!-- جستجو -->
+        <form class="header-search" action="{{ url_for('general.search') }}" method="GET">
+
+            <input type="text" name="search" placeholder="نام پزشک یا تخصص..." autocomplete="off">
+
+            <button type="submit">
+                <span>⌕</span>
+                جستجو
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- دکمه نوبت دهی -->
     {% if request.endpoint != 'user.want_doctor'
-    and request.endpoint != 'user.taking_turn'
-    %}
-    <a class="nobat-dehi-link" href="{{ url_for('user.taking_turn') }}">نوبت دهی کلینیک</a>
+    and request.endpoint != 'user.taking_turn' %}
+
+    <a class="nobat-dehi-link" href="{{ url_for('user.taking_turn') }}">
+        <span>نوبت‌دهی</span>
+        <small>کلینیک</small>
+    </a>
+
     {% endif %}
 
 </header>

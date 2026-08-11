@@ -1,0 +1,399 @@
+/* =========================
+   Search Page
+========================= */
+body{
+    background-color: rgba(184, 202, 149, 0.567);
+}
+.search-page {
+    width: 90%;
+    max-width: 1200px;
+    margin: 50px auto;
+    direction: rtl;
+}
+
+
+/* =========================
+   Header
+========================= */
+
+.search-header {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.search-icon {
+    width: 65px;
+    height: 65px;
+
+    margin: 0 auto 15px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #e8f5f3;
+    border-radius: 50%;
+
+    font-size: 28px;
+}
+
+.search-header h1 {
+    margin: 0 0 10px;
+
+    font-size: 30px;
+    color: #173b3a;
+}
+
+.search-header p {
+    margin: 0;
+
+    color: #777;
+    font-size: 15px;
+}
+
+.search-header strong {
+    color: #168f86;
+}
+
+
+/* =========================
+   Results Count
+========================= */
+
+.results-count {
+    margin-bottom: 20px;
+
+    color: #666;
+
+    font-size: 15px;
+}
+
+.results-count span {
+    display: inline-flex;
+
+    min-width: 30px;
+    height: 30px;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 6px;
+
+    background: #168f86;
+    color: white;
+
+    border-radius: 8px;
+
+    font-weight: bold;
+}
+
+
+/* =========================
+   Doctors Grid
+========================= */
+
+.doctors-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 25px;
+}
+
+
+/* =========================
+   Doctor Card
+========================= */
+
+.doctor-card {
+    background: white;
+
+    border: 1px solid #e8eeee;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06);
+
+    transition: 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.doctor-card:hover {
+    transform: translateY(-7px);
+
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.10);
+}
+
+
+/* =========================
+   Doctor Image
+========================= */
+
+.doctor-image-box {
+    width: 100%;
+    height: 230px;
+
+    background: #edf7f6;
+
+    overflow: hidden;
+}
+
+.doctor-image-box img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    display: block;
+
+    transition: 0.4s ease;
+}
+
+.doctor-card:hover .doctor-image-box img {
+    transform: scale(1.05);
+}
+
+
+/* =========================
+   No Image
+========================= */
+
+.no-image {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 65px;
+}
+
+
+/* =========================
+   Doctor Info
+========================= */
+
+.doctor-info {
+    padding: 22px;
+
+    display: flex;
+    flex-direction: column;
+
+    flex: 1;
+}
+
+.doctor-info h2 {
+    margin: 0 0 10px;
+
+    color: #173b3a;
+
+    font-size: 20px;
+}
+
+.doctor-special {
+    margin: 0 0 15px;
+
+    color: #168f86;
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   Experience
+========================= */
+
+.doctor-experience {
+    color: #777;
+
+    font-size: 14px;
+
+    margin-bottom: 20px;
+}
+
+.doctor-experience span {
+    color: #168f86;
+
+    margin-left: 5px;
+}
+
+
+/* =========================
+   Button
+========================= */
+
+.doctor-button {
+    margin-top: auto;
+
+    width: 100%;
+
+    padding: 12px 0;
+
+    background: #168f86;
+
+    color: white;
+
+    text-align: center;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: bold;
+
+    transition: 0.3s ease;
+}
+
+.doctor-button:hover {
+    background: #11766f;
+}
+
+.doctor-button span {
+    margin-right: 7px;
+
+    font-size: 18px;
+
+    transition: 0.3s ease;
+}
+
+.doctor-button:hover span {
+    margin-right: 12px;
+}
+
+
+/* =========================
+   Empty Result
+========================= */
+
+.empty-result {
+    max-width: 550px;
+
+    margin: 70px auto;
+
+    padding: 55px 30px;
+
+    text-align: center;
+
+    background: white;
+
+    border: 1px solid #e8eeee;
+
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+}
+
+.empty-icon {
+    width: 80px;
+    height: 80px;
+
+    margin: 0 auto 20px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #edf7f6;
+
+    border-radius: 50%;
+
+    font-size: 35px;
+}
+
+.empty-result h2 {
+    margin: 0 0 12px;
+
+    color: #173b3a;
+
+    font-size: 23px;
+}
+
+.empty-result p {
+    margin: 0 0 25px;
+
+    color: #777;
+
+    line-height: 1.9;
+
+    font-size: 14px;
+}
+
+.empty-result strong {
+    color: #168f86;
+}
+
+
+/* =========================
+   Back Button
+========================= */
+
+.back-button {
+    display: inline-block;
+
+    padding: 11px 24px;
+
+    background: #168f86;
+
+    color: white;
+
+    text-decoration: none;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    transition: 0.3s ease;
+}
+
+.back-button:hover {
+    background: #11766f;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 900px) {
+
+    .doctors-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .search-page {
+        width: 92%;
+        margin: 30px auto;
+    }
+
+    .search-header h1 {
+        font-size: 24px;
+    }
+
+    .doctors-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .doctor-image-box {
+        height: 250px;
+    }
+
+}
+```
