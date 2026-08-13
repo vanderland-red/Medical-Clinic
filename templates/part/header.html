@@ -17,6 +17,91 @@
 
     </a>
 
+    <!-- دکمه سه خط موبایل -->
+    <button class="mobile-menu-button" type="button" onclick="Menu()" aria-label="باز کردن منو">
+
+        <span></span>
+        <span></span>
+        <span></span>
+
+    </button>
+
+    <script>
+
+        function Menu() {
+
+            const menu = document.querySelector(".mobile-menu");
+
+            if (menu) {
+                menu.classList.toggle("active");
+            }
+
+        }
+
+    </script>
+
+    <nav class="mobile-menu">
+
+        <ul>
+
+            <li>
+                <a href="{{ url_for('general.home') }}">
+                    خانه
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('general.about') }}">
+                    درباره ما
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('general.bakhsh_ha') }}">
+                    بخش‌ها
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('general.clinic_ha') }}">
+                    کلینیک‌ها
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('general.akhbar') }}">
+                    اخبار
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('general.gallery') }}">
+                    گالری
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('general.ertebat_ba_ma') }}">
+                    ارتباط با ما
+                </a>
+            </li>
+
+        </ul>
+
+        <form class="header-search" action="{{ url_for('general.search') }}" method="GET">
+
+            <input type="text" name="search" placeholder="نام پزشک یا تخصص..." autocomplete="off">
+
+            <button type="submit">
+                <span>⌕</span>
+                جستجو
+            </button>
+
+        </form>
+
+
+    </nav>
+
 
     <!-- بخش اصلی هدر -->
     <div class="header-content">
@@ -71,6 +156,8 @@
             </ul>
 
         </nav>
+
+
 
 
         <!-- جستجو -->

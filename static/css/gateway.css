@@ -1,0 +1,324 @@
+body{
+    background-color: rgba(184, 202, 149, 0.567);
+}
+
+.payment-box {
+    width: 90%;
+    max-width: 480px;
+
+    margin: 60px auto;
+
+    padding: 35px;
+
+    direction: rtl;
+
+    background: rgba(255, 255, 255, 0.96);
+
+    border: 1px solid #e7eef2;
+
+    border-radius: 24px;
+
+    box-shadow:
+        0 20px 60px rgba(30, 70, 90, 0.12),
+        0 5px 20px rgba(30, 70, 90, 0.06);
+}
+
+
+/* =========================================
+   Payment Header
+========================================= */
+
+.payment-box .payment-header {
+    text-align: center;
+
+    padding-bottom: 25px;
+
+    border-bottom: 1px solid #edf1f3;
+}
+
+
+.payment-box .payment-header h2 {
+    margin: 0 0 10px;
+
+    color: #173b4d;
+
+    font-size: 24px;
+    font-weight: 800;
+}
+
+
+.payment-box .payment-header p {
+    margin: 0;
+
+    color: #8a9aa3;
+
+    font-size: 12px;
+
+    direction: ltr;
+
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================
+   Payment Info
+========================================= */
+
+.payment-box .payment-info {
+    margin: 25px 0;
+}
+
+
+.payment-box .info-row {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    padding: 17px 18px;
+
+    margin-bottom: 12px;
+
+    border-radius: 13px;
+
+    background: #f7fafb;
+
+    border: 1px solid #edf2f4;
+}
+
+
+.payment-box .info-row:last-child {
+    margin-bottom: 0;
+}
+
+
+.payment-box .info-row span {
+    color: #71818c;
+
+    font-size: 14px;
+}
+
+
+.payment-box .info-row strong {
+    color: #173b4d;
+
+    font-size: 15px;
+
+    font-weight: 800;
+}
+
+
+/* =========================================
+   Pending Status
+========================================= */
+
+.payment-box .info-row .pending {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 7px;
+
+    padding: 6px 12px;
+
+    border-radius: 20px;
+
+    background: #fff7df;
+
+    color: #a47718;
+
+    font-size: 12px;
+}
+
+
+.payment-box .pending::before {
+    content: "";
+
+    width: 7px;
+    height: 7px;
+
+    border-radius: 50%;
+
+    background: #e3ad32;
+
+    box-shadow: 0 0 0 4px rgba(227, 173, 50, 0.12);
+}
+
+
+/* =========================================
+   Buttons
+========================================= */
+
+.payment-box form {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 12px;
+}
+
+
+/* =========================================
+   Success Button
+========================================= */
+
+.payment-box .pay-btn {
+    width: 100%;
+
+    height: 55px;
+
+    border: none;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    background: linear-gradient(
+        135deg,
+        #16a99a,
+        #078b8c
+    );
+
+    color: #ffffff;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 700;
+
+    box-shadow:
+        0 8px 18px rgba(8, 139, 140, 0.22);
+
+    transition: all 0.25s ease;
+}
+
+
+.payment-box .pay-btn:hover {
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 12px 25px rgba(8, 139, 140, 0.30);
+}
+
+
+.payment-box .pay-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   Cancel Button
+========================================= */
+
+.payment-box .cancel-btn {
+    width: 100%;
+
+    height: 52px;
+
+    border: 1px solid #e7d4d4;
+
+    border-radius: 13px;
+
+    cursor: pointer;
+
+    background: #fffafa;
+
+    color: #b65353;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    transition: all 0.25s ease;
+}
+
+
+.payment-box .cancel-btn:hover {
+    background: #fff1f1;
+
+    border-color: #dca7a7;
+
+    transform: translateY(-1px);
+}
+
+
+.payment-box .cancel-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =========================================
+   Payment Security
+========================================= */
+
+.payment-box::after {
+    content: "🔒 پرداخت آزمایشی و امن";
+
+    display: block;
+
+    margin-top: 25px;
+
+    padding-top: 18px;
+
+    border-top: 1px solid #edf1f3;
+
+    text-align: center;
+
+    color: #91a0a8;
+
+    font-size: 11px;
+}
+
+
+/* =========================================
+   Mobile
+========================================= */
+
+@media (max-width: 500px) {
+
+    .payment-box {
+        width: calc(100% - 30px);
+
+        margin: 30px auto;
+
+        padding: 25px 20px;
+
+        border-radius: 20px;
+    }
+
+
+    .payment-box .payment-header h2 {
+        font-size: 21px;
+    }
+
+
+    .payment-box .info-row {
+        padding: 15px;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 8px;
+    }
+
+
+    .payment-box .info-row strong {
+        font-size: 14px;
+    }
+
+
+    .payment-box .pay-btn {
+        height: 52px;
+    }
+
+
+    .payment-box .cancel-btn {
+        height: 50px;
+    }
+}

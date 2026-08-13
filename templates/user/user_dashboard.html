@@ -1,61 +1,94 @@
 {% extends "base.html" %}
 
 {% block title %}
-صفحه دشبورد کاربر
+داشبورد کاربر
 {% endblock %}
 
 {% block body %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
 
-{% if appointment %}
-<div class="appointments-grid">
-    {% for appoint in appointment %}
 
-    <div>
-        <h3>دکتر</h3>
-        {{ appoint.doctor.doctor_name }}
+<div class="user-dashboard">
+
+    <h2 class="dashboard-title">
+        نوبت‌های من
+    </h2>
+
+    {% if appointment %}
+
+    <div class="appointments-grid">
+
+        {% for appoint in appointment %}
+
+        <div class="appointment-card">
+
+            <h3>
+                {{ appoint.doctor.doctor_name }}
+            </h3>
+
+            <p>
+                <strong>تخصص:</strong>
+                {{ appoint.doctor.specials }}
+            </p>
+
+            <p>
+                <strong>روز:</strong>
+                {{ appoint.schedule.day_of_week }}
+            </p>
+
+            <p>
+                <strong>ساعت:</strong>
+                {{ appoint.schedule.start_time.strftime('%H:%M') }}
+                تا
+                {{ appoint.schedule.end_time.strftime('%H:%M') }}
+            </p>
+
+            <form
+                action="{{ url_for('user.schedule_delete', id=appoint.id) }}"
+                method="POST"
+            >
+
+                <input
+                    type="hidden"
+                    name="csrf_token"
+                    value="{{ csrf_token() }}"
+                >
+
+                <button
+                    type="submit"
+                    onclick="return confirm('آیا از حذف این نوبت مطمئن هستید؟')"
+                >
+                    حذف نوبت
+                </button>
+
+            </form>
+
+        </div>
+
+        {% endfor %}
 
     </div>
 
-    <div>
-        <h4>تخصص :</h4>
-        {{ appoint.doctor.specials }}
+    {% else %}
+
+    <div class="no-appointment">
+        <h3>نوبتی ندارید</h3>
+
+        <p>
+            در حال حاضر هیچ نوبتی برای شما ثبت نشده است.
+        </p>
     </div>
 
-    <div>
-        روز :
-        {{ appoint.schedule.day_of_week }}
-    </div>
-
-    <div>
-        ساعت شروع :
-        {{ appoint.schedule.start_time.strftime('%H:%M') }}
-    </div>
-
-    <div>
-        ساعت پایان :
-        {{ appoint.schedule.end_time.strftime('%H:%M') }}
-    </div>
+    {% endif %}
 
 
-    <form action="{{ url_for('user.schedule_delete', id=appoint.id) }}" method="POST">
-        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+    <a
+        href="{{ url_for('user.logout') }}"
+        class="logout-link"
+    >
+        خروج از حساب
+    </a>
 
-        <button type="submit" onclick="return confirm('آیا از حذف این سرویس خود مطمئن هستید ؟')">
-            حذف
-        </button>
-
-    </form>
-    {% endfor %}
 </div>
-
-
-{% else %}
-
-<div>
-    <h2>بدون نوبت</h2>
-</div>
-{% endif %}
-
-<a href="{{ url_for('user.logout') }}">خروج از حساب</a>
 
 {% endblock %}

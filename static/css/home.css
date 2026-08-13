@@ -841,6 +841,181 @@ body {
         0 12px 25px rgba(0,0,0,.15);
 }
 
+/* =========================================
+   HERO SLIDER
+========================================= */
+
+.hero-slider {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+
+/* هر اسلاید */
+
+.hero-slide {
+    display: none;
+    width: 100%;
+}
+
+
+/* فقط اسلاید فعال نمایش داده شود */
+
+.hero-slide.active {
+    display: block;
+}
+
+
+/* =========================================
+   HERO DOTS
+========================================= */
+
+.hero-dots {
+
+    position: absolute;
+
+    bottom: 25px;
+
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    z-index: 20;
+
+}
+
+
+/* دکمه نقطه */
+
+.hero-dot {
+
+    width: 9px;
+    height: 9px;
+
+    padding: 0;
+
+    border: none;
+
+    border-radius: 50%;
+
+    background: rgba(0, 0, 0, 0.2);
+
+    cursor: pointer;
+
+    transition:
+        width 0.3s ease,
+        background 0.3s ease;
+
+}
+
+
+/* نقطه فعال */
+
+.hero-dot.active {
+
+    width: 25px;
+
+    border-radius: 10px;
+
+    background: #168aad;
+
+}
+
+
+/* =========================================
+   ANIMATION
+========================================= */
+
+.hero-slide.active .hero-content {
+
+    animation: heroContentIn 0.7s ease;
+
+}
+
+
+.hero-slide.active .hero-visual {
+
+    animation: heroVisualIn 0.7s ease;
+
+}
+
+
+@keyframes heroContentIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateX(35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+    }
+
+}
+
+
+@keyframes heroVisualIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateX(-35px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateX(0);
+
+    }
+
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 768px) {
+
+    .hero-dots {
+
+        bottom: 15px;
+
+    }
+
+    .hero-dot {
+
+        width: 7px;
+        height: 7px;
+
+    }
+
+    .hero-dot.active {
+
+        width: 20px;
+
+    }
+
+}
+
 
 /* =========================================
    TABLET

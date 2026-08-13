@@ -4,6 +4,14 @@ body{
     padding: 30px;
     background: rgba(184,202,149,.56);
 }
+.doctor-schedule-list{
+    display: flex;
+    flex-direction: column;
+}
+.doctor-name{
+    color: black;
+
+}
 
 /*==========================
         عنوان صفحه
@@ -28,13 +36,6 @@ body{
 .doctor-schedule-heading span{
     color:#d50000;
     background-color: #dbe3ee;
-}
-
-.doctor-name{
-    margin:0;
-    color:#fff;
-    font-size:24px;
-    font-weight:600;
 }
 
 /*==========================

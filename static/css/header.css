@@ -1,4 +1,3 @@
-```css
 /* =========================================
    Header
 ========================================= */
@@ -192,8 +191,6 @@
 
     align-items: center;
 
-    flex-shrink: 0;
-
     height: 43px;
 
     background: #f5f9f9;
@@ -245,7 +242,7 @@
 .header-search button {
     height: 100%;
 
-    padding: 0 15px;
+    padding: 0px 15px;
 
     border: none;
 
@@ -284,7 +281,7 @@
 .nobat-dehi-link {
     min-width: 125px;
 
-    padding: 12px 17px;
+    padding: 5px 10px;
 
     display: flex;
 
@@ -384,9 +381,16 @@
 @media (max-width: 1200px) {
 
     .main-header {
-        gap: 15px;
+        width: 94%;
+        min-height: 90px;
 
+        gap: 15px;
         padding: 10px 15px;
+    }
+
+    .medical-logo {
+        width: 95px;
+        height: 95px;
     }
 
     .logo-text {
@@ -403,16 +407,34 @@
 
     .main-nav a {
         padding: 9px 7px;
-
         font-size: 13px;
     }
 
+    .header-search {
+        height: 40px;
+    }
+
     .header-search input {
-        width: 150px;
+        width: 140px;
+        font-size: 12px;
+    }
+
+    .header-search button {
+        padding: 0 12px;
+        font-size: 12px;
     }
 
     .nobat-dehi-link {
-        min-width: 105px;
+        min-width: 100px;
+        padding: 7px 9px;
+    }
+
+    .nobat-dehi-link span {
+        font-size: 19px;
+    }
+
+    .nobat-dehi-link small {
+        font-size: 12px;
     }
 }
 
@@ -421,34 +443,115 @@
    Mobile
 ========================================= */
 
-@media (max-width: 850px) {
+@media (max-width: 1000px) {
 
     .main-header {
         width: 94%;
+        min-height: auto;
 
-        padding: 15px;
+        margin: 12px auto;
+        padding: 12px;
 
         flex-wrap: wrap;
-
         justify-content: space-between;
+
+        gap: 12px;
     }
+
+
+    /* -----------------------------
+       Logo
+    ----------------------------- */
+
+    .medical-logo {
+        width: 65px;
+        height: 65px;
+    }
+
+    .medical-logo-parent {
+        gap: 0;
+    }
+
+
+    /* -----------------------------
+       Header Content
+    ----------------------------- */
 
     .header-content {
         order: 3;
 
         width: 100%;
+        flex-basis: 100%;
 
+        display: flex;
         flex-direction: column;
 
-        gap: 15px;
+        gap: 12px;
     }
 
+
+    /* -----------------------------
+       Appointment Button
+    ----------------------------- */
+
+    .nobat-dehi-link {
+        min-width: 105px;
+
+        padding: 7px 10px;
+
+        border-radius: 10px;
+    }
+
+    .nobat-dehi-link span {
+        font-size: 17px;
+    }
+
+    .nobat-dehi-link small {
+        font-size: 11px;
+    }
+
+
+    /* -----------------------------
+       Search
+    ----------------------------- */
+
+    .header-search {
+        width: 100%;
+        height: 43px;
+
+        order: 1;
+    }
+
+    .header-search input {
+        width: 100%;
+
+        min-width: 0;
+
+        font-size: 13px;
+    }
+
+    .header-search button {
+        flex-shrink: 0;
+
+        padding: 0 14px;
+
+        font-size: 12px;
+    }
+
+
+    /* -----------------------------
+       Navigation
+    ----------------------------- */
+
     .main-nav {
+        order: 2;
+
         width: 100%;
 
         overflow-x: auto;
 
         scrollbar-width: none;
+        -ms-overflow-style: none;
     }
 
     .main-nav::-webkit-scrollbar {
@@ -456,31 +559,21 @@
     }
 
     .main-nav ul {
-        justify-content: flex-start;
-
         width: max-content;
+        min-width: 100%;
+
+        justify-content: center;
+
+        gap: 2px;
     }
 
     .main-nav a {
-        padding: 9px 12px;
+        padding: 8px 11px;
 
         font-size: 13px;
+
+        white-space: nowrap;
     }
-
-    .header-search {
-        width: 100%;
-
-        height: 45px;
-    }
-
-    .header-search input {
-        width: 100%;
-    }
-
-    .nobat-dehi-link {
-        min-width: 105px;
-    }
-
 }
 
 
@@ -488,23 +581,111 @@
    Small Mobile
 ========================================= */
 
-@media (max-width: 500px) {
+@media (max-width: 600px) {
 
     .main-header {
+        width: 94%;
+
         margin: 10px auto;
+        padding: 10px;
 
         border-radius: 15px;
     }
 
+
+    /* Logo */
+
     .medical-logo {
-        width: 52px;
-        height: 52px;
+        width: 55px;
+        height: 55px;
     }
 
-    .nobat-dehi-link {
-        min-width: 95px;
 
-        padding: 10px;
+    /* Appointment */
+
+    .nobat-dehi-link {
+        min-width: 90px;
+
+        padding: 7px 8px;
+
+        border-radius: 9px;
+    }
+
+    .nobat-dehi-link span {
+        font-size: 15px;
+    }
+
+    .nobat-dehi-link small {
+        font-size: 10px;
+    }
+
+
+    /* Search */
+
+    .header-search {
+        height: 40px;
+    }
+
+    .header-search input {
+        padding: 0 10px;
+
+        font-size: 12px;
+    }
+
+    .header-search button {
+        padding: 0 11px;
+
+        font-size: 11px;
+    }
+
+    .header-search button span {
+        font-size: 14px;
+    }
+
+
+    /* Navigation */
+
+    .main-nav ul {
+        justify-content: flex-start;
+    }
+
+    .main-nav a {
+        padding: 8px 10px;
+
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================
+   Very Small Mobile
+========================================= */
+
+@media (max-width: 400px) {
+
+    .main-header {
+        width: 95%;
+
+        padding: 8px;
+
+        gap: 9px;
+    }
+
+
+    /* Logo */
+
+    .medical-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+
+    /* Appointment */
+
+    .nobat-dehi-link {
+        min-width: 82px;
+
+        padding: 6px 7px;
     }
 
     .nobat-dehi-link span {
@@ -512,12 +693,241 @@
     }
 
     .nobat-dehi-link small {
+        font-size: 9px;
+    }
+
+
+    /* Search */
+
+    .header-search {
+        height: 38px;
+    }
+
+    .header-search input {
+        padding: 0 8px;
+
+        font-size: 11px;
+    }
+
+    .header-search button {
+        padding: 0 9px;
+
         font-size: 10px;
     }
 
+    .header-search button span {
+        font-size: 13px;
+    }
+
+
+    /* Navigation */
+
     .main-nav a {
-        padding: 8px 10px;
+        padding: 7px 9px;
+
+        font-size: 11px;
+    }
+}
+
+/* =========================================
+   Mobile Menu Button
+========================================= */
+
+.mobile-menu-button {
+    display: none;
+
+    width: 45px;
+    height: 45px;
+
+    padding: 9px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #edf8f7;
+
+    cursor: pointer;
+
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    gap: 5px;
+
+    transition: 0.25s ease;
+}
+
+
+.mobile-menu-button span {
+    width: 24px;
+    height: 3px;
+
+    background: #168f86;
+
+    border-radius: 10px;
+
+    transition: 0.25s ease;
+}
+
+
+.mobile-menu-button:hover {
+    background: #dff2f0;
+}
+
+
+/* =========================================
+   Mobile Menu
+========================================= */
+
+.mobile-menu {
+    display: none;
+
+    width: 100%;
+
+    background: white;
+
+    border-top: 1px solid #e5eeee;
+
+    margin-top: 10px;
+
+    padding-top: 10px;
+}
+
+
+.mobile-menu ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
+
+    display: flex;
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+
+.mobile-menu a {
+    display: block;
+
+    padding: 11px 14px;
+
+    color: #344f4e;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border-radius: 9px;
+
+    transition: 0.25s ease;
+}
+
+
+.mobile-menu a:hover {
+    color: #168f86;
+
+    background: #edf8f7;
+}
+
+
+/* =========================================
+   Mobile <= 480px
+========================================= */
+
+@media (max-width: 480px) {
+
+    .main-header {
+        width: 94%;
+
+        min-height: auto;
+
+        padding: 9px 10px;
+
+        margin: 10px auto;
+
+        display: flex;
+
+        flex-wrap: wrap;
+
+        justify-content: space-between;
+
+        gap: 8px;
+    }
+
+
+    /* -----------------------------
+       Logo
+    ----------------------------- */
+
+    .medical-logo {
+        width: 52px;
+        height: 52px;
+    }
+
+
+    .medical-logo-parent {
+        gap: 0;
+    }
+
+
+    /* -----------------------------
+       Mobile Menu Button
+    ----------------------------- */
+
+    .mobile-menu-button {
+        display: flex;
+
+        margin-right: auto;
+    }
+
+
+    /* -----------------------------
+       Header Content
+    ----------------------------- */
+
+    .header-content {
+        display: none;
+    }
+
+
+    /* -----------------------------
+       Appointment
+    ----------------------------- */
+
+    .nobat-dehi-link {
+        min-width: 82px;
+
+        padding: 6px 7px;
+
+        border-radius: 9px;
+    }
+
+
+    .nobat-dehi-link span {
+        font-size: 13px;
+    }
+
+
+    .nobat-dehi-link small {
+        font-size: 9px;
+    }
+
+
+    /* -----------------------------
+       Mobile Menu
+    ----------------------------- */
+
+    .mobile-menu {
+        display: none;
+
+        order: 10;
+    }
+
+
+    .mobile-menu.active {
+        display: block;
     }
 
 }
-```

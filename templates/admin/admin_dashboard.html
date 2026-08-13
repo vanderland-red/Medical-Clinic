@@ -14,7 +14,7 @@
 
         <div>
             <h1>پنل مدیریت کلینیک</h1>
-            <p>مدیریت دکتر کلینیک</p>
+            <p>مدیریت پزشکان و برنامه‌های کلینیک</p>
         </div>
 
         <a href="{{ url_for('admin.logout') }}" class="logout-btn">
@@ -23,60 +23,68 @@
 
     </div>
 
-        <a href="{{ url_for('admin.add_schedule') }}">افزودن برنامه دکتر ها</a><br><br>
-        <a href="{{ url_for('admin.doctor_important') }}">تغییر شماره موبایل و رمز دکتر ها</a>
+
+    <div class="admin-links">
+
+        <a href="{{ url_for('admin.add_schedule') }}">
+            افزودن برنامه پزشکان
+        </a>
+
+        <a href="{{ url_for('admin.doctor_important') }}">
+            مدیریت شماره و رمز پزشکان
+        </a>
+
+    </div>
 
 
+    <!-- افزودن پزشک -->
 
-    <!-- فرم -->
+    <section class="admin-form">
 
-    <section class="admin-dashboard-parent">
-
-        <h2>افزودن دکتر جدید</h2>
+        <h2>افزودن پزشک جدید</h2>
 
         <form action="{{ url_for('admin.dashboard') }}" method="POST" enctype="multipart/form-data">
 
-    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
-    <label for="doctor_name">نام دکتر</label>
-    <input type="text" id="doctor_name" name="doctor_name" placeholder="نام دکتر">
+            <label>نام پزشک</label>
+            <input type="text" name="doctor_name" placeholder="نام پزشک" required>
 
-    <label for="experience_years">سال تجربه</label>
-    <input type="number" id="experience_years" name="experience_years" placeholder="سال تجربه">
+            <label>سال تجربه</label>
+            <input type="number" name="experience_years" placeholder="مثلاً 10" required>
 
-    <label for="specials">تخصص</label>
-    <input type="text" id="specials" name="specials" placeholder="تخصص">
+            <label>تخصص</label>
+            <input type="text" name="specials" placeholder="تخصص پزشک" required>
 
-    <label for="visit_price">هزینه ویزیت (تومان)</label>
-    <input type="number" id="visit_price" name="visit_price" placeholder="هزینه ویزیت">
+            <label>هزینه ویزیت</label>
+            <input type="number" name="visit_price" placeholder="هزینه به تومان" required>
 
-    <label for="biography">بیوگرافی دکتر</label>
-    <textarea id="biography" name="biography" placeholder="بیوگرافی دکتر"></textarea>
-    
-    <label for="phone">شماره تلفن</label>
-    <input type="text" name="phone" id="phone" placeholder="شماره تلفن">
+            <label>بیوگرافی</label>
+            <textarea name="biography" placeholder="بیوگرافی پزشک"></textarea>
 
-    <label for="password">رمز عبور</label>
-    <input type="password" name="password" id="password" placeholder="رمز عبور">
+            <label>شماره تلفن</label>
+            <input type="text" name="phone" placeholder="شماره تلفن" required>
 
-    <label for="profile_image">تصویر پروفایل دکتر</label>
-    <input type="file" id="profile_image" name="profile_image">
+            <label>رمز عبور</label>
+            <input type="password" name="password" placeholder="رمز عبور" required>
 
-    <button type="submit">
-        ثبت دکتر
-    </button>
+            <label>تصویر پروفایل</label>
+            <input type="file" name="profile_image">
 
-</form>
+            <button type="submit">
+                ثبت پزشک
+            </button>
+
+        </form>
 
     </section>
 
 
-
-    <!-- لیست پزشکان -->
+    <!-- پزشکان -->
 
     <section class="site-doctors">
 
-        <h2>دکتر های ثبت شده</h2>
+        <h2>پزشکان ثبت شده</h2>
 
         <div class="doctors-parent-admin">
 
@@ -84,29 +92,25 @@
 
             <div class="doctor-box">
 
-                <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
-                    alt="{{ doctor.doctor_name }}">
+                <img src="{{ url_for('static',
+                    filename='doctor_profile/' ~ doctor.profile_image) }}" alt="{{ doctor.doctor_name }}">
 
                 <div class="doctor-content">
 
-                    <span class="doctor-role">
-                        دکتر
-                    </span>
+                    <span>دکتر</span>
 
                     <h3>{{ doctor.doctor_name }}</h3>
 
                     <p>{{ doctor.specials }}</p>
 
-                    <div class="doctor-price">
-                        <p>قیمت ویزیت :</p>
-                        {{ doctor.visit_price }} تومان
-
+                    <div class="doctor-info">
+                        هزینه ویزیت:
+                        <strong>{{ doctor.visit_price }} تومان</strong>
                     </div>
 
-                    <div class="doctor-biography">
-                        <p>بیوگرافی :</p>
+                    <p class="doctor-bio">
                         {{ doctor.biography }}
-                    </div>
+                    </p>
 
                     <div class="doctor-actions">
 
@@ -114,15 +118,14 @@
                             ویرایش
                         </a>
 
-                        <form action="{{ url_for('admin.delete_doctor', id=doctor.id) }}" method="POST"
+                        <form action="{{ url_for('admin.delete_doctor',
+                                                 id=doctor.id) }}" method="POST"
                             onsubmit="return confirm('آیا از حذف این پزشک مطمئن هستید؟')">
 
                             <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
 
                             <button type="submit" class="delete-btn">
-
                                 حذف
-
                             </button>
 
                         </form>

@@ -5,60 +5,163 @@
 {% endblock %}
 
 {% block body %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/home.css') }}">
+
+<link rel="stylesheet"
+      href="{{ url_for('static', filename='css/home.css') }}">
+
+
+<!-- =========================================
+     HERO SLIDER
+========================================= -->
 
 <section class="home-hero">
-    <a href="{{ url_for('admin.login') }}">admin</a>
 
-    <div class="hero-container">
+    <div class="hero-slider">
 
-        <div class="hero-content">
 
-            <span class="hero-badge">
-                🩺 مراقبت حرفه‌ای، سلامت پایدار
-            </span>
+        <!-- =========================================
+             BANNER 1
+        ========================================== -->
 
-            <h1>
-                سلامت شما،
-                <span>اولویت ماست</span>
-            </h1>
+        <div class="hero-slide active">
 
-            <p>
-                در کلینیک رازی، با کمک پزشکان متخصص و
-                خدمات پزشکی حرفه‌ای، مسیر رسیدن به
-                سلامتی را برای شما ساده‌تر می‌کنیم.
-            </p>
+            <div class="hero-container">
 
-            <div class="hero-buttons">
 
-                <a href="{{ url_for('user.taking_turn') }}"
-                   class="hero-primary-btn">
-                    دریافت نوبت
-                    <span>←</span>
-                </a>
+                <div class="hero-content">
 
-                <a href="{{ url_for('general.about') }}"
-                   class="hero-secondary-btn">
-                    درباره کلینیک
-                </a>
+                    <span class="hero-badge">
+                        🩺 مراقبت حرفه‌ای، سلامت پایدار
+                    </span>
 
-            </div>
 
-            <div class="hero-stats">
+                    <h1>
+                        سلامت شما،
+                        <span>اولویت ماست</span>
+                    </h1>
 
-                <div class="hero-stat">
-                    <strong>+20</strong>
-                    <span>پزشک متخصص</span>
+
+                    <p>
+                        در کلینیک رازی، با کمک پزشکان متخصص و
+                        خدمات پزشکی حرفه‌ای، مسیر رسیدن به
+                        سلامتی را برای شما ساده‌تر می‌کنیم.
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a href="{{ url_for('user.taking_turn') }}"
+                           class="hero-primary-btn">
+
+                            دریافت نوبت
+
+                            <span>←</span>
+
+                        </a>
+
+
+                        <a href="{{ url_for('general.about') }}"
+                           class="hero-secondary-btn">
+
+                            درباره کلینیک
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-stats">
+
+                        <div class="hero-stat">
+
+                            <strong>+20</strong>
+
+                            <span>
+                                پزشک متخصص
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>+10</strong>
+
+                            <span>
+                                تخصص پزشکی
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>+5000</strong>
+
+                            <span>
+                                بیمار موفق
+                            </span>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
-                <div class="hero-stat">
-                    <strong>+10</strong>
-                    <span>تخصص پزشکی</span>
-                </div>
 
-                <div class="hero-stat">
-                    <strong>+5000</strong>
-                    <span>بیمار موفق</span>
+                <div class="hero-visual">
+
+                    <div class="hero-circle"></div>
+
+
+                    <div class="hero-doctor-card">
+
+                        <div class="doctor-avatar">
+                            🧑‍⚕️
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                پزشکان متخصص
+                            </strong>
+
+                            <span>
+                                آماده خدمت‌رسانی به شما
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-main-icon">
+                        🏥
+                    </div>
+
+
+                    <div class="hero-floating-card">
+
+                        <div class="floating-icon">
+                            ✓
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                نوبت‌دهی آنلاین
+                            </strong>
+
+                            <span>
+                                سریع و آسان
+                            </span>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
@@ -66,57 +169,614 @@
         </div>
 
 
-        <div class="hero-visual">
 
-            <div class="hero-circle"></div>
+        <!-- =========================================
+             BANNER 2
+        ========================================== -->
 
-            <div class="hero-doctor-card">
+        <div class="hero-slide">
 
-                <div class="doctor-avatar">
-                    🧑‍⚕️
-                </div>
+            <div class="hero-container">
 
-                <div>
-                    <strong>
-                        پزشکان متخصص
-                    </strong>
 
-                    <span>
-                        آماده خدمت‌رسانی به شما
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        👨‍⚕️ پزشکان متخصص و باتجربه
                     </span>
+
+
+                    <h1>
+
+                        بهترین پزشکان،
+
+                        <span>
+                            در کنار شما
+                        </span>
+
+                    </h1>
+
+
+                    <p>
+
+                        با انتخاب پزشکان متخصص کلینیک رازی،
+                        خدمات پزشکی حرفه‌ای و مطمئن را
+                        تجربه کنید.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a href="{{ url_for('user.taking_turn') }}"
+                           class="hero-primary-btn">
+
+                            انتخاب پزشک
+
+                            <span>
+                                ←
+                            </span>
+
+                        </a>
+
+
+                        <a href="{{ url_for('general.about') }}"
+                           class="hero-secondary-btn">
+
+                            آشنایی بیشتر
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-stats">
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                +20
+                            </strong>
+
+                            <span>
+                                پزشک متخصص
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                +10
+                            </strong>
+
+                            <span>
+                                تخصص پزشکی
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                +5000
+                            </strong>
+
+                            <span>
+                                بیمار موفق
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="hero-circle"></div>
+
+
+                    <div class="hero-doctor-card">
+
+                        <div class="doctor-avatar">
+                            👨‍⚕️
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                تیم پزشکی حرفه‌ای
+                            </strong>
+
+                            <span>
+                                همراه همیشگی سلامت شما
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-main-icon">
+                        🩺
+                    </div>
+
+
+                    <div class="hero-floating-card">
+
+                        <div class="floating-icon">
+                            ✓
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                پزشکان باتجربه
+                            </strong>
+
+                            <span>
+                                تخصص و اعتماد
+                            </span>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
 
-
-            <div class="hero-main-icon">
-                🏥
-            </div>
+        </div>
 
 
-            <div class="hero-floating-card">
 
-                <div class="floating-icon">
-                    ✓
-                </div>
+        <!-- =========================================
+             BANNER 3
+        ========================================== -->
 
-                <div>
-                    <strong>
-                        نوبت‌دهی آنلاین
-                    </strong>
+        <div class="hero-slide">
 
-                    <span>
-                        سریع و آسان
+            <div class="hero-container">
+
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        📅 نوبت‌دهی سریع و آسان
                     </span>
+
+
+                    <h1>
+
+                        نوبت خود را
+
+                        <span>
+                            آنلاین رزرو کنید
+                        </span>
+
+                    </h1>
+
+
+                    <p>
+
+                        بدون نیاز به مراجعه حضوری،
+                        پزشک مورد نظر خود را انتخاب کنید
+                        و در چند مرحله ساده نوبت بگیرید.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a href="{{ url_for('user.taking_turn') }}"
+                           class="hero-primary-btn">
+
+                            دریافت نوبت
+
+                            <span>
+                                ←
+                            </span>
+
+                        </a>
+
+
+                        <a href="{{ url_for('general.about') }}"
+                           class="hero-secondary-btn">
+
+                            درباره ما
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-stats">
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                24/7
+                            </strong>
+
+                            <span>
+                                دسترسی آنلاین
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                سریع
+                            </strong>
+
+                            <span>
+                                رزرو نوبت
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                آسان
+                            </strong>
+
+                            <span>
+                                استفاده از سیستم
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="hero-circle"></div>
+
+
+                    <div class="hero-doctor-card">
+
+                        <div class="doctor-avatar">
+                            📅
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                نوبت‌دهی آنلاین
+                            </strong>
+
+                            <span>
+                                در چند مرحله ساده
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-main-icon">
+                        📋
+                    </div>
+
+
+                    <div class="hero-floating-card">
+
+                        <div class="floating-icon">
+                            ✓
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                رزرو موفق
+                            </strong>
+
+                            <span>
+                                سریع و مطمئن
+                            </span>
+
+                        </div>
+
+                    </div>
+
                 </div>
 
             </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             BANNER 4
+        ========================================== -->
+
+        <div class="hero-slide">
+
+            <div class="hero-container">
+
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        ❤️ سلامت شما، هدف ماست
+                    </span>
+
+
+                    <h1>
+
+                        یک قدم برای
+
+                        <span>
+                            سلامتی بهتر
+                        </span>
+
+                    </h1>
+
+
+                    <p>
+
+                        ما در کلینیک رازی تلاش می‌کنیم
+                        بهترین تجربه درمانی را برای شما
+                        و خانواده‌تان فراهم کنیم.
+
+                    </p>
+
+
+                    <div class="hero-buttons">
+
+                        <a href="{{ url_for('user.taking_turn') }}"
+                           class="hero-primary-btn">
+
+                            شروع کنید
+
+                            <span>
+                                ←
+                            </span>
+
+                        </a>
+
+
+                        <a href="{{ url_for('general.about') }}"
+                           class="hero-secondary-btn">
+
+                            درباره کلینیک
+
+                        </a>
+
+                    </div>
+
+
+                    <div class="hero-stats">
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                +10
+                            </strong>
+
+                            <span>
+                                سال تجربه
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                +20
+                            </strong>
+
+                            <span>
+                                پزشک متخصص
+                            </span>
+
+                        </div>
+
+
+                        <div class="hero-stat">
+
+                            <strong>
+                                +5000
+                            </strong>
+
+                            <span>
+                                بیمار موفق
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="hero-visual">
+
+                    <div class="hero-circle"></div>
+
+
+                    <div class="hero-doctor-card">
+
+                        <div class="doctor-avatar">
+                            ❤️
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                مراقبت از سلامت
+                            </strong>
+
+                            <span>
+                                همراه شما در مسیر درمان
+                            </span>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="hero-main-icon">
+                        🏥
+                    </div>
+
+
+                    <div class="hero-floating-card">
+
+                        <div class="floating-icon">
+                            ✓
+                        </div>
+
+
+                        <div>
+
+                            <strong>
+                                کلینیک رازی
+                            </strong>
+
+                            <span>
+                                همراه مطمئن شما
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =========================================
+             SLIDER DOTS
+        ========================================== -->
+
+        <div class="hero-dots">
+
+            <button
+                class="hero-dot active"
+                data-slide="0">
+            </button>
+
+
+            <button
+                class="hero-dot"
+                data-slide="1">
+            </button>
+
+
+            <button
+                class="hero-dot"
+                data-slide="2">
+            </button>
+
+
+            <button
+                class="hero-dot"
+                data-slide="3">
+            </button>
 
         </div>
 
     </div>
 
 </section>
+
+
+
+<!-- =========================================
+     HERO SLIDER JAVASCRIPT
+========================================= -->
+
+<script>
+
+    const slides = document.querySelectorAll(".hero-slide");
+
+    const dots = document.querySelectorAll(".hero-dot");
+
+    let currentSlide = 0;
+
+
+    function showSlide(index) {
+
+        slides.forEach(function(slide) {
+
+            slide.classList.remove("active");
+
+        });
+
+
+        dots.forEach(function(dot) {
+
+            dot.classList.remove("active");
+
+        });
+
+
+        slides[index].classList.add("active");
+
+        dots[index].classList.add("active");
+
+    }
+
+
+    function nextSlide() {
+
+        currentSlide++;
+
+        if (currentSlide >= slides.length) {
+
+            currentSlide = 0;
+
+        }
+
+        showSlide(currentSlide);
+
+    }
+
+
+    /* تغییر بنر هر 3 ثانیه */
+
+    setInterval(nextSlide, 3000);
+
+
+    /* کلیک روی نقطه‌ها */
+
+    dots.forEach(function(dot, index) {
+
+        dot.addEventListener("click", function() {
+
+            currentSlide = index;
+
+            showSlide(currentSlide);
+
+        });
+
+    });
+
+</script>
+
 
 
 <!-- =========================================
@@ -127,15 +787,18 @@
 
     <div class="home-container">
 
+
         <div class="home-section-header">
 
             <span>
                 خدمات ما
             </span>
 
+
             <h2>
                 مراقبت کامل از سلامت شما
             </h2>
+
 
             <p>
                 تمامی خدمات مورد نیاز شما در یک مجموعه
@@ -145,7 +808,9 @@
         </div>
 
 
+
         <div class="services-grid">
+
 
             <div class="service-box">
 
@@ -153,14 +818,17 @@
                     🩺
                 </div>
 
+
                 <h3>
                     ویزیت پزشک
                 </h3>
+
 
                 <p>
                     دسترسی آسان به پزشکان متخصص
                     در زمینه‌های مختلف پزشکی.
                 </p>
+
 
                 <a href="{{ url_for('user.taking_turn') }}">
                     دریافت نوبت ←
@@ -169,20 +837,24 @@
             </div>
 
 
+
             <div class="service-box">
 
                 <div class="service-icon">
                     📅
                 </div>
 
+
                 <h3>
                     نوبت‌دهی آنلاین
                 </h3>
+
 
                 <p>
                     بدون نیاز به مراجعه حضوری،
                     نوبت پزشک مورد نظر خود را رزرو کنید.
                 </p>
+
 
                 <a href="{{ url_for('user.taking_turn') }}">
                     رزرو نوبت ←
@@ -191,20 +863,24 @@
             </div>
 
 
+
             <div class="service-box">
 
                 <div class="service-icon">
                     ❤️
                 </div>
 
+
                 <h3>
                     مراقبت سلامت
                 </h3>
+
 
                 <p>
                     ارائه خدمات پزشکی با تمرکز بر
                     سلامت و رضایت بیماران.
                 </p>
+
 
                 <a href="#about-clinic">
                     بیشتر بدانید ←
@@ -212,11 +888,13 @@
 
             </div>
 
+
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =========================================
@@ -227,7 +905,9 @@
 
     <div class="home-container about-container">
 
+
         <div class="about-visual">
+
 
             <div class="about-main-card">
 
@@ -235,9 +915,11 @@
                     🏥
                 </span>
 
+
                 <strong>
                     کلینیک رازی
                 </strong>
+
 
                 <small>
                     همراه شما برای سلامتی
@@ -245,75 +927,128 @@
 
             </div>
 
+
             <div class="about-experience">
-                <strong>10+</strong>
-                <span>سال تجربه</span>
+
+                <strong>
+                    10+
+                </strong>
+
+                <span>
+                    سال تجربه
+                </span>
+
             </div>
 
         </div>
 
 
+
         <div class="about-content">
+
 
             <span class="about-label">
                 درباره کلینیک
             </span>
 
+
             <h2>
+
                 همراه مطمئن شما
                 در مسیر سلامتی
+
             </h2>
 
+
             <p>
+
                 کلینیک رازی با هدف ارائه خدمات پزشکی
                 باکیفیت و ایجاد تجربه‌ای بهتر برای بیماران
                 فعالیت می‌کند.
+
             </p>
 
+
             <p>
+
                 ما تلاش می‌کنیم با استفاده از پزشکان
                 متخصص، محیطی حرفه‌ای و سیستم نوبت‌دهی
                 آنلاین، دسترسی شما به خدمات پزشکی را
                 آسان‌تر کنیم.
+
             </p>
+
 
 
             <div class="about-features">
 
+
                 <div>
-                    <span>✓</span>
+
+                    <span>
+                        ✓
+                    </span>
+
                     پزشکان متخصص و باتجربه
+
                 </div>
 
+
                 <div>
-                    <span>✓</span>
+
+                    <span>
+                        ✓
+                    </span>
+
                     نوبت‌دهی آنلاین و سریع
+
                 </div>
 
+
                 <div>
-                    <span>✓</span>
+
+                    <span>
+                        ✓
+                    </span>
+
                     محیط حرفه‌ای و مجهز
+
                 </div>
 
+
                 <div>
-                    <span>✓</span>
+
+                    <span>
+                        ✓
+                    </span>
+
                     توجه ویژه به رضایت بیماران
+
                 </div>
+
 
             </div>
 
 
+
             <a href="{{ url_for('general.about') }}"
                class="about-button">
+
                 بیشتر درباره ما
-                <span>←</span>
+
+                <span>
+                    ←
+                </span>
+
             </a>
+
 
         </div>
 
     </div>
 
 </section>
+
 
 
 <!-- =========================================
@@ -324,15 +1059,18 @@
 
     <div class="home-container">
 
+
         <div class="home-section-header">
 
             <span>
                 تخصص‌های پزشکی
             </span>
 
+
             <h2>
                 بخش‌های مختلف کلینیک
             </h2>
+
 
             <p>
                 تخصص مورد نظر خود را انتخاب کنید.
@@ -341,31 +1079,84 @@
         </div>
 
 
+
         <div class="home-departments-grid">
 
-            <a href="#" class="home-department-card">
-                <span>❤️</span>
-                <h3>قلب و عروق</h3>
-                <p>تشخیص و درمان بیماری‌های قلبی</p>
+
+            <a href="#"
+               class="home-department-card">
+
+                <span>
+                    ❤️
+                </span>
+
+                <h3>
+                    قلب و عروق
+                </h3>
+
+                <p>
+                    تشخیص و درمان بیماری‌های قلبی
+                </p>
+
             </a>
 
-            <a href="#" class="home-department-card">
-                <span>🧠</span>
-                <h3>مغز و اعصاب</h3>
-                <p>خدمات تخصصی مغز و سیستم عصبی</p>
+
+
+            <a href="#"
+               class="home-department-card">
+
+                <span>
+                    🧠
+                </span>
+
+                <h3>
+                    مغز و اعصاب
+                </h3>
+
+                <p>
+                    خدمات تخصصی مغز و سیستم عصبی
+                </p>
+
             </a>
 
-            <a href="#" class="home-department-card">
-                <span>🦴</span>
-                <h3>ارتوپدی</h3>
-                <p>درمان مشکلات استخوان و مفاصل</p>
+
+
+            <a href="#"
+               class="home-department-card">
+
+                <span>
+                    🦴
+                </span>
+
+                <h3>
+                    ارتوپدی
+                </h3>
+
+                <p>
+                    درمان مشکلات استخوان و مفاصل
+                </p>
+
             </a>
 
-            <a href="#" class="home-department-card">
-                <span>👶</span>
-                <h3>اطفال</h3>
-                <p>مراقبت تخصصی از کودکان</p>
+
+
+            <a href="#"
+               class="home-department-card">
+
+                <span>
+                    👶
+                </span>
+
+                <h3>
+                    اطفال
+                </h3>
+
+                <p>
+                    مراقبت تخصصی از کودکان
+                </p>
+
             </a>
+
 
         </div>
 
@@ -373,5 +1164,13 @@
 
 </section>
 
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
 {% include "part/footer.html" %}
+
+
 {% endblock %}
