@@ -43,7 +43,7 @@ app.register_blueprint(doctor)
 app.register_blueprint(payment)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000)
+    app.run(debug=True, host="0.0.0.0")
 
 
 # {% if request.endpoint.startswith("general") %}

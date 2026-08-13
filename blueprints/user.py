@@ -1,5 +1,5 @@
 from flask import Blueprint,render_template,request,redirect,flash,url_for
-from models.tables import User,Doctor,DoctorSchedule,Appointment,Payment
+from models.tables import User,Doctor,DoctorSchedule,Appointment
 from extentions import db
 from flask_login import login_user, login_required,current_user,logout_user
 import re
@@ -7,6 +7,7 @@ from flask import session
 import random
 from datetime import datetime, timedelta
 import jdatetime
+from otp_end_time import is_otp_expired
 
 
 
@@ -87,12 +88,22 @@ def register():
 # USER Register Verify OTP
 #=============================
 @bp.route("/verify", methods=["GET", "POST"])
-def verify ():
+def verify():
+
     if request.method == "GET":
         return render_template("user/user_verify.html")
 
     # دریافت کد وارد شده توسط کاربر
     user_otp = request.form["user_otp"].strip()
+
+    # بررسی انقضای OTP
+    if is_otp_expired():
+        session.pop("otp", None)
+        session.pop("otp_expire", None)
+        session.pop("register_data", None)
+
+        flash("کد تایید منقضی شده است. لطفاً دوباره درخواست کد کنید.", "error")
+        return redirect(url_for("user.register"))
 
     # بررسی صحت کد
     if user_otp != session.get("otp"):
@@ -107,15 +118,10 @@ def verify ():
         national_code=data["national_code"]
     ).first()
 
-    if user :
+    if user:
         login_user(user)
 
-        schedule_id = session.get("schedule_id")
-        
-        if schedule_id:
-            return redirect(url_for("payment.create_payment", schedule_id=schedule_id))
-
-    else :
+    else:
         user = User(
             phone=data["phone"],
             national_code=data["national_code"],
@@ -127,21 +133,18 @@ def verify ():
 
         login_user(user)
 
-        # پاک کردن اطلاعات موقت زیرا دیگه به آنها احتیاجی نداریم
+    # پاک کردن اطلاعات موقت
+    session.pop("otp", None)
+    session.pop("otp_expire", None)
+    session.pop("register_data", None)
 
-        session.pop("otp", None)
-        session.pop("otp_expire", None)
-        session.pop("register_data", None)
+    # بررسی نوبتی که کاربر انتخاب کرده
+    schedule_id = session.get("schedule_id")
 
-        schedule_id = session.get("schedule_id")
+    if schedule_id:
+        return redirect(url_for("payment.create_payment", schedule_id=schedule_id))
 
-        if schedule_id:
-
-            return redirect(url_for("payment.create_payment", schedule_id=schedule_id))
-
-
-
-
+    return redirect(url_for("user.dashboard"))
 
 
 #=====================================
@@ -193,6 +196,15 @@ def verify_login ():
 
     
     user_otp = request.form["user_otp"].strip()
+
+
+    # بررسی انقضای OTP
+    if is_otp_expired():
+        session.pop("otp", None)
+        session.pop("otp_expire", None)
+
+        flash("کد تایید منقضی شده است. لطفاً دوباره درخواست کد کنید.", "error")
+        return redirect(url_for("user.login_this"))
     
     # بررسی صحت کد
     if user_otp != session.get("otp"):
