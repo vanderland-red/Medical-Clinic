@@ -60,8 +60,6 @@ def register():
         phone=phone,
         national_code=national_code
     )
-    
-    
 
     
 

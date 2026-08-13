@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, redirect, url_for, request
+from flask import Blueprint, render_template, redirect, url_for,request,flash
 from flask_login import login_required, current_user
 from models.tables import Payment, DoctorSchedule, Appointment
 from extentions import db
@@ -14,6 +14,17 @@ bp = Blueprint("payment", __name__, url_prefix="/payment")
 def create_payment(schedule_id):
 
     schedule = DoctorSchedule.query.get_or_404(schedule_id)
+
+
+    # بررسی اینکه کاربر قبلاً این نوبت را گرفته یا نه
+    exists = Appointment.query.filter_by(
+        user_id=current_user.id,
+        schedule_id=schedule.id
+    ).first()
+
+    if exists:
+        flash("شما قبلاً این نوبت را رزرو کرده‌اید.", "warning")
+        return redirect(url_for("user.doctor_details", id=schedule.doctor.id))
 
 
     # مشخصه های پرداخت شخص مورد نظر ساخته میشود
