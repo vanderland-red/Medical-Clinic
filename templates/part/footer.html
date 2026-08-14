@@ -19,10 +19,10 @@
 
             <ul>
                 <li><a href="{{ url_for('general.home') }}">خانه</a></li>
-                <li><a href="#">درباره ما</a></li>
-                <li><a href="#">پزشکان</a></li>
-                <li><a href="#">گالری</a></li>
-                <li><a href="#">ارتباط با ما</a></li>
+                <li><a href="{{ url_for('general.about') }}">درباره ما</a></li>
+                <li><a href="{{ url_for('user.taking_turn') }}">پزشکان</a></li>
+                <li><a href="{{ url_for('general.gallery') }}">گالری</a></li>
+                <li><a href="{{ url_for('general.ertebat_ba_ma') }}">ارتباط با ما</a></li>
             </ul>
         </div>
 
@@ -31,10 +31,10 @@
             <h3>خدمات ما</h3>
 
             <ul>
-                <li><a href="#">مشاهده پزشکان</a></li>
-                <li><a href="#">دریافت نوبت</a></li>
-                <li><a href="#">رزرو آنلاین</a></li>
+                <li><a href="{{ url_for('user.taking_turn') }}">دریافت نوبت</a></li>
                 <li><a href="{{ url_for('user.login_this') }}">پیگیری نوبت</a></li>
+                <li><a href="{{ url_for('admin.login') }}">ADMIN</a></li>
+                <li><a href="{{ url_for('doctor.doctor_login') }}">DOCTOR</a></li>
             </ul>
         </div>
 
@@ -69,9 +69,11 @@
         </p>
 
         <div class="footer-social">
-            <a href="#" aria-label="Instagram">Instagram</a>
-            <a href="#" aria-label="Telegram">Telegram</a>
-            <a href="#" aria-label="LinkedIn">LinkedIn</a>
+            <a href="#">Instagram</a>
+            <a href="#">Telegram</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Whatsup</a>
+            
         </div>
 
     </div>

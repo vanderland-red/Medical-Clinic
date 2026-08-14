@@ -19,10 +19,28 @@ bp = Blueprint("user", __name__, url_prefix="/user")
 #===================
 @login_required
 @bp.route("/dashboard", methods=["GET"])
-def dashboard ():
-    appointment = Appointment.query.filter_by(user_id=current_user.id).all()
-    return render_template("user/user_dashboard.html", appointment=appointment)
+def dashboard():
 
+    appointment = Appointment.query.filter_by(
+        user_id=current_user.id
+    ).all()
+
+    appointment_data = []
+
+    for appoint in appointment:
+
+        next_date = get_next_date(appoint.schedule.day_of_week)
+
+        jalali_date = jdatetime.date.fromgregorian(date=next_date)
+
+        persian_date = jalali_date.strftime("%Y/%m/%d")
+
+        appointment_data.append({
+            "appointment": appoint,
+            "persian_date": persian_date
+        })
+
+    return render_template("user/user_dashboard.html", appointment_data=appointment_data)
 
 
 #===================
@@ -306,16 +324,20 @@ def get_next_date(day_of_week):
         "جمعه": 4
     }
 
-    today = datetime.now().date() # فقط تاریخ میلادی
+    today = datetime.now().date() # تاریخ میلادی الان
 
     target_weekday = days[day_of_week] 
 
     days_ahead = (target_weekday - today.weekday()) % 7
 
-    return today + timedelta(days=days_ahead)
+    return today + timedelta(days=days_ahead) # تاریخ امروز به اضافه عدد به دست آمده و ایجاد تاریخ روز مورد نظر      
 
-
-
+# مقدار هایی که تایم دلتا قبول میکنه
+# timedelta(
+#     days=3,
+#     hours=2,
+#     minutes=30
+# )
 
 @bp.route("/doctor_details/<int:id>")
 def doctor_details(id):

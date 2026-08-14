@@ -1,256 +1,588 @@
-/*========================== Container ==========================*/
+/* =========================================
+   General
+========================================= */
+
+body {
+    margin: 0;
+    padding: 0;
+    direction: rtl;
+}
+
+
+/* =========================================
+   Container
+========================================= */
+
 .appointments-section {
-    padding: 40px 20px;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
     min-height: 100vh;
+    padding: 40px 20px;
+
+    background: linear-gradient(
+        135deg,
+        #f5f7fa 0%,
+        #c3cfe2 100%
+    );
+
+    box-sizing: border-box;
 }
 
 .container {
+    width: 100%;
     max-width: 1200px;
+
     margin: 0 auto;
 }
 
-/*========================== Header ==========================*/
+
+/* =========================================
+   Header
+========================================= */
+
 .section-header {
     display: flex;
+
     justify-content: space-between;
     align-items: center;
+
     margin-bottom: 35px;
-    background: white;
     padding: 20px 30px;
+
+    background: #ffffff;
+
     border-radius: 16px;
+
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
 }
 
-.section-header h2 {
+
+/* =========================================
+   Doctor Name
+========================================= */
+
+.doctor-name {
+    display: flex;
+    text-align: center;
+    align-items: center;
+    margin: auto;
+}
+
+.doctor-name h2 {
     margin: 0;
+
     color: #2c3e50;
+
     font-size: 28px;
+
     font-weight: 700;
 }
 
+
+/* =========================================
+   Appointments Count
+========================================= */
+
 .appointments-count {
     background: #3498db;
-    color: white;
+
+    color: #ffffff;
+
     padding: 8px 20px;
+
     border-radius: 30px;
+
     font-size: 16px;
+
     font-weight: 600;
+
+    white-space: nowrap;
 }
 
-/*========================== Grid ==========================*/
+
+/* =========================================
+   Appointments Grid
+========================================= */
+
 .appointments-grid {
     display: grid;
-    grid-template-columns: repeat(3, 3fr);
+
+    grid-template-columns: repeat(3, 1fr);
+
     gap: 25px;
 }
 
-/*========================== Card ==========================*/
+
+/* =========================================
+   Appointment Card
+========================================= */
+
 .appointment-card {
-    background: white;
+    background: #ffffff;
+
     border-radius: 18px;
+
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-    transition: all 0.3s ease;
+
     border: 2px solid transparent;
+
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+    transition: all 0.3s ease;
+
+    box-sizing: border-box;
 }
 
 .appointment-card:hover {
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.71);
+    transform: translateY(-5px);
+
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.30);
 }
 
-/* Card Header */
+
+/* =========================================
+   Card Header
+========================================= */
+
 .card-header {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    padding: 20px 25px;
     display: flex;
+
     justify-content: space-between;
     align-items: center;
+
+    padding: 20px 25px;
+
+    background: linear-gradient(
+        135deg,
+        #667eea 0%,
+        #764ba2 100%
+    );
+
+    box-sizing: border-box;
 }
+
+
+/* =========================================
+   Patient Info
+========================================= */
 
 .patient-info {
     display: flex;
+
     align-items: center;
+
     gap: 15px;
+
+    min-width: 0;
 }
+
+
+/* =========================================
+   Patient Avatar
+========================================= */
 
 .patient-avatar {
     width: 50px;
     height: 50px;
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
+
+    flex-shrink: 0;
+
     display: flex;
+
     align-items: center;
     justify-content: center;
-    color: white;
+
+    background: rgba(255, 255, 255, 0.20);
+
+    border-radius: 50%;
+
+    border: 2px solid rgba(255, 255, 255, 0.30);
+
+    color: #ffffff;
+
     font-size: 22px;
+
     font-weight: 700;
-    border: 2px solid rgba(255, 255, 255, 0.3);
 }
 
+
+/* =========================================
+   Patient Details
+========================================= */
+
 .patient-details {
-    color: white;
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 4px;
+
+    color: #ffffff;
 }
 
 .patient-name {
     margin: 0;
+
+    color: #ffffff;
+
     font-size: 18px;
+
     font-weight: 700;
 }
 
 .patient-code {
+    color: #ffffff;
+
     font-size: 13px;
+
     opacity: 0.9;
 }
 
+
+/* =========================================
+   Appointment Status
+========================================= */
+
 .appointment-status {
-    background: rgba(255, 255, 255, 0.2);
-    color: white;
+    flex-shrink: 0;
+
+    background: rgba(255, 255, 255, 0.20);
+
+    color: #ffffff;
+
     padding: 6px 16px;
+
     border-radius: 20px;
+
     font-size: 13px;
+
     font-weight: 600;
+
     backdrop-filter: blur(5px);
+
+    white-space: nowrap;
 }
 
-/* Card Body */
+
+/* =========================================
+   Card Body
+========================================= */
+
 .card-body {
     padding: 25px;
+
+    box-sizing: border-box;
 }
+
+
+/* =========================================
+   Info Grid
+========================================= */
 
 .info-grid {
     display: grid;
-    grid-template-columns: 1fr ;
+
+    grid-template-columns: 1fr;
+
+    gap: 10px;
 }
+
+
+/* =========================================
+   Info Item
+========================================= */
 
 .info-item {
     background: #f8f9fa;
+
     padding: 12px 15px;
+
     border-radius: 10px;
+
     transition: background 0.3s ease;
+
+    box-sizing: border-box;
 }
 
+.info-item:hover {
+    background: #eef1f5;
+}
+
+
+/* =========================================
+   Full Width
+========================================= */
 
 .info-item.full-width {
     grid-column: 1 / -1;
 }
 
+
+/* =========================================
+   Info Label
+========================================= */
+
 .info-label {
     display: block;
-    font-size: 12px;
-    color: #7f8c8d;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+
     margin-bottom: 5px;
+
+    color: #7f8c8d;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.5px;
 }
+
+
+/* =========================================
+   Info Value
+========================================= */
 
 .info-value {
     display: block;
-    font-size: 16px;
+
     color: #2c3e50;
+
+    font-size: 16px;
+
     font-weight: 600;
+
+    word-break: break-word;
 }
 
-/* Card Footer */
+
+/* =========================================
+   Card Footer
+========================================= */
+
 .card-footer {
     padding: 15px 25px 25px;
+
     border-top: 1px solid #ecf0f1;
+
+    box-sizing: border-box;
 }
+
+
+/* =========================================
+   Delete Button
+========================================= */
 
 .btn-delete {
     display: flex;
+
     align-items: center;
     justify-content: center;
+
     gap: 8px;
+
+    width: 100%;
+
     background: #e74c3c;
-    color: white;
+
+    color: #ffffff;
+
     padding: 12px 25px;
+
     border-radius: 12px;
+
     text-decoration: none;
-    font-weight: 600;
+
     font-size: 15px;
-    transition: all 0.3s ease;
+
+    font-weight: 600;
+
     border: none;
+
     cursor: pointer;
+
+    transition: all 0.3s ease;
+
+    box-sizing: border-box;
 }
 
 .btn-delete:hover {
     background: #c0392b;
+
     transform: scale(1.02);
-    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.4);
+
+    box-shadow: 0 6px 20px rgba(231, 76, 60, 0.40);
 }
+
+
+/* =========================================
+   Delete Icon
+========================================= */
 
 .btn-delete .icon {
     font-size: 18px;
 }
 
-/*========================== Empty State ==========================*/
+
+/* =========================================
+   Empty State
+========================================= */
+
 .empty-state {
+    width: 100%;
+
     text-align: center;
+
     padding: 80px 20px;
-    background: white;
+
+    background: #ffffff;
+
     border-radius: 18px;
+
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+
+    box-sizing: border-box;
 }
+
+
+/* =========================================
+   Empty Icon
+========================================= */
 
 .empty-icon {
-    font-size: 80px;
     margin-bottom: 20px;
+
+    font-size: 80px;
 }
+
+
+/* =========================================
+   Empty Title
+========================================= */
 
 .empty-state h3 {
-    color: #2c3e50;
-    font-size: 24px;
+    margin-top: 0;
+
     margin-bottom: 10px;
+
+    color: #2c3e50;
+
+    font-size: 24px;
 }
 
+
+/* =========================================
+   Empty Text
+========================================= */
+
 .empty-state p {
+    margin: 0;
+
     color: #7f8c8d;
+
     font-size: 16px;
 }
 
-/*========================== Responsive ==========================*/
+
+/* =========================================
+   Tablet
+========================================= */
+
 @media (max-width: 1024px) {
+
+    .appointments-section {
+        padding: 30px 20px;
+    }
+
     .appointments-grid {
-        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        grid-template-columns: repeat(2, 1fr);
+
         gap: 20px;
     }
+
 }
 
+
+/* =========================================
+   Tablet / Mobile
+========================================= */
+
 @media (max-width: 768px) {
+
     .appointments-section {
         padding: 20px 15px;
     }
 
+
+    /* Header */
+
     .section-header {
         flex-direction: column;
-        align-items: flex-start;
+
+        align-items: stretch;
+
         gap: 15px;
-        padding: 15px 20px;
+
+        padding: 18px 20px;
+
+        margin-bottom: 25px;
     }
 
-    .section-header h2 {
+
+    /* Doctor Name */
+
+    .doctor-name {
+        justify-content: center;
+
+        text-align: center;
+    }
+
+    .doctor-name h2 {
         font-size: 22px;
     }
 
+
+    /* Count */
+
+    .appointments-count {
+        align-self: center;
+
+        font-size: 14px;
+
+        padding: 7px 18px;
+    }
+
+
+    /* Grid */
+
     .appointments-grid {
         grid-template-columns: 1fr;
+
         gap: 20px;
     }
 
+
+    /* Card Header */
+
     .card-header {
         flex-direction: column;
+
         align-items: flex-start;
+
         gap: 15px;
     }
+
+
+    /* Status */
 
     .appointment-status {
         align-self: flex-start;
     }
 
+
+    /* Info */
+
     .info-grid {
         grid-template-columns: 1fr;
+
         gap: 10px;
     }
 
@@ -258,33 +590,192 @@
         grid-column: 1;
     }
 
+
+    /* Patient */
+
     .patient-name {
         font-size: 16px;
     }
 
+
+    /* Delete */
+
     .btn-delete {
         font-size: 14px;
+
         padding: 10px 20px;
     }
+
 }
 
+
+/* =========================================
+   Mobile
+========================================= */
+
 @media (max-width: 480px) {
-    .section-header h2 {
-        font-size: 20px;
+
+    .appointments-section {
+        padding: 15px 10px;
     }
+
+
+    /* Header */
+
+    .section-header {
+        padding: 15px;
+
+        border-radius: 13px;
+    }
+
+
+    .doctor-name h2 {
+        font-size: 19px;
+
+        line-height: 1.6;
+    }
+
+
+    /* Count */
 
     .appointments-count {
-        font-size: 14px;
-        padding: 6px 16px;
+        font-size: 13px;
+
+        padding: 6px 15px;
     }
 
+
+    /* Card */
+
+    .appointment-card {
+        border-radius: 14px;
+    }
+
+
+    /* Header */
+
+    .card-header {
+        padding: 17px 18px;
+    }
+
+
+    /* Avatar */
+
     .patient-avatar {
-        width: 40px;
-        height: 40px;
+        width: 42px;
+        height: 42px;
+
         font-size: 18px;
     }
+
+
+    /* Patient */
 
     .patient-name {
         font-size: 15px;
     }
+
+    .patient-code {
+        font-size: 12px;
+    }
+
+
+    /* Body */
+
+    .card-body {
+        padding: 18px;
+    }
+
+
+    /* Info */
+
+    .info-item {
+        padding: 11px 12px;
+    }
+
+    .info-label {
+        font-size: 11px;
+    }
+
+    .info-value {
+        font-size: 14px;
+    }
+
+
+    /* Footer */
+
+    .card-footer {
+        padding: 12px 18px 18px;
+    }
+
+
+    /* Delete */
+
+    .btn-delete {
+        font-size: 13px;
+
+        padding: 10px;
+    }
+
+
+    /* Empty */
+
+    .empty-state {
+        padding: 60px 15px;
+    }
+
+    .empty-icon {
+        font-size: 65px;
+    }
+
+    .empty-state h3 {
+        font-size: 20px;
+    }
+
+    .empty-state p {
+        font-size: 14px;
+
+        line-height: 1.8;
+    }
+
+}
+
+
+/* =========================================
+   Very Small Mobile
+========================================= */
+
+@media (max-width: 360px) {
+
+    .doctor-name h2 {
+        font-size: 17px;
+    }
+
+    .patient-info {
+        gap: 10px;
+    }
+
+    .patient-avatar {
+        width: 38px;
+        height: 38px;
+
+        font-size: 16px;
+    }
+
+    .patient-name {
+        font-size: 14px;
+    }
+
+    .patient-code {
+        font-size: 11px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .info-value {
+        font-size: 13px;
+    }
+
 }

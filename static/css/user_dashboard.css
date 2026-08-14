@@ -1,12 +1,21 @@
-body{
+/* =========================================
+   Body
+========================================= */
+
+body {
     background-color: rgba(184, 202, 149, 0.567);
 }
 
-.user-dashboard {
-    width: 60%;
-    max-width: 1000px;
 
-    margin: 40px auto;
+/* =========================================
+   Dashboard
+========================================= */
+
+.user-dashboard {
+    width: 92%;
+    max-width: 1100px;
+
+    margin: 45px auto;
 
     direction: rtl;
 }
@@ -17,11 +26,12 @@ body{
 ========================================= */
 
 .user-dashboard .dashboard-title {
-    margin-bottom: 25px;
+    margin: 0 0 30px;
 
     color: #173b4d;
 
-    font-size: 24px;
+    font-size: 26px;
+    font-weight: 800;
 
     text-align: center;
 }
@@ -35,9 +45,9 @@ body{
     display: grid;
 
     grid-template-columns:
-        repeat(auto-fit, minmax(280px, 1fr));
+        repeat(auto-fit, minmax(300px, 1fr));
 
-    gap: 20px;
+    gap: 24px;
 }
 
 
@@ -46,26 +56,74 @@ body{
 ========================================= */
 
 .user-dashboard .appointment-card {
+
     padding: 25px;
 
     background: #ffffff;
 
     border: 1px solid #e5ecef;
 
-    border-radius: 16px;
+    border-radius: 18px;
 
     box-shadow:
         0 8px 25px rgba(30, 70, 90, 0.08);
 
-    transition: 0.25s ease;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 
 .user-dashboard .appointment-card:hover {
-    transform: translateY(-3px);
+
+    transform: translateY(-5px);
 
     box-shadow:
-        0 12px 30px rgba(30, 70, 90, 0.12);
+        0 15px 35px rgba(30, 70, 90, 0.14);
+}
+
+
+/* =========================================
+   Appointment Header
+========================================= */
+
+.user-dashboard .appointment-header {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #edf1f3;
+}
+
+
+/* =========================================
+   Doctor Icon
+========================================= */
+
+.user-dashboard .doctor-icon {
+
+    width: 50px;
+    height: 50px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 14px;
+
+    background: rgba(7, 139, 140, 0.10);
+
+    color: #078b8c;
+
+    font-size: 22px;
 }
 
 
@@ -73,34 +131,105 @@ body{
    Doctor Name
 ========================================= */
 
-.user-dashboard .appointment-card h3 {
-    margin: 0 0 20px;
+.user-dashboard .appointment-header h3 {
 
-    padding-bottom: 15px;
+    margin: 0 0 6px;
 
-    border-bottom: 1px solid #edf1f3;
+    color: #173b4d;
 
-    color: #078b8c;
+    font-size: 18px;
 
-    font-size: 19px;
+    font-weight: 800;
 }
 
 
 /* =========================================
-   Information
+   Doctor Special
 ========================================= */
 
-.user-dashboard .appointment-card p {
-    margin: 12px 0;
+.user-dashboard .appointment-header span {
 
-    color: #667983;
+    color: #078b8c;
 
-    font-size: 14px;
+    font-size: 13px;
+
+    font-weight: 600;
 }
 
 
-.user-dashboard .appointment-card p strong {
+/* =========================================
+   Appointment Information
+========================================= */
+
+.user-dashboard .appointment-info {
+
+    margin-top: 20px;
+}
+
+
+/* =========================================
+   Information Item
+========================================= */
+
+.user-dashboard .info-item {
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    min-height: 45px;
+
+    padding: 0 12px;
+
+    margin-bottom: 8px;
+
+    border-radius: 9px;
+
+    background: #f8fafb;
+}
+
+
+.user-dashboard .info-item:last-child {
+    margin-bottom: 0;
+}
+
+
+/* =========================================
+   Information Label
+========================================= */
+
+.user-dashboard .info-label {
+
+    color: #7b8c95;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================================
+   Information Value
+========================================= */
+
+.user-dashboard .info-value {
+
     color: #304b58;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================
+   Delete Form
+========================================= */
+
+.user-dashboard .appointment-card form {
+
+    margin-top: 20px;
 }
 
 
@@ -108,15 +237,11 @@ body{
    Delete Button
 ========================================= */
 
-.user-dashboard .appointment-card form {
-    margin-top: 20px;
-}
-
-
 .user-dashboard .appointment-card button {
+
     width: 100%;
 
-    height: 45px;
+    height: 44px;
 
     border: 1px solid #e6caca;
 
@@ -134,14 +259,20 @@ body{
 
     font-weight: 700;
 
-    transition: 0.2s ease;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        transform 0.2s ease;
 }
 
 
 .user-dashboard .appointment-card button:hover {
+
     background: #ffeded;
 
     border-color: #dca8a8;
+
+    transform: translateY(-1px);
 }
 
 
@@ -150,7 +281,8 @@ body{
 ========================================= */
 
 .user-dashboard .no-appointment {
-    padding: 40px;
+
+    padding: 50px 30px;
 
     text-align: center;
 
@@ -158,7 +290,7 @@ body{
 
     border: 1px solid #e5ecef;
 
-    border-radius: 16px;
+    border-radius: 18px;
 
     box-shadow:
         0 8px 25px rgba(30, 70, 90, 0.06);
@@ -166,13 +298,17 @@ body{
 
 
 .user-dashboard .no-appointment h3 {
-    margin-bottom: 10px;
+
+    margin: 0 0 10px;
 
     color: #173b4d;
+
+    font-size: 20px;
 }
 
 
 .user-dashboard .no-appointment p {
+
     margin: 0;
 
     color: #82919a;
@@ -186,13 +322,14 @@ body{
 ========================================= */
 
 .user-dashboard .logout-link {
+
     display: block;
 
     width: fit-content;
 
     margin: 30px auto 0;
 
-    padding: 10px 20px;
+    padding: 10px 22px;
 
     border-radius: 9px;
 
@@ -206,12 +343,50 @@ body{
 
     font-size: 13px;
 
-    transition: 0.2s ease;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
 }
 
 
 .user-dashboard .logout-link:hover {
+
     background: #ffeded;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================
+   Tablet
+========================================= */
+
+@media (max-width: 800px) {
+
+    .user-dashboard {
+
+        width: 90%;
+
+        margin: 35px auto;
+    }
+
+
+    .user-dashboard .appointments-grid {
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 18px;
+    }
+
+
+    .user-dashboard .appointment-card {
+
+        padding: 20px;
+    }
+
 }
 
 
@@ -222,21 +397,71 @@ body{
 @media (max-width: 600px) {
 
     .user-dashboard {
+
         width: 92%;
 
         margin: 25px auto;
     }
 
-    .user-dashboard .appointments-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .user-dashboard .appointment-card {
-        padding: 20px;
-    }
 
     .user-dashboard .dashboard-title {
-        font-size: 21px;
+
+        margin-bottom: 22px;
+
+        font-size: 22px;
     }
+
+
+    .user-dashboard .appointments-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 16px;
+    }
+
+
+    .user-dashboard .appointment-card {
+
+        padding: 18px;
+
+        border-radius: 15px;
+    }
+
+
+    .user-dashboard .appointment-header h3 {
+
+        font-size: 17px;
+    }
+
+
+    .user-dashboard .doctor-icon {
+
+        width: 45px;
+        height: 45px;
+
+        border-radius: 12px;
+
+        font-size: 19px;
+    }
+
+
+    .user-dashboard .info-item {
+
+        min-height: 42px;
+
+        padding: 0 10px;
+    }
+
+
+    .user-dashboard .info-label {
+
+        font-size: 12px;
+    }
+
+
+    .user-dashboard .info-value {
+
+        font-size: 13px;
+    }
+
 }
-```

@@ -1,7 +1,10 @@
 /* =========================
    Footer
 ========================= */
-
+body{
+    margin: 0;
+    padding: 0;
+}
 .site-footer {
     width: 100%;
     color: #ffffff;

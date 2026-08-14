@@ -18,7 +18,7 @@
     </a>
 
     <!-- دکمه سه خط موبایل -->
-    <button class="mobile-menu-button" type="button" onclick="Menu()">
+    <button class="mobile-menu-button" type="button" onclick="Menu()" aria-label="بستن منو">
 
         <span></span>
         <span></span>
@@ -42,7 +42,7 @@
 
     <!--برای موبایل و گزینه 3 خط-->
 
-    <nav class="mobile-menu">
+    <nav class="mobile-menu" aria-label="خود صفحه منوی 3 خط که باز میشه">
 
         <ul>
 
@@ -85,6 +85,12 @@
             <li>
                 <a href="{{ url_for('general.ertebat_ba_ma') }}">
                     ارتباط با ما
+                </a>
+            </li>
+
+            <li>
+                <a href="{{ url_for('user.login_this') }}">
+                    پیگیری نوبت
                 </a>
             </li>
 
@@ -154,6 +160,28 @@
                         ارتباط با ما
                     </a>
                 </li>
+
+                {% if request.endpoint.startswith("general") %}
+
+                {% if current_user.is_authenticated %}
+
+                <li>
+                    <a href="{{ url_for('user.dashboard') }}">
+                        پیگیری نوبت
+                    </a>
+                </li>
+
+                {% else %}
+
+                <li>
+                    <a href="{{ url_for('user.login_this') }}">
+                        ورود به حساب
+                    </a>
+                </li>
+
+                {% endif %}
+
+                {% endif %}
 
             </ul>
 

@@ -1,72 +1,244 @@
 {% extends "base.html" %}
 
 {% block title %}
-صفحه ثبت اطلاعات
+داشبورد پزشک | بیمارستان رازی
 {% endblock %}
 
 {% block body %}
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_dashboard.css') }}">
 
 
-
 <section class="appointments-section">
+
     <div class="container">
 
+
+        <!-- ==========================
+             Header
+        =========================== -->
+
         {% if appointment %}
+
+        <div class="section-header">
+
+            <div class="doctor-name">
+
+                <h2>
+                    دکتر {{ appointment[0].schedule.doctor.doctor_name }} <!--اگر با حلقه فُر بنویسم باعث میشه چندبار اسم دکتر نوشته بشه-->
+                </h2>
+
+            </div>
+
+
+        </div>
+
+        {% endif %}
+
+
+
+        <!-- ==========================
+             Appointments
+        =========================== -->
+
+        {% if appointment %}
+
         <div class="appointments-grid">
+
+
             {% for appoint in appointment %}
+
+
+            <!-- ==========================
+                 Appointment Card
+            =========================== -->
+
             <div class="appointment-card">
+
+
+                <!-- Card Header -->
+
                 <div class="card-header">
+
                     <div class="patient-info">
-                        <div class="patient-details">
-                            <span class="patient-code">کد ملی: {{ appoint.user.national_code }}</span>
+
+                        <div class="patient-avatar">
+                            👤
                         </div>
+
+                        <div class="patient-details">
+
+                            <span class="patient-name">
+                                بیمار
+                            </span>
+
+                            <span class="patient-code">
+                                کد ملی: {{ appoint.user.national_code }}
+                            </span>
+
+                        </div>
+
                     </div>
+
+
+                    <div class="appointment-status">
+
+                        نوبت فعال
+
+                    </div>
+
                 </div>
+
+
+
+                <!-- Card Body -->
 
                 <div class="card-body">
+
                     <div class="info-grid">
+
+
+                        <!-- روز هفته -->
+
                         <div class="info-item">
-                            <span class="info-label">📅 روز هفته</span>
-                            <span class="info-value">{{ appoint.schedule.day_of_week }}</span>
+
+                            <span class="info-label">
+                                📅 روز هفته
+                            </span>
+
+                            <span class="info-value">
+                                {{ appoint.schedule.day_of_week }}
+                            </span>
+
                         </div>
+
+
+
+                        <!-- ساعت شروع -->
+
                         <div class="info-item">
-                            <span class="info-label">⏰ ساعت شروع</span>
-                            <span class="info-value">{{ appoint.schedule.start_time.strftime('%H:%M') }}</span>
+
+                            <span class="info-label">
+                                ⏰ ساعت شروع
+                            </span>
+
+                            <span class="info-value">
+                                {{ appoint.schedule.start_time.strftime('%H:%M') }}
+                            </span>
+
                         </div>
+
+
+
+                        <!-- ساعت پایان -->
+
                         <div class="info-item">
-                            <span class="info-label">⏰ ساعت پایان</span>
-                            <span class="info-value">{{ appoint.schedule.end_time.strftime('%H:%M') }}</span>
+
+                            <span class="info-label">
+                                ⏰ ساعت پایان
+                            </span>
+
+                            <span class="info-value">
+                                {{ appoint.schedule.end_time.strftime('%H:%M') }}
+                            </span>
+
                         </div>
+
+
+
+                        <!-- تلفن -->
+
                         <div class="info-item">
-                            <span class="info-label">📞 تلفن</span>
-                            <span class="info-value">{{ appoint.user.phone }}</span>
+
+                            <span class="info-label">
+                                📞 تلفن
+                            </span>
+
+                            <span class="info-value">
+                                {{ appoint.user.phone }}
+                            </span>
+
                         </div>
+
+
+
+                        <!-- تاریخ ثبت -->
+
                         <div class="info-item full-width">
-                            <span class="info-label">📆 تاریخ ثبت</span>
-                            <span class="info-value">{{ appoint.user.created_at.strftime('%Y/%m/%d - %H:%M') }}</span>
+
+                            <span class="info-label">
+                                📆 تاریخ ثبت
+                            </span>
+
+                            <span class="info-value">
+                                {{ appoint.user.created_at.strftime('%Y/%m/%d - %H:%M') }}
+                            </span>
+
                         </div>
+
+
                     </div>
+
                 </div>
 
+
+
+                <!-- Card Footer -->
+
                 <div class="card-footer">
+
                     <a href="{{ url_for('doctor.delete', id=appoint.id) }}" class="btn-delete"
                         onclick="return confirm('آیا از حذف این نوبت اطمینان دارید؟')">
-                        <span class="icon">🗑️</span>
+
+                        <span class="icon">
+                            🗑️
+                        </span>
+
                         حذف نوبت
+
                     </a>
+
                 </div>
+
+
             </div>
+
+
             {% endfor %}
+
+
         </div>
+
+
         {% else %}
+
+
+        <!-- ==========================
+             Empty State
+        =========================== -->
+
         <div class="empty-state">
-            <div class="empty-icon">📭</div>
-            <h3>هیچ نوبتی ثبت نشده است</h3>
-            <p>هنوز بیماری برای شما نوبت ثبت نکرده است.</p>
+
+            <div class="empty-icon">
+                📭
+            </div>
+
+            <h3>
+                هیچ نوبتی ثبت نشده است
+            </h3>
+
+            <p>
+                هنوز بیماری برای شما نوبت ثبت نکرده است.
+            </p>
+
         </div>
+
+
         {% endif %}
+
+
     </div>
+
 </section>
 
 

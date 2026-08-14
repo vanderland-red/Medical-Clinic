@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-داشبورد کاربر
+داشبورد کاربر | بیمارستان رازی
 {% endblock %}
 
 {% block body %}
-<link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
 
+<link rel="stylesheet" href="{{ url_for('static', filename='css/user_dashboard.css') }}">
 
 <div class="user-dashboard">
 
@@ -14,50 +14,81 @@
         نوبت‌های من
     </h2>
 
-    {% if appointment %}
+    {% if appointment_data %}
 
     <div class="appointments-grid">
 
-        {% for appoint in appointment %}
+        {% for item in appointment_data %}
+
+        {% set appoint = item.appointment %}
 
         <div class="appointment-card">
 
-            <h3>
-                {{ appoint.doctor.doctor_name }}
-            </h3>
+            <div class="appointment-header">
 
-            <p>
-                <strong>تخصص:</strong>
-                {{ appoint.doctor.specials }}
-            </p>
+                <div>
+                    <h3>
+                        {{ appoint.doctor.doctor_name }}
+                    </h3>
 
-            <p>
-                <strong>روز:</strong>
-                {{ appoint.schedule.day_of_week }}
-            </p>
+                    <span>
+                        {{ appoint.doctor.specials }}
+                    </span>
+                </div>
 
-            <p>
-                <strong>ساعت:</strong>
-                {{ appoint.schedule.start_time.strftime('%H:%M') }}
-                تا
-                {{ appoint.schedule.end_time.strftime('%H:%M') }}
-            </p>
+            </div>
 
-            <form
-                action="{{ url_for('user.schedule_delete', id=appoint.id) }}"
-                method="POST"
-            >
 
-                <input
-                    type="hidden"
-                    name="csrf_token"
-                    value="{{ csrf_token() }}"
-                >
+            <div class="appointment-info">
 
-                <button
-                    type="submit"
-                    onclick="return confirm('آیا از حذف این نوبت مطمئن هستید؟')"
-                >
+                <div class="info-item">
+
+                    <span class="info-label">
+                        روز
+                    </span>
+
+                    <span class="info-value">
+                        {{ appoint.schedule.day_of_week }}
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        تاریخ
+                    </span>
+
+                    <span class="info-value">
+                        {{ item.persian_date }}
+                    </span>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <span class="info-label">
+                        ساعت
+                    </span>
+
+                    <span class="info-value">
+                        {{ appoint.schedule.start_time.strftime('%H:%M') }}
+                        تا
+                        {{ appoint.schedule.end_time.strftime('%H:%M') }}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <form action="{{ url_for('user.schedule_delete', id=appoint.id) }}" method="POST">
+
+                <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+                <button type="submit" onclick="return confirm('آیا از حذف این نوبت مطمئن هستید؟')">
                     حذف نوبت
                 </button>
 
@@ -72,20 +103,21 @@
     {% else %}
 
     <div class="no-appointment">
-        <h3>نوبتی ندارید</h3>
+
+        <h3>
+            نوبتی ندارید
+        </h3>
 
         <p>
             در حال حاضر هیچ نوبتی برای شما ثبت نشده است.
         </p>
+
     </div>
 
     {% endif %}
 
 
-    <a
-        href="{{ url_for('user.logout') }}"
-        class="logout-link"
-    >
+    <a href="{{ url_for('user.logout') }}" class="logout-link">
         خروج از حساب
     </a>
 
