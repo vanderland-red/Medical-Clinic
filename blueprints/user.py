@@ -262,6 +262,11 @@ def logout():
     flash("از حساب کاربری خارج شدید.", "success")
     return redirect(url_for("general.home"))
 
+
+
+#===========================
+# USER Show Doctor Schedule
+#===========================
 @bp.route("/taking_turn")
 def taking_turn ():
     doctors = Doctor.query.join(Doctor.schedules)\
