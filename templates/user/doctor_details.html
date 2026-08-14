@@ -5,18 +5,29 @@
 {% endblock %}
 
 {% block body %}
+
 <link rel="stylesheet" href="{{ url_for('static', filename='css/doctor_details.css') }}">
+
+
+<!-- ==============================
+     Doctor Information
+============================== -->
 
 <section class="doctor-card">
 
     <div class="doctor-image-box">
+
         <img src="{{ url_for('static', filename='doctor_profile/' ~ doctor.profile_image) }}"
             alt="{{ doctor.doctor_name }}">
+
     </div>
+
 
     <div class="doctor-info">
 
-        <h2>{{ doctor.doctor_name }}</h2>
+        <h2>
+            {{ doctor.doctor_name }}
+        </h2>
 
         <span class="doctor-special">
             {{ doctor.specials }}
@@ -27,11 +38,18 @@
 </section>
 
 
+
+<!-- ==============================
+     Schedule
+============================== -->
+
 <section class="schedule-section">
 
     <h3 class="schedule-title">
         زمان‌های نوبت‌دهی
     </h3>
+
+
 
     <div class="schedule-grid">
 
@@ -39,21 +57,29 @@
 
         {% set schedule = item.schedule %}
 
-        <a href="{{ url_for('user.register', schedule_id=schedule.id) }}" class="schedule-link">
+
+        {% if schedule.booked_visits >= schedule.max_visits %}
+
+        <div class="schedule-link schedule-disabled">
 
             <div class="schedule-card">
 
                 <!-- تاریخ شمسی -->
+
                 <div class="appointment-date">
                     {{ item.persian_date }}
                 </div>
 
+
                 <!-- روز هفته -->
+
                 <div class="schedule-day">
                     {{ schedule.day_of_week }}
                 </div>
 
+
                 <!-- ساعت -->
+
                 <div class="schedule-time">
 
                     <span>
@@ -70,21 +96,114 @@
 
                 </div>
 
-                <!-- ظرفیت -->
+
+                <!-- ظرفیت کل -->
+
                 <div class="schedule-capacity">
+
                     تعداد ویزیت:
                     {{ schedule.max_visits }}
+
                 </div>
 
-                <!-- رزرو شده -->
+
+                <!-- ظرفیت رزرو شده -->
+
                 <div class="schedule-capacity">
+
                     اخذ شده:
                     {{ schedule.booked_visits }}
+
+                </div>
+
+
+                <!-- وضعیت -->
+
+                <div class="schedule-full">
+
+                    ظرفیت تکمیل شده
+
                 </div>
 
             </div>
 
+        </div>
+
+
+        {% else %}
+
+
+        <!-- ==============================
+                     Available Schedule
+                ============================== -->
+
+        <a href="{{ url_for('user.register', schedule_id=schedule.id) }}" class="schedule-link">
+
+            <div class="schedule-card">
+
+
+                <!-- تاریخ شمسی -->
+
+                <div class="appointment-date">
+
+                    {{ item.persian_date }}
+
+                </div>
+
+
+                <!-- روز هفته -->
+
+                <div class="schedule-day">
+
+                    {{ schedule.day_of_week }}
+
+                </div>
+
+
+                <!-- ساعت -->
+
+                <div class="schedule-time">
+
+                    <span>
+                        {{ schedule.start_time.strftime('%H:%M') }}
+                    </span>
+
+                    <span class="time-separator">
+                        تا
+                    </span>
+
+                    <span>
+                        {{ schedule.end_time.strftime('%H:%M') }}
+                    </span>
+
+                </div>
+
+
+                <!-- ظرفیت کل -->
+
+                <div class="schedule-capacity">
+
+                    تعداد ویزیت:
+                    {{ schedule.max_visits }}
+
+                </div>
+
+
+                <!-- ظرفیت رزرو شده -->
+
+                <div class="schedule-capacity">
+
+                    اخذ شده:
+                    {{ schedule.booked_visits }}
+
+                </div>
+
+
+            </div>
+
         </a>
+
+        {% endif %}
 
         {% endfor %}
 

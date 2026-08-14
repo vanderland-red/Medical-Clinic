@@ -251,3 +251,60 @@ body{
     }
 
 }
+
+
+/* ==============================
+   نوبت تکمیل ظرفیت
+============================== */
+
+.schedule-disabled {
+    display: block;
+    cursor: not-allowed;
+    text-decoration: none;
+    color: inherit;
+}
+
+
+/* کارت پر شده */
+
+.schedule-disabled .schedule-card {
+    opacity: 0.6;
+    filter: grayscale(80%);
+    cursor: not-allowed;
+
+    box-shadow: none;
+    border-color: #d1d5db;
+
+    transition: none;
+}
+
+
+/* جلوگیری از Hover */
+
+.schedule-disabled:hover .schedule-card {
+    transform: none;
+    box-shadow: none;
+    border-color: #d1d5db;
+}
+
+
+/* متن ظرفیت تکمیل شده */
+
+.schedule-full {
+    width: 100%;
+
+    margin-top: 12px;
+    padding: 8px 12px;
+
+    box-sizing: border-box;
+
+    text-align: center;
+
+    background: #e5e7eb;
+    color: #6b7280;
+
+    border-radius: 8px;
+
+    font-size: 13px;
+    font-weight: bold;
+}

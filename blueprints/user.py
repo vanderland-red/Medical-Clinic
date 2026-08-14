@@ -250,40 +250,6 @@ def verify_login ():
 
 
 
-    
-#===========================
-# USER and Doctor Appointment
-#===========================
-@login_required
-@bp.route("/appointment/<int:schedule_id>", methods=["POST"])
-def appointment(schedule_id):
-
-    schedule = DoctorSchedule.query.get_or_404(schedule_id)
-
-    doctor = schedule.doctor
-
-    exists = Appointment.query.filter_by(
-    user_id=current_user.id,
-    schedule_id=schedule.id
-    ).first()
-
-    if exists:
-        flash("شما قبلاً این نوبت را رزرو کرده‌اید.", "warning")
-        return redirect(url_for("user.want_doctor", id=doctor.id))
-
-    schedule_id = session.get("schedule_id")
-
-
-    if schedule_id:
-
-        return redirect(url_for("payment.create_payment", schedule_id=schedule_id))
-
-    flash("نوبت شما با موفقیت ثبت شد.", "success")
-    return redirect(url_for("user.dashboard"))
-
-
-
-
 #===================
 # USER Logout
 #===================
@@ -385,5 +351,3 @@ def schedule_delete(id):
 
     flash("نوبت با موفقیت حذف شد", "success")
     return redirect(url_for("user.dashboard"))
-
-
