@@ -106,8 +106,5 @@ http://127.0.0.1:5000
 * یادآوری نوبت از طریق SMS
 * توسعه API و نسخه React
 
-## Developer
-
-**MohammadReza**
-
-**Python & Flask**
+## Developed with Python & Flask
+Medical Clinic
