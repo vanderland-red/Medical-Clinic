@@ -106,8 +106,8 @@ http://127.0.0.1:5000
 * یادآوری نوبت از طریق SMS
 * توسعه API و نسخه React
 
-## 👨‍💻 Developer
+## Developer
 
-**Mohammad**
+**MohammadReza**
 
-Built with ❤️ using **Python & Flask**
+**Python & Flask**
