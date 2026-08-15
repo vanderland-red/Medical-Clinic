@@ -38,7 +38,7 @@
 
 * MySQL
 
-## 📦 Dependencies
+## Dependencies
 
 تمام کتابخانه‌های موردنیاز پروژه در فایل `requirements.txt` قرار دارند.
 
